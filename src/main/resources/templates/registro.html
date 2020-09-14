@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Registro</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Datos de la persona</h2>
+        <a th:href="@{/}">Regresar</a>
+        <br/>
+        <form th:action="@{/guardar}" method="post" th:object="${registro}">
+
+                <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}"
+                            th:text="${err}">Input is incorrect</li>
+                    </ul>
+                </div>
+                <label for="curp">Hora de atención</label>
+                <input type="time" name="hora_ingreso" th:field="*{hora_ingreso}" required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_ingreso}">Error nombre</span>
+                <br/>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" th:field="*{nombre}"  required/>
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
+                <br/>
+                <label for="apellido">Apellido Paterno</label>
+                <input type="text" name="apellidoP" th:field="*{a_paterno}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('a_paterno')}" th:errors="*{a_paterno}">Error apellido</span>
+                <br/>
+                <label for="email">Apellido Materno</label>
+                <input type="text" name="apellidoM" th:field="*{a_materno}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('a_materno')}" th:errors="*{a_materno}">Error email</span>
+                <br/>
+                <label for="telefono">Edad</label>
+                <input type="number" name="edad" th:field="*{edad}"  required="Llene este campo" min="01" max="99"/>
+                <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error nombre</span>
+                <br/>
+                <label for="telefono">Estado</label>
+                <input type="number" name="estado" th:field="*{id_estado}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('id_estado')}" th:errors="*{id_estado}">Error nombre</span>
+                <br/>
+                <label for="telefono">Municipio</label>
+                <input type="number" name="municipio" th:field="*{id_municipio}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('id_municipio')}" th:errors="*{id_municipio}">Error nombre</span>
+                <br/>
+                <label for="telefono">Calle</label>
+                <input type="text" name="calle" th:field="*{calle}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}">Error nombre</span>
+                <br/>
+                <label for="telefono">Numero exterior</label>
+                <input type="text" name="exterior" th:field="*{numero_exterior}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('numero_exterior')}" th:errors="*{numero_exterior}">Error nombre</span>
+                <br/>
+                <label for="telefono">Numero interior</label>
+                <input type="text" name="interio" th:field="*{numero_interior}"/>
+                <span th:if="${#fields.hasErrors('numero_interior')}" th:errors="*{numero_interior}">Error nombre</span>
+                <br/>
+                <label for="telefono">Colonia</label>
+                <input type="text" name="colonia" th:field="*{colonia}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('colonia')}" th:errors="*{colonia}">Error nombre</span>
+                <br/>
+                <label for="telefono">Codigo postal</label>
+                <input type="text" name="cp" th:field="*{codigo_postal}"  required="Llene este campo" minlength="5" maxlength="5"/>
+                <span th:if="${#fields.hasErrors('codigo_postal')}" th:errors="*{codigo_postal}">Error nombre</span>
+                <br/>
+                <label for="telefono">Estado Civil</label>
+                <input type="number" name="estadoCivil" th:field="*{id_estado_civil}"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('id_estado_civil')}" th:errors="*{id_estado_civil}">Error nombre</span>
+                <br/>
+                <label for="telefono">Telefono</label>
+                <input type="text" name="telefono" th:field="*{telefono}" minlength="4" maxlength="10"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error nombre</span>
+                <br/>
+                <label for="curp">CURP</label>
+                <input type="text" name="curp" th:field="*{curp}" minlength="18" maxlength="18"  required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('curp')}" th:errors="*{curp}">Error nombre</span>
+                <br/>
+                <label for="hora_egreso">Hora finalizacion de atención</label>
+                <input type="time" name="hora_egreso" th:field="*{hora_egreso}" required="Llene este campo"/>
+                <span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_egreso}">Error nombre</span>
+                <br/>
+                <br/>
+                <br/>
+                <h3>Servicios</h3>
+                <select th:field="*{motivo_visita}">
+                    <option th:value="informacion">Ficha informativa</option>
+                    <option th:value="asesoria">Asesoria</option>
+                    <option th:value="expediente">Expediente</option>
+                </select>
+
+
+<!--            <input type="button" name="emergencia" onclick='false' value="Emergencia">-->
+                <!--            <input type="checkbox" name="ficha" value="Ficha">
+                            <label for="ficha"> Ficha informativa </label><br>
+                                <br/>
+                            <input type="checkbox" name="asesoria" value="Asesoria">
+                                 <label for="asesoria"> Asesoria </label><br>
+                                <br/>
+                            <input type="checkbox" name="expediente" value="Expediente">
+                                <label for="expediente"> Expediente </label><br>
+                                <br/>-->
+                <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

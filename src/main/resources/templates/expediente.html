@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Registro</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Crear expediente</h2>
+        <a th:href="@{/ver/{id}}">Regresar</a>
+        <br/>
+        <form th:action="@{/crearExpediente}" method="post" th:object="${expediente}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label for="curp">Hora de entrada</label>
+            <input type="time" name="h_entrada" th:field="*{h_entrada}" required="Llene este campo"/>
+            <span th:if="${#fields.hasErrors('h_entrada')}" th:errors="*{h_entrada}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Nombre del entrevistador:</label>
+            <input type="text" name="nombre_entrevistador" th:field="*{nombre_entrevistador}"  required/>
+            <span th:if="${#fields.hasErrors('nombre_entrevistador')}" th:errors="*{nombre_entrevistador}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Leer</label>
+            <input type="text" name="leer" th:field="*{leer}"  required/>
+            <span th:if="${#fields.hasErrors('leer')}" th:errors="*{leer}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Escribir</label>
+            <input type="text" name="escribir" th:field="*{escribir}"  required/>
+            <span th:if="${#fields.hasErrors('escribir')}" th:errors="*{escribir}">Error nombre</span>
+            <br/>
+
+
+            <label for="nombre">Escolaridad</label>
+            <input type="text" name="escolaridad" th:field="*{escolaridad}"  required/>
+            <span th:if="${#fields.hasErrors('escolaridad')}" th:errors="*{escolaridad}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Tipo de vivienda</label>
+            <input type="text" name="tipo_vivienda" th:field="*{tipo_vivienda}"  required/>
+            <span th:if="${#fields.hasErrors('tipo_vivienda')}" th:errors="*{tipo_vivienda}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Tipo de apoyo</label>
+            <input type="text" name="tipo_apoyo" th:field="*{tipo_apoyo}"  required/>
+            <span th:if="${#fields.hasErrors('tipo_apoyo')}" th:errors="*{tipo_apoyo}">Error nombre</span>
+            <br/>
+
+
+            <label for="nombre">Servicio medico</label>
+            <input type="text" name="servicio_medico" th:field="*{servicio_medico}"  required/>
+            <span th:if="${#fields.hasErrors('servicio_medico')}" th:errors="*{servicio_medico}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Actividad que realiza</label>
+            <input type="text" name="actividad" th:field="*{actividad}"  required/>
+            <span th:if="${#fields.hasErrors('actividad')}" th:errors="*{actividad}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Fuente de ingreso</label>
+            <input type="text" name="fuente_ingreso" th:field="*{fuente_ingreso}"  required/>
+            <span th:if="${#fields.hasErrors('fuente_ingreso')}" th:errors="*{fuente_ingreso}">Error nombre</span>
+            <br/>
+
+
+            <label for="nombre">Ingreso mensual</label>
+            <input type="text" name="ingreso_mensual" th:field="*{ingreso_mensual}"  required/>
+            <span th:if="${#fields.hasErrors('ingreso_mensual')}" th:errors="*{ingreso_mensual}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Tipo de violencia</label>
+            <input type="text" name="tipo_violencia" th:field="*{tipo_violencia}"  required/>
+            <span th:if="${#fields.hasErrors('tipo_violencia')}" th:errors="*{tipo_violencia}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Ambito de la violencia</label>
+            <input type="text" name="ambito_violencia" th:field="*{ambito_violencia}"  required/>
+            <span th:if="${#fields.hasErrors('ambito_violencia')}" th:errors="*{ambito_violencia}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Es victima de delincuencia?</label>
+            <input type="text" name="victima_delincuencia" th:field="*{victima_delincuencia}"  required/>
+            <span th:if="${#fields.hasErrors('victima_delincuencia')}" th:errors="*{victima_delincuencia}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Es victima de trata de personas?</label>
+            <input type="text" name="victima_trata" th:field="*{victima_trata}"  required/>
+            <span th:if="${#fields.hasErrors('victima_trata')}" th:errors="*{victima_trata}">Error nombre</span>
+            <br/>
+
+
+            <label for="nombre">Conoce al agresor?</label>
+            <input type="text" name="conoce_agresor" th:field="*{conoce_agresor}"  required/>
+            <span th:if="${#fields.hasErrors('conoce_agresor')}" th:errors="*{conoce_agresor}">Error nombre</span>
+            <br/>
+
+            <label for="nombre">Informacion adicional</label>
+            <input type="text" name="info_adicional" th:field="*{info_adicional}"  required/>
+            <span th:if="${#fields.hasErrors('info_adicional')}" th:errors="*{info_adicional}">Error nombre</span>
+            <br/>
+            
+            <label for="curp">Hora de salida</label>
+            <input type="time" name="h_salida" th:field="*{h_salida}" required="Llene este campo"/>
+            <span th:if="${#fields.hasErrors('h_salida')}" th:errors="*{h_salida}">Error nombre</span>
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

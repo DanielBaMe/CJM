@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Registro</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Datos del usuario</h2>
+        <a th:href="@{/}">Regresar</a>
+        <br/>        
+        <form th:action="@{/guardarUsuario}" method="post" th:object="${usuario}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" name="nombre" th:field="*{nombre}" th:errorclass="errorfield"/>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
+            <br/>
+            <label for="username">Username</label>
+            <input type="text" name="username" th:field="*{username}" th:errorclass="errorfield"/>
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error username</span>
+            <br/>
+            <label for="password">Password</label>
+            <input type="password" name="password" th:field="*{password}" th:errorclass="errorfield"/>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error password</span>
+            <br/>
+            <label for="privilegio">Privilegio</label>
+            <input type="number" name="privilegio" th:field="*{id_privilegio}" th:errorclass="errorfield"/>
+            <span th:if="${#fields.hasErrors('id_privilegio')}" th:errors="*{id_privilegio}">Error id_privilegio</span>
+            <br/>
+            <label for="area">Area</label>
+            <input type="number" name="area" th:field="*{id_area}" th:errorclass="errorfield"/>
+            <br/>
+            <label for="status">Status</label>
+            <input type="number" name="status" th:field="*{id_status_usuario}" th:errorclass="errorfield"/>
+            <br/>
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

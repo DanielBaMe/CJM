@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="htpp://www.thymeleaf.org/extras?spring-security">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">        </header>
+        <a th:href="@{/editar/} + ${registro.id}">Regresar</a>
+        <div>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido materno</th>
+                        <th>Edad</th>
+                        <th>Estado</th>
+                        <th>Municipio</th>
+                        <th>Colonia</th>
+                        <th>Estado civil</th>
+                        <th>Telefono</th>
+                        <th>CURP</th>
+                        <th>Status</th>
+                        <th>Motivo de la visita</th>
+                        <!--                    <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
+                                            <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>-->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="registro : ${registros}">
+                        <td th:text="${registro.nombre}"></td>
+                        <td th:text="${registro.a_paterno}"></td>
+                        <td th:text="${registro.a_materno}"></td>
+                        <td th:text="${registro.edad}"></td>
+                        <td th:text="${registro.id_estado}"></td>
+                        <td th:text="${registro.id_municipio}"></td>
+                        <td th:text="${registro.colonia}"></td>
+                        <td th:text="${registro.id_estado_civil}"></td>
+                        <td th:text="${registro.telefono}"></td>
+                        <td th:text="${registro.curp}"></td>
+                        <td th:text="${registro.id_status_usuaria_datos_generales}"></td>
+                        <td th:text="${registro.motivo_visita}"></td>
+                        <!--                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
+                                            <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${persona.idPersona}" th:text="Eliminar"></a></td>-->
+                    </tr>
+                </tbody>
+            </table>
+            <button><a th:href="@{/abrirExpediente/} + $(registro.id)">Abrir expediente</a></button>
+        </div>
+        <div th:if="${registros == null}">
+            La lista de personas esta vacia
+        </div>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>
+
