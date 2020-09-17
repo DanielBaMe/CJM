@@ -11,6 +11,8 @@ import javax.validation.constraints.Positive;
 @Entity
 @Table(name = "relaciones_familiares")
 public class RFamiliares implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

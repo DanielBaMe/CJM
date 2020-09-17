@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Familiares</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
 
-</body>
+        </header>
+        <h2>Especificar cuantos habitan con la victima</h2>
+        <br/>
+        <form th:action="@{crear_relaciones_familiares}" method="post" th:object=${familiares}>
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" th:field="*{nombre}" required/>
+            <span th:if="${#fields.hasErrors('nombre')}" th:errors="nombre">Error nombre</span>
+            <br/>
+
+            <label for="edad">Edad:</label>
+            <input type="number" name="edad" th:field="*{edad}"  required/>
+            <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error nombre</span>
+            <br/>
+
+            <label for="ocupacion">Ocupacion</label>
+            <input type="text" name="ocupacion" th:field="*{ocupacion}"  required/>
+            <span th:if="${#fields.hasErrors('ocupacion')}" th:errors="*{ocupacion}">Error nombre</span>
+            <br/>
+
+            <label for="parentezco">Parentezco</label>
+            <input type="text" name="parentezco" th:field="*{parentezco}"  required/>
+            <span th:if="${#fields.hasErrors('parentezco')}" th:errors="*{parentezco}">Error nombre</span>
+            <br/>
+
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
 </html>

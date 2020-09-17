@@ -1,11 +1,11 @@
 package com.cjm.spf.servicio;
 
-import com.cjm.spf.domain.FijacionA;
+import com.cjm.spf.domain.Filiacion;
 
 public interface FijacionAService {
 	
-	public void guardar (FijacionA fijacion);
+	public void guardar (Filiacion fijacion);
 	
-	public FijacionA encontrar(FijacionA fijacion);
+	public Filiacion encontrar(Filiacion fijacion);
 
 }

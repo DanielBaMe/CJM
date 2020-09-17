@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Filiación de la victima</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Red de apoyo</h2>
+        <br/>
+        <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            
+            <label for="efecto_droga">Durante la agresion estaba bajo el efecto de alguna droga o alcohol?</label>
+            <input type="text" name="efecto_droga" th:field="*{efecto_droga}"  required/>
+            <span th:if="${#fields.hasErrors('efecto_droga')}" th:errors="*{efecto_droga}">Error nombre</span>
+            <br/>
+            
+            <label for="frecuencia_consumo">La consume de manera cotidiana?</label>
+            <input type="text" name="frecuencia_consumo" th:field="*{frecuencia_consumo}" required/>
+            <span th:if="${#fields.hasErrors('frecuencia_consumo')}" th:errors="*{frecuencia_consumo}">Error nombre</span>
+            <br/>
+
+            <label for="cual">cual?</label>
+            <input type="text" name=""cual"" th:field="*{cual}"  required/>
+            <span th:if="${#fields.hasErrors('cual')}" th:errors="*{cual}">Error nombre</span>
+            <br/>
+
+            <label for="armas">Posee algun tipo de armas?</label>
+            <input type="text" name="armas" th:field="*{armas}"  required/>
+            <span th:if="${#fields.hasErrors('armas')}" th:errors="{armas}">Error nombre</span>
+            <br/>
+
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Salud Fisica</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2></h2>
+        <br/>
+        <form th:action="@{/salud}" method="post" th:object="salud">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label for="embarazada">¿Esta embarazada?</label>
+            <input type="text" name="embarazada" th:field="*{embarazada}" required/>
+            <span th:if="${#fields.hasErrors('embarazada')}" th:errors="*{embarazada}">Error nombre</span>
+            <br/>
+
+            <label for="problema_caminar">Caminar, subir o bajar sus pies?:</label>
+            <input type="text" name="problema_caminar" th:field="*{problema_caminar}"  required/>
+            <span th:if="${#fields.hasErrors('problema_caminar')}" th:errors="*{problema_caminar}">Error nombre</span>
+            <br/>
+
+            <label for="problema_ver">Ver</label>
+            <input type="text" name="problema_ver" th:field="*{problema_ver}"  required/>
+            <span th:if="${#fields.hasErrors('problema_ver')}" th:errors="*{problema_ver}">Error nombre</span>
+            <br/>
+
+            <label for="problema_aprender">Aprender, recordar o consentrarse o comer?</label>
+            <input type="text" name="problema_aprender" th:field="*{problema_aprender}"  required/>
+            <span th:if="${#fields.hasErrors('problema_aprender')}" th:errors="*{problema_aprender}">Error nombre</span>
+            <br/>
+            
+            <label for="problema_escuchar">Escuchar?:</label>
+            <input type="number" name="problema_escuchar" th:field="*{problema_escuchar}"  required/>
+            <span th:if="${#fields.hasErrors('problema_escuchar')}" th:errors="*{problema_escuchar}">Error nombre</span>
+            <br/>
+
+            <label for="problema_baniarse">Bañarse</label>
+            <input type="text" name="problema_baniarse" th:field="*{problema_baniarse}"  required/>
+            <span th:if="${#fields.hasErrors('problema_baniarse')}" th:errors="problema_baniarse">Error nombre</span>
+            <br/>
+
+            <label for="problema_hablar">Hablar</label>
+            <input type="text" name="problema_hablar" th:field="*{problema_hablar}"  required/>
+            <span th:if="${#fields.hasErrors('problema_hablar')}" th:errors="*{problema_hablar}">Error nombre</span>
+            <br/>
+            
+            <label for="causa_dificultad">Cuanta dificultad tiene la victima para realizar sus actividades?</label>
+            <input type="text" name="causa_dificultad" th:field="*{causa_dificultad}"  required/>
+            <span th:if="${#fields.hasErrors('causa_dificultad')}" th:errors="*{causa_dificultad}">Error nombre</span>
+            <br/>
+            
+            <label for="motivos_dificultad">La dificultad de la victima por hacer esas cosas es por?</label>
+            <input type="text" name="motivos_dificultad" th:field="*{motivos_dificultad}"  required/>
+            <span th:if="${#fields.hasErrors('motivos_dificultad')}" th:errors="*{motivos_dificultad}">Error nombre</span>
+            <br/>
+
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

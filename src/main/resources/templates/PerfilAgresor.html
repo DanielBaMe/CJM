@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Domicilio del agresor</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Domicilio</h2>
+        <br/>
+        <form th:action="@{/perfil_agresor}" method="post" th:object="${pAgresor}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            
+            <label for="princ_actividad">Principal actividad que realiza actualmente</label>
+            <input type="text" name="princ_actividad" th:field="*{princ_actividad}"  required/>
+            <span th:if="${#fields.hasErrors('princ_actividad')}" th:errors="*{princ_actividad}">Error nombre</span>
+            <br/>
+            
+            <label for="princ_ingreso">Cual/cuanto mensual?</label>
+            <input type="text" name="princ_ingreso" th:field="*{princ_ingreso}" required/>
+            <span th:if="${#fields.hasErrors('princ_ingreso')}" th:errors="*{princ_ingreso}">Error nombre</span>
+            <br/>
+
+            <label for="ingreso_mensual">Principal fuente de ingreso:</label>
+            <input type="text" name="ingreso_mensual" th:field="*{ingreso_mensual}"  required/>
+            <span th:if="${#fields.hasErrors('ingreso_mensual')}" th:errors="*{ingreso_mensual}">Error nombre</span>
+            <br/>
+
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

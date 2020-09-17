@@ -12,7 +12,6 @@ import com.cjm.spf.dao.ExpedienteDao;
 import com.cjm.spf.dao.NarracionDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +25,7 @@ public class NarracionServiceImpl implements NarracionService{
     private NarracionDao narracionDao;
 
 	@Override
+	@Transactional
 	public void guardar(Narracion narracion) {
 		Expediente expediente =expedienteDao.findTopByOrderByIdDesc();
 		narracion.setExpediente_id(expediente.getId());
@@ -33,6 +33,7 @@ public class NarracionServiceImpl implements NarracionService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Narracion encontrarNarracion(Narracion narracion) {
 		return narracionDao.findById(narracion.getId()).orElse(null);
 	}
