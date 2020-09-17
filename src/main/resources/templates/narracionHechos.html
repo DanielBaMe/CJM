@@ -1,10 +1,106 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Narración de los hechos]</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
 
-</body>
+        </header>
+        <h2>Narración</h2>
+        <br/>
+        <form th:action="@{/crearNarracion}" method="post" th:object="${narracion}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            <label for="fecha">Fecha</label>
+            <input type="date" name="fecha" th:field="*{fecha}" required/>
+            <span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}">Error nombre</span>
+            <br/>
+
+            <label for="hora">hora:</label>
+            <input type="time" name="hora" th:field="*{hora}"  required/>
+            <span th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}">Error nombre</span>
+            <br/>
+
+            <label for="direccion">Direccion</label>
+            <input type="text" name="direccion" th:field="*{direccion}"  required/>
+            <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error nombre</span>
+            <br/>
+
+            <label for="espacio_publico">Espacio publico (municipio)</label>
+            <input type="text" name="espacio_publico" th:field="*{espacio_publico}"  required/>
+            <span th:if="${#fields.hasErrors('espacio_publico')}" th:errors="*{espacio_publico}">Error nombre</span>
+            <br/>
+
+
+            <label for="espacio_particular">Espacio particular</label>
+            <input type="text" name="espacio_particular" th:field="*{espacio_particular}"  required/>
+            <span th:if="${#fields.hasErrors('espacio_particular')}" th:errors="*{espacio_particular}">Error nombre</span>
+            <br/>
+
+            <label for="otro">Otro</label>
+            <input type="text" name="otro" th:field="*{otro}"  required/>
+            <span th:if="${#fields.hasErrors('otro')}" th:errors="*{otro}">Error nombre</span>
+            <br/>
+
+            <label for="calle">Calle\camino\carretera</label>
+            <input type="text" name="calle" th:field="*{calle}"  required/>
+            <span th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}">Error nombre</span>
+            <br/>
+
+
+            <label for="no_exterior">No. exterior</label>
+            <input type="text" name="no_exterior" th:field="*{no_exterior}"  required/>
+            <span th:if="${#fields.hasErrors('no_exterior')}" th:errors="*{no_exterior}">Error nombre</span>
+            <br/>
+
+            <label for="no_interior">No. interior</label>
+            <input type="text" name="no_interior" th:field="*{no_interior}"  required/>
+            <span th:if="${#fields.hasErrors('no_interior')}" th:errors="*{no_interior}">Error nombre</span>
+            <br/>
+
+            <label for="colonia">Localidad/Colonia</label>
+            <input type="text" name="colonia" th:field="*{colonia}"  required/>
+            <span th:if="${#fields.hasErrors('colonia')}" th:errors="*{colonia}">Error nombre</span>
+            <br/>
+
+
+            <label for="municipio">Municipio</label>
+            <input type="text" name="municipio" th:field="*{municipio}"  required/>
+            <span th:if="${#fields.hasErrors('municipio')}" th:errors="*{municipio}">Error nombre</span>
+            <br/>
+
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" th:field="*{estado}"  required/>
+            <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error nombre</span>
+            <br/>
+
+            <label for="pais">Pais</label>
+            <input type="text" name="pais" th:field="*{pais}"  required/>
+            <span th:if="${#fields.hasErrors('pais')}" th:errors="*{pais}">Error nombre</span>
+            <br/>
+
+            <label for="autoridad">Conoce alguna autoridad de este asunto?</label>
+            <input type="text" name="autoridad" th:field="*{autoridad}"  required/>
+            <span th:if="${#fields.hasErrors('autoridad')}" th:errors="*{autoridad}">Error nombre</span>
+            <br/>
+
+            <label for="gravedad">Nivel de gravedad de lesiones</label>
+            <input type="text" name="gravedad" th:field="*{gravedad}"  required/>
+            <span th:if="${#fields.hasErrors('gravedad')}" th:errors="*{gravedad}">Error nombre</span>
+            <br/>
+
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
 </html>

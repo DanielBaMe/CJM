@@ -10,7 +10,7 @@ import javax.validation.constraints.Positive;
 @Data
 @Entity
 @Table(name = "fijaciones")
-public class FijacionA implements Serializable{
+public class Filiacion implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
     
@@ -34,7 +34,7 @@ public class FijacionA implements Serializable{
     
     private String senia_particular;
     
-    private String id_perfil;
+    private Long id_perfil;
 
 	public Long getId() {
 		return id;
@@ -108,11 +108,11 @@ public class FijacionA implements Serializable{
 		this.senia_particular = senia_particular;
 	}
 
-	public String getId_perfil() {
+	public Long getId_perfil() {
 		return id_perfil;
 	}
 
-	public void setId_perfil(String id_perfil) {
+	public void setId_perfil(Long id_perfil) {
 		this.id_perfil = id_perfil;
 	}
     

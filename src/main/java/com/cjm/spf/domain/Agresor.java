@@ -45,6 +45,14 @@ public class Agresor implements Serializable{
     private String id_factor;
     
     private String id_expediente;
+    
+    private String conoce_agresor;
+    
+    private String info_adicional;
+    
+    private String relacion_victima;
+    
+    private String sexo;
 
 	public Long getId() {
 		return id;
@@ -164,6 +172,38 @@ public class Agresor implements Serializable{
 
 	public void setId_expediente(String id_expediente) {
 		this.id_expediente = id_expediente;
+	}
+
+	public String getConoce_agresor() {
+		return conoce_agresor;
+	}
+
+	public void setConoce_agresor(String conoce_agresor) {
+		this.conoce_agresor = conoce_agresor;
+	}
+
+	public String getInfo_adicional() {
+		return info_adicional;
+	}
+
+	public void setInfo_adicional(String info_adicional) {
+		this.info_adicional = info_adicional;
+	}
+
+	public String getRelacion_victima() {
+		return relacion_victima;
+	}
+
+	public void setRelacion_victima(String relacion_victima) {
+		this.relacion_victima = relacion_victima;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
     
     
