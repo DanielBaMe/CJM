@@ -38,7 +38,6 @@
             <span th:if="${#fields.hasErrors('espacio_publico')}" th:errors="*{espacio_publico}">Error nombre</span>
             <br/>
 
-
             <label for="espacio_particular">Espacio particular</label>
             <input type="text" name="espacio_particular" th:field="*{espacio_particular}"  required/>
             <span th:if="${#fields.hasErrors('espacio_particular')}" th:errors="*{espacio_particular}">Error nombre</span>
@@ -54,14 +53,13 @@
             <span th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}">Error nombre</span>
             <br/>
 
-
             <label for="no_exterior">No. exterior</label>
-            <input type="text" name="no_exterior" th:field="*{no_exterior}"  required/>
+            <input type="number" name="no_exterior" th:field="*{no_exterior}" pattern="[0-9]+" required/>
             <span th:if="${#fields.hasErrors('no_exterior')}" th:errors="*{no_exterior}">Error nombre</span>
             <br/>
 
             <label for="no_interior">No. interior</label>
-            <input type="text" name="no_interior" th:field="*{no_interior}"  required/>
+            <input type="number" name="no_interior" th:field="*{no_interior}" pattern="[0-9]+" required/>
             <span th:if="${#fields.hasErrors('no_interior')}" th:errors="*{no_interior}">Error nombre</span>
             <br/>
 
@@ -72,12 +70,12 @@
 
 
             <label for="municipio">Municipio</label>
-            <input type="text" name="municipio" th:field="*{municipio}"  required/>
+            <input type="number" name="municipio" th:field="*{municipio}"  required/>
             <span th:if="${#fields.hasErrors('municipio')}" th:errors="*{municipio}">Error nombre</span>
             <br/>
 
             <label for="estado">Estado</label>
-            <input type="text" name="estado" th:field="*{estado}"  required/>
+            <input type="number" name="estado" th:field="*{estado}"  required/>
             <span th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}">Error nombre</span>
             <br/>
 

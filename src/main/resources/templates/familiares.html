@@ -19,22 +19,22 @@
                 </ul>
             </div>
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre" th:field="*{nombre}" required/>
+            <input type="text" name="nombre" th:field="*{nombre}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" required/>
             <span th:if="${#fields.hasErrors('nombre')}" th:errors="nombre">Error nombre</span>
             <br/>
 
             <label for="edad">Edad:</label>
-            <input type="number" name="edad" th:field="*{edad}"  required/>
+            <input type="number" name="edad" th:field="*{edad}" pattern="[0-9]+" minlength="4" required/>
             <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error nombre</span>
             <br/>
 
             <label for="ocupacion">Ocupacion</label>
-            <input type="text" name="ocupacion" th:field="*{ocupacion}"  required/>
+            <input type="text" name="ocupacion" th:field="*{ocupacion}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" required/>
             <span th:if="${#fields.hasErrors('ocupacion')}" th:errors="*{ocupacion}">Error nombre</span>
             <br/>
 
             <label for="parentezco">Parentezco</label>
-            <input type="text" name="parentezco" th:field="*{parentezco}"  required/>
+            <input type="text" name="parentezco" th:field="*{parentezco}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" required/>
             <span th:if="${#fields.hasErrors('parentezco')}" th:errors="*{parentezco}">Error nombre</span>
             <br/>
 

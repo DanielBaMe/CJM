@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="htpp://www.thymeleaf.org/extras?spring-security">
-    <head>
+      xmlns:sec="http://www.thymeleaf.org/extras?spring-security">
+    <head> 
         <title>Inicio</title>
         <meta charset="UTF-8">
     </head>
@@ -9,9 +10,14 @@
         <!--        <button>
                     <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/crear}">Crear nuevos usuarios</a>
                 </button>-->
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/registrar}">Registrar usuaria</a>
+                <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/registrar}">Registrar usuaria</a>
+                </div>
+        
+        Logged in user: <span sec:authentication="name"></span> |					
+        Roles: <span sec:authentication="principal.authorities"></span>	
         <br/>
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/verRegistros}">Ver usuarios</a>
+        <a th:href="@{/verRegistros}">Ver usuarios</a>
         <br/>
         <br/>
         <form th:action="@{/buscar}" method="post">

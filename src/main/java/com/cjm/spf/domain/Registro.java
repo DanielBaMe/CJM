@@ -50,40 +50,40 @@ public class Registro implements Serializable{
     private Integer numero_interior;
     
     @Size(min=5, max=30)
-    @NotBlank (message="El campo no puede esta vacío.")
+    @NotBlank (message="El campo no puede estar vacío.")
     private String colonia;
     
-    @NotNull(message="El campo no puede esta vacío.")
+    @NotNull(message="El campo no puede estar vacío.")
     private Integer id_municipio;
     
-    @NotNull(message="El campo no puede esta vacío.")
+    @NotNull(message="El campo no puede estar vacío.")
     private Integer id_estado;
     
-    @NotNull(message="El campo no puede esta vacío.")
+    @NotNull(message="El campo no puede estar vacío.")
     private Integer codigo_postal;
     
     
-    @NotNull(message="El campo no puede esta vacío.")
+    @NotNull(message="El campo no puede estar vacío.")
     private Integer id_estado_civil;
     
     @Size(min=10, max=10)
-    @NotBlank (message="El campo no puede esta vacío.")
+    @NotBlank (message="El campo no puede estar vacío.")
     private String telefono;
     
     @Column(name="curp",unique=true)
     @Size(min=5, max=18)
-    @NotBlank (message="El campo no puede esta vacío.")
+    @NotBlank (message="El campo no puede estar vacío.")
     private String curp;
     
     private Integer id_status_usuaria_datos_generales;
     
-    @NotBlank(message="El campo no puede esta vacío.")
+    @NotBlank(message="El campo no puede estar vacío.")
     private String hora_ingreso;
     
-    @NotBlank(message="El campo no puede esta vacío.")
+    @NotBlank(message="El campo no puede estar vacío.")
     private String hora_egreso;
     
-    @NotBlank(message="El campo no puede esta vacío.")
+    @NotBlank(message="El campo no puede estar vacío.")
     private String motivo_visita;
     
     @Column(name="fecha", updatable=false)

@@ -2,16 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Filiación</title>
+        <title>Filiación del agresor</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header">
 
         </header>
-        <h2>Filiacion</h2>
+        <h2>Filiación</h2>
         <br/>
-        <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
+        <form th:action="@{/filiacion_agresor}" method="post" th:object="${filiacion}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('*')}"

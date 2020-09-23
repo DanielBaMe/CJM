@@ -29,11 +29,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		http
+			.authorizeRequests()
 				.antMatchers("/editar/**", "/agregar/**", "/eliminar", "/registrar", "/crear", "/buscar", "/ver",
 						"/expediente", "/crearExpediente")
-				.hasRole("ADMIN").antMatchers("/formato/").hasRole("JUD").antMatchers("/")
-				.hasAnyRole("USER", "ADMIN", "JUD").and().formLogin().loginPage("/login").and().exceptionHandling()
+					.hasRole("ADMIN")
+				.antMatchers("/formato/")
+					.hasRole("JUD")
+				.antMatchers("/")
+					.hasAnyRole("USER", "ADMIN", "JUD", "PSIC")
+				.and().formLogin().loginPage("/login").and().exceptionHandling()
 				.accessDeniedPage("/errores/403");
 	}
 }
