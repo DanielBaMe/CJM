@@ -88,6 +88,19 @@ public class Registro implements Serializable{
     
     @Column(name="fecha", updatable=false)
     private Date fecha;
+    
+    @NotBlank
+    private String tipo_atencion;
+    
+    
+
+	public String getTipo_atencion() {
+		return tipo_atencion;
+	}
+
+	public void setTipo_atencion(String tipo_atencion) {
+		this.tipo_atencion = tipo_atencion;
+	}
 
 	public Long getId() {
 		return id;

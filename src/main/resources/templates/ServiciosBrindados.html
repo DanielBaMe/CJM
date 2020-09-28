@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Servicios Brindados</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<header th:replace="layout/plantilla :: header"> </header>
+	<h2>Servicios para brindar a la usuaria</h2>
+	<br />
+	<form th:action="@{/servicios_brindados}" method="post" th:object="${servicios}">
+		<div class="errorblock" th:if="${#fields.hasErrors('*')}">
+			<ul>
+				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
+					is incorrect</li>
+			</ul>
+		</div>
+		<label for="psicologia">Psicología</label>
+		<input type="checkbox" name="psicologia" th:field="*{psicologia}"/>
+		<br />
+			
+		<label for="juridico">Juridico</label>
+		<input type="checkbox" name="juridico" th:field="*{juridico}"/>  <br />
+			
+		<label for="medico">Medico</label>
+		<input type="checkbox" name="medico" th:field="*{medico}"/> <br />
+			
+		<label for="mp">Ministerio Publico</label>
+		<input type="checkbox" name="mp" th:field="*{mp}" /> <br />
+			
+		<label for="fecha_nacimiento">Empoderamiento</label>
+		<input type="checkbox" name="fecha_nacimiento" th:field="*{empoderamiento}"/> <br />
+			
+		<label for="dh">DH</label>
+		<input type="checkbox" name="dh" th:field="*{dh}"/>  <br />
+			
+			
+		<input type="submit" name="guardar" value="Guardar"/>
+	</form>
+</body>
+</html>

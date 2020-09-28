@@ -31,7 +31,7 @@ public class Expediente implements Serializable{
     @NotBlank(message="El campo no puede estar vacion")
     private String nombre_entrevistador;
     
-    private Long id_expediente_usuaria;
+    private Long usuaria;
     
     @NotBlank(message="El campo no puede estar vacio")
     private String leer;
@@ -228,12 +228,12 @@ public class Expediente implements Serializable{
 		this.info_adicional = info_adicional;
 	}
 
-	public Long getId_expediente_usuaria() {
-		return id_expediente_usuaria;
+	public Long getUsuaria() {
+		return usuaria;
 	}
 
-	public void setId_expediente_usuaria(Long id_expediente_usuaria) {
-		this.id_expediente_usuaria = id_expediente_usuaria;
+	public void setUsuaria(Long id_expediente_usuaria) {
+		this.usuaria = id_expediente_usuaria;
 	}
 
 	

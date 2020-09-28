@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cjm.spf.domain.ServiciosBrindados;
 import com.cjm.spf.domain.Expediente;
 
+@Service
 public class ServiciosBrindadosServiceImpl implements ServiciosBrindadosService{
 	
 	@Autowired

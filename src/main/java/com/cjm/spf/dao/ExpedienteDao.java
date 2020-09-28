@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ExpedienteDao extends JpaRepository<Expediente, Long>{
     Expediente findTopByOrderByIdDesc();
+    
+    Expediente findByUsuaria(Long id);
 }

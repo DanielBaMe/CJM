@@ -1,4 +1,4 @@
-package com.cjm.spf.web;
+package com.cjm.spf.controllers;
 
 import java.util.List;
 
@@ -146,7 +146,7 @@ public class ControladorInicio {
         }
     }
 
-    @PostMapping("/buscar")//Buscar usuaria existente
+    @PostMapping("/buscar")																	//Buscar usuaria existente
     public String encontrarUsuaria(String nombre, Model model) {
         Registro datos = registroService.encontrarUsuaria(nombre);
         model.addAttribute("registros", datos);
@@ -155,17 +155,15 @@ public class ControladorInicio {
 
     }
 
-    @PostMapping("/guardarUsuario")//guardar nuevo admin
+    @PostMapping("/guardarUsuario")															//guardar nuevo admin
     public String guardar(@Valid NuevoUsuario usuario, Errors errores) {
         if (errores.hasErrors()) {
             return "crear";
         }
-        System.out.println(usuario);
-        //nuevoUsuario.guardar(usuario);
         return "redirect:/";
     }
 
-    @PostMapping("/crearExpediente")//Crear nuevo expediente
+    @PostMapping("/crearExpediente")														//Crear nuevo expediente
     public String guardar(@Valid Expediente expediente, Errors errores, Model model, RFamiliares familiares) {
         if (errores.hasErrors()) {
             return "expediente";
@@ -175,7 +173,7 @@ public class ControladorInicio {
         return "familiares";
     }
     
-    @PostMapping("/crear_relaciones_familiares")//Crear relaciones familiares
+    @PostMapping("/crear_relaciones_familiares")											//Crear relaciones familiares
     public String guardar(@Valid RFamiliares familiares, Errors errores, Model model, RedApoyo apoyo) {
         if (errores.hasErrors()) {
             return "familiares";
@@ -185,7 +183,7 @@ public class ControladorInicio {
         return "red_apoyo";
     }
     
-    @PostMapping("/crear_red_apoyo")//Crear red de apoyo
+    @PostMapping("/crear_red_apoyo")														//Crear red de apoyo
     public String guardar(@Valid RedApoyo apoyo, Errors errores, Narracion narracion) {
         if (errores.hasErrors()) {
             return "red_apoyo";
@@ -195,7 +193,7 @@ public class ControladorInicio {
     }
     
     
-    @PostMapping("/crearNarracion")//Crear nueva narracion
+    @PostMapping("/crearNarracion")															//Crear nueva narracion
     public String guardar(@Valid Narracion narracion, Errors errores, EfectosViolencia violencia, Model model) {
         if (errores.hasErrors()) {
             return "narracionHechos";
@@ -205,7 +203,7 @@ public class ControladorInicio {
         return "efectos_violencia";
     }
     
-    @PostMapping("/crearEfectos")//Crear nueva narracion
+    @PostMapping("/crearEfectos")															//Crear nueva narracion
     public String guardar(@Valid EfectosViolencia violencia, Errors errores, SaludFisica salud, Model model) {
         if (errores.hasErrors()) {
             return "efectos_violencia";
@@ -215,7 +213,7 @@ public class ControladorInicio {
         return "Salud";
     }
     
-    @PostMapping("/salud")//Crear nueva narracion
+    @PostMapping("/salud")																	//Crear nueva narracion
     public String guardar(@Valid SaludFisica salud, Errors errores, Filiacion filiacion ) {
         if (errores.hasErrors()) {
             return "Salud";
@@ -224,7 +222,7 @@ public class ControladorInicio {
         return "Filiacion";
     }
     
-    @PostMapping("/crear_filiacion")//Crear nueva narracion
+    @PostMapping("/crear_filiacion")														//Crear nueva narracion
     public String guardar(@Valid Filiacion filiacion, Errors errores, Agresor agresor, Model model, Expediente expediente) {
         if (errores.hasErrors()) {
             return "Filiacion";
@@ -236,7 +234,7 @@ public class ControladorInicio {
         return "DatosAgresor";
     }
 
-    @PostMapping("/datos_agresor")//Crear nueva narracion
+    @PostMapping("/datos_agresor")															//Crear nueva narracion
     public String guardar(@Valid Agresor agresor, Errors errores, DomicilioAgresor domAgresor, Model model ) {
         if (errores.hasErrors()) {
             return "DatosAgresor";
@@ -246,7 +244,7 @@ public class ControladorInicio {
         return "DomicilioAgresor";
     }
     
-    @PostMapping("/domicilio_agresor")//Crear nueva narracion
+    @PostMapping("/domicilio_agresor")														//Crear nueva narracion
     public String guardar(@Valid DomicilioAgresor domAgresor, Errors errores, PerfilAgresor pAgresor, Model model ) {
         if (errores.hasErrors()) {
             return "DomicilioAgresor";
@@ -256,7 +254,7 @@ public class ControladorInicio {
         return "PerfilAgresor";
     }
     
-    @PostMapping("/perfil_agresor")//Crear nueva narracion
+    @PostMapping("/perfil_agresor")															//Crear nueva narracion
     public String guardar(@Valid PerfilAgresor pAgresor, Errors errores, Filiacion filiacion) {
         if (errores.hasErrors()) {
             return "PerfilAgresor";
@@ -266,7 +264,7 @@ public class ControladorInicio {
     }
     
     
-    @PostMapping("/filiacion_agresor")//Crear nueva narracion
+    @PostMapping("/filiacion_agresor")														//Crear filiacion del agresor
     public String guardar(@Valid Filiacion filiacion, Errors errores, Agresor agresor, Model model, FactorRiesgo fRiesgo) {
         if (errores.hasErrors()) {
             return "FiliacionAgresor";
@@ -278,7 +276,7 @@ public class ControladorInicio {
         return "factor_riesgo";
     }
     
-    @PostMapping("/factor_riesgo")//Crear nueva narracion
+    @PostMapping("/factor_riesgo")															//Crear factores de riesgo
     public String guardar(@Valid FactorRiesgo fRiesgo, Errors errores, ServiciosBrindados servicios) {
         if (errores.hasErrors()) {
             return "factor_riesgo";
@@ -287,7 +285,7 @@ public class ControladorInicio {
         return "serviciosBrindados";
     }
     
-    @PostMapping("/servicios_brindados")//Crear nueva narracion
+    @PostMapping("/servicios_brindados")													//Registrar servicios brindados
     public String guardar(@Valid ServiciosBrindados servicios, Errors errores) {
         if (errores.hasErrors()) {
             return "serviciosBrindados";
