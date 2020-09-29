@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Canalización</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Formato de canalización</h2>
+        <br/>
+        <form th:action="@{/canalizacion_ludico}" method="post" th:object="${canalizacion}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+
+            <label for="area">Area o institucion a canalizar</label>
+            <input type="text" name="area" th:field="*{area_canalizar}"  required/>
+            <span th:if="${#fields.hasErrors('area_canalizar')}" th:errors="{area_canalizar}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Motivo de canalizacion</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

@@ -3,6 +3,8 @@ package com.cjm.spf.domain;
 import javax.persistence.*;
 import lombok.Data;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -18,13 +20,13 @@ public class Agresor implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String apllido_paterno;
+    private String apellido_paterno;
     
     private String apellido_materno;
     
     private String nombres;
     
-    private String edad;
+    private Integer edad;
     
     private String fecha_nacimiento;
     
@@ -36,15 +38,7 @@ public class Agresor implements Serializable{
     
     private String grupo_etnico;
     
-    private String id_domicilio;
-    
-    private String id_perfil_agresor;
-    
-    private String id_fijacion;
-    
-    private String id_factor;
-    
-    private String id_expediente;
+    private Long id_expediente;
     
     private String conoce_agresor;
     
@@ -62,12 +56,12 @@ public class Agresor implements Serializable{
 		this.id = id;
 	}
 
-	public String getApllido_paterno() {
-		return apllido_paterno;
+	public String getApellido_paterno() {
+		return apellido_paterno;
 	}
 
-	public void setApllido_paterno(String apllido_paterno) {
-		this.apllido_paterno = apllido_paterno;
+	public void setApellido_paterno(String apllido_paterno) {
+		this.apellido_paterno = apllido_paterno;
 	}
 
 	public String getApellido_materno() {
@@ -86,11 +80,11 @@ public class Agresor implements Serializable{
 		this.nombres = nombres;
 	}
 
-	public String getEdad() {
+	public Integer getEdad() {
 		return edad;
 	}
 
-	public void setEdad(String edad) {
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
 
@@ -134,43 +128,11 @@ public class Agresor implements Serializable{
 		this.grupo_etnico = grupo_etnico;
 	}
 
-	public String getId_domicilio() {
-		return id_domicilio;
-	}
-
-	public void setId_domicilio(String id_domicilio) {
-		this.id_domicilio = id_domicilio;
-	}
-
-	public String getId_perfil_agresor() {
-		return id_perfil_agresor;
-	}
-
-	public void setId_perfil_agresor(String id_perfil_agresor) {
-		this.id_perfil_agresor = id_perfil_agresor;
-	}
-
-	public String getId_fijacion() {
-		return id_fijacion;
-	}
-
-	public void setId_fijacion(String id_fijacion) {
-		this.id_fijacion = id_fijacion;
-	}
-
-	public String getId_factor() {
-		return id_factor;
-	}
-
-	public void setId_factor(String id_factor) {
-		this.id_factor = id_factor;
-	}
-
-	public String getId_expediente() {
+	public Long getId_expediente() {
 		return id_expediente;
 	}
 
-	public void setId_expediente(String id_expediente) {
+	public void setId_expediente(Long id_expediente) {
 		this.id_expediente = id_expediente;
 	}
 

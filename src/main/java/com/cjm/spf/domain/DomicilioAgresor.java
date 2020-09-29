@@ -18,24 +18,31 @@ public class DomicilioAgresor implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String calle;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String no_exterior;
     
     private String no_interior;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String colonia;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String municipio;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String estado;
     
     private String pais;
     
     private String idioma;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String leer;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String escribir;
     
     private String escolaridad;
@@ -44,7 +51,7 @@ public class DomicilioAgresor implements Serializable{
     
     private String tipo_vivienda;
     
-    private String id_agresor;
+    private Long id_agresor;
 
 	public Long getId() {
 		return id;
@@ -158,11 +165,11 @@ public class DomicilioAgresor implements Serializable{
 		this.tipo_vivienda = tipo_vivienda;
 	}
 
-	public String getId_agresor() {
+	public Long getId_agresor() {
 		return id_agresor;
 	}
 
-	public void setId_agresor(String id_agresor) {
+	public void setId_agresor(Long id_agresor) {
 		this.id_agresor = id_agresor;
 	}
     

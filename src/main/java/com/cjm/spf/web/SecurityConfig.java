@@ -9,10 +9,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	@Bean
+    public SpringSecurityDialect springSecurityDialect(){
+        return new SpringSecurityDialect();
+    }
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -29,11 +35,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
+		http
+			.authorizeRequests()
 				.antMatchers("/editar/**", "/agregar/**", "/eliminar", "/registrar", "/crear", "/buscar", "/ver",
 						"/expediente", "/crearExpediente")
-				.hasRole("ADMIN").antMatchers("/formato/").hasRole("JUD").antMatchers("/")
-				.hasAnyRole("USER", "ADMIN", "JUD").and().formLogin().loginPage("/login").and().exceptionHandling()
+					.hasRole("ADMIN")
+				.antMatchers("/formato/")
+					.hasRole("JUD")
+				.antMatchers("/")
+					.hasAnyRole("USER", "ADMIN", "JUD", "PSIC")
+				.and().formLogin().loginPage("/login").and().exceptionHandling()
 				.accessDeniedPage("/errores/403");
 	}
 }

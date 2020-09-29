@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Filiación de la victima</title>
+        <title>Filiación</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header">
 
         </header>
-        <h2>Red de apoyo</h2>
+        <h2>Filiacion</h2>
         <br/>
         <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">

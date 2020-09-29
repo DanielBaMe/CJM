@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Canalización</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Formato de canalización</h2>
+        <br/>
+        <form th:action="@{/expediente_psicologico}" method="post" th:object="${canalizacion}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+
+            <label for="motivo">Motivo de la consulta</label>
+            <input type="text" name="area" th:field="*{area_canalizar}"  required/>
+            <span th:if="${#fields.hasErrors('area_canalizar')}" th:errors="{area_canalizar}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Ambito familiar</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Ambito laboral</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Ambito social</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Ambito sexual</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+            
+            <label for="motivo">Ambito individual</label>
+            <input type="text" name="motivo" th:field="*{motivo}"  required/>
+            <span th:if="${#fields.hasErrors('motivo')}" th:errors="{motivo}">Error nombre</span>
+            <br/>
+            
+            <h2>Tipo de violencia</h2>
+            <label>Fisica</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="fisica"/>
+            
+            <label>Psicologica</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="psicologica"/>
+            
+            <label>Sexual</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="sexual"/>
+            
+            <label>Economica</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="economica"/>
+            
+            <label>Patrimonial</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="patrimonial"/>
+            
+            <label>Feminicida</label>
+            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="faminicida"/>
+            
+            <h2>Familiograma</h2>
+            <input type="text" th:field="familiograma"/>
+            
+            <label>Tarea</label>
+            <input />
+            
+            <label>Observaciones</label>
+            <input />
+            
+            <label>DX</label>
+            <input />
+            
+            <label>Objetivo</label>
+            <input />
+            
+            <label>Nombre de la TS</label>
+            <input />
+            
+            <label>Canalizada a</label>
+            <input />
+            
+
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

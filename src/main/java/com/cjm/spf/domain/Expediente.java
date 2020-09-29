@@ -31,65 +31,49 @@ public class Expediente implements Serializable{
     @NotBlank(message="El campo no puede estar vacion")
     private String nombre_entrevistador;
     
-    private Long id_expediente_usuaria;
+    private Long usuaria;
     
-    private Long id_familiares;
-    
-    private Long id_domicilio_actual;
-    
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String leer;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String escribir;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String escolaridad;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String tipo_vivienda;
     
-    private Long id_red_apoyo;
     
-    @NotBlank(message="El campo no puede estar vacion")
-    private String tipo_apoyo;
-    
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String servicio_medico;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String actividad;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String fuente_ingreso;
     
     private String ingreso_mensual;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String tipo_violencia;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String ambito_violencia;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String victima_delincuencia;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String victima_trata;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String conoce_agresor;
     
-    @NotBlank(message="El campo no puede estar vacion")
+    @NotBlank(message="El campo no puede estar vacio")
     private String info_adicional;
-    
-    private Long id_datos_agresor;
-    
-    private Long id_salud;
-    
-    private Long id_narracion;
-    
-    private Long id_fijacion;
 
 	public Long getId() {
 		return id;
@@ -131,30 +115,6 @@ public class Expediente implements Serializable{
 		this.nombre_entrevistador = nombre_entrevistador;
 	}
 
-	public Long getId_expediente_usuaria() {
-		return id_expediente_usuaria;
-	}
-
-	public void setId_expediente_usuaria(Long id_expediente_usuaria) {
-		this.id_expediente_usuaria = id_expediente_usuaria;
-	}
-
-	public Long getId_familiares() {
-		return id_familiares;
-	}
-
-	public void setId_familiares(Long id_familiares) {
-		this.id_familiares = id_familiares;
-	}
-
-	public Long getId_domicilio_actual() {
-		return id_domicilio_actual;
-	}
-
-	public void setId_domicilio_actual(Long id_domicilio_actual) {
-		this.id_domicilio_actual = id_domicilio_actual;
-	}
-
 	public String getLeer() {
 		return leer;
 	}
@@ -187,21 +147,6 @@ public class Expediente implements Serializable{
 		this.tipo_vivienda = tipo_vivienda;
 	}
 
-	public Long getId_red_apoyo() {
-		return id_red_apoyo;
-	}
-
-	public void setId_red_apoyo(Long id_red_apoyo) {
-		this.id_red_apoyo = id_red_apoyo;
-	}
-
-	public String getTipo_apoyo() {
-		return tipo_apoyo;
-	}
-
-	public void setTipo_apoyo(String tipo_apoyo) {
-		this.tipo_apoyo = tipo_apoyo;
-	}
 
 	public String getServicio_medico() {
 		return servicio_medico;
@@ -283,37 +228,14 @@ public class Expediente implements Serializable{
 		this.info_adicional = info_adicional;
 	}
 
-	public Long getId_datos_agresor() {
-		return id_datos_agresor;
+	public Long getUsuaria() {
+		return usuaria;
 	}
 
-	public void setId_datos_agresor(Long id_datos_agresor) {
-		this.id_datos_agresor = id_datos_agresor;
+	public void setUsuaria(Long id_expediente_usuaria) {
+		this.usuaria = id_expediente_usuaria;
 	}
 
-	public Long getId_salud() {
-		return id_salud;
-	}
-
-	public void setId_salud(Long id_salud) {
-		this.id_salud = id_salud;
-	}
-
-	public Long getId_narracion() {
-		return id_narracion;
-	}
-
-	public void setId_narracion(Long id_narracion) {
-		this.id_narracion = id_narracion;
-	}
-
-	public Long getId_fijacion() {
-		return id_fijacion;
-	}
-
-	public void setId_fijacion(Long id_fijacion) {
-		this.id_fijacion = id_fijacion;
-	}
-    
+	
     
 }

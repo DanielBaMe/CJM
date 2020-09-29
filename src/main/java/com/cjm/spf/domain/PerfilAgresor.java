@@ -24,7 +24,7 @@ public class PerfilAgresor implements Serializable{
     
     private String ingreso_mensual;
     
-    private String id_agresor;
+    private Long id_agresor;
 
 	public Long getId() {
 		return id;
@@ -58,11 +58,11 @@ public class PerfilAgresor implements Serializable{
 		this.ingreso_mensual = ingreso_mensual;
 	}
 
-	public String getId_agresor() {
+	public Long getId_agresor() {
 		return id_agresor;
 	}
 
-	public void setId_agresor(String id_agresor) {
+	public void setId_agresor(Long id_agresor) {
 		this.id_agresor = id_agresor;
 	}
     

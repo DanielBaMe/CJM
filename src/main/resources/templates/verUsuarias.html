@@ -27,6 +27,7 @@
                         <th>Motivo de la visita</th>
                         <!--                    <th sec:authorize="hasRole('ROLE_ADMIN')">Editar</th>
                                             <th sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>-->
+                        <th sec:authoriz=hasRole('ROLE_PSIC')>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,7 @@
                         <td th:text="${registro.motivo_visita}"></td>
                         <!--                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/editar/} + ${persona.idPersona}" th:text="Editar"></a></td>
                                             <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/eliminar/} + ${persona.idPersona}" th:text="Eliminar"></a></td>-->
+                        <td sec:authorize=hasRole('ROLE_PSIC')><a th:href=@{/editar/} + ${registro.id}>Ver</a></td>
                     </tr>
                 </tbody>
             </table>

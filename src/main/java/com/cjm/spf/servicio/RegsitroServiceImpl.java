@@ -45,13 +45,14 @@ public class RegsitroServiceImpl implements RegistroService{
             folio.setId_status_folio(1);
             folio.setId_tipo_folio((long)1);
             folio.setServicio(registro.getMotivo_visita());
-
+            folio.setAtencion(registro.getTipo_atencion());
         }else{
             long variable = num.getId_tipo_folio() + 1;
             folio.setNo_folio(id_usuaria.getId());
             folio.setId_status_folio(1);
             folio.setId_tipo_folio(variable);
             folio.setServicio(registro.getMotivo_visita());
+            folio.setAtencion(registro.getTipo_atencion());
         }
         
         foliodao.save(folio);

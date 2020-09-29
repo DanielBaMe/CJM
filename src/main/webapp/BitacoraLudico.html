@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Bitacora</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">
+
+        </header>
+        <h2>Bitacora</h2>
+        <br/>
+        <form th:action="@{/bitacora_ludico}" method="post" th:object="${bitacora}">
+            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                <ul>
+                    <li th:each="err : ${#fields.errors('*')}"
+                        th:text="${err}">Input is incorrect</li>
+                </ul>
+            </div>
+            
+            <label for="temas">Temas que se trabajaron</label>
+            <textarea type="text" name="temas" th:field="*{temas_tratados}"  required/></textarea>
+            <span th:if="${#fields.hasErrors('temas_tratados')}" th:errors="*{temas_tratados}">Error nombre</span>
+            <br/>
+            
+            <h3>EN RELACION A LO PLANEADO</h3>
+            <label for="desarrollo">Desarrollo de las actividades en tiempo y forma</label>
+            <input type="text" name="desarrollo" th:field="*{desarrollo_actividades}" required/>
+            <span th:if="${#fields.hasErrors('desarrollo_actividades')}" th:errors="*{desarrollo_actividades}">Error nombre</span>
+            <br/>
+
+            <label for="realizado">Se llevó a cabo lo planeado</label>
+            <input type="text" name="realizado" th:field="*{realizado}"  required/>
+            <span th:if="${#fields.hasErrors('realizado')}" th:errors="*{realizado}">Error nombre</span>
+            <br/>
+
+            <label for="material">El material fue adecuado</label>
+            <input type="text" name="material" th:field="*{material}"  required/>
+            <span th:if="${#fields.hasErrors('material')}" th:errors="{material}">Error nombre</span>
+            <br/>
+            
+			<h3>MANIFESTACIONES DE LA NIÑA/O</h3>
+			
+			<label for="actividades">Las actividades fueron interesantes y retadoras</label>
+            <input type="text" name="actividades" th:field="*{actividades}"  required/>
+            <span th:if="${#fields.hasErrors('actividades')}" th:errors="*{actividades}">Error nombre</span>
+            <br/>
+
+            <label for="involucrado">Se involucró</label>
+            <input type="text" name="involucrado" th:field="*{involucrado}"  required/>
+            <span th:if="${#fields.hasErrors('involucrado')}" th:errors="{involucrado}">Error nombre</span>
+            <br/>
+            
+            <label for="disposicion">Tiene disposición para trabajar</label>
+            <input type="text" name="disposicion" th:field="*{disposicion}"  required/>
+            <span th:if="${#fields.hasErrors('disposicion')}" th:errors="*{disposicion}">Error nombre</span>
+            <br/>
+
+            <label for="empatia">Muestra empatia</label>
+            <input type="text" name="empatia" th:field="*{empatia}"  required/>
+            <span th:if="${#fields.hasErrors('empatia')}" th:errors="{empatia}">Error nombre</span>
+            <br/>
+            
+            <label for="actitud">Su actitud ante las actividades</label>
+            <input type="text" name="actitud" th:field="*{actitud}"  required/>
+            <span th:if="${#fields.hasErrors('actitud')}" th:errors="{actitud}">Error nombre</span>
+            <br/>
+            
+            <h3>MI INTERVENCIÓN</h3>
+            <label for="interracion">Mi interración fue la mejor</label>
+            <input type="text" name="interracion" th:field="*{interracion}"  required/>
+            <span th:if="${#fields.hasErrors('interracion')}" th:errors="{interracion}">Error nombre</span>
+            <br/>
+            
+            <label for="consignas_actividades">Las consignas y actividades retularon claras</label>
+            <input type="text" name="consignas_actividades" th:field="*{consignas_actividades}"  required/>
+            <span th:if="${#fields.hasErrors('consignas_actividades')}" th:errors="{consignas_actividades}">Error nombre</span>
+            <br/>
+            
+            <label for="convivencia">Motivé la convivencia sana, pacifica y formativa</label>
+            <input type="text" name="convivencia" th:field="*{convivencia}"  required/>
+            <span th:if="${#fields.hasErrors('convivencia')}" th:errors="{convivencia}">Error nombre</span>
+            <br/>
+            
+            <h3>OBSERVACIONES</h3>
+            <label>LOGROS</label>
+            <textarea rows="" cols="" th:field="logros" name="logros" type="text" required></textarea>
+            <span th:if="${#fields.hasErrors('logros')}" th:errors="{logros}">Error nombre</span>
+            <br/>
+            <label>DIFICULTADES</label>
+            <textarea th:field=""dificultades" name="logros" type="text" required></textarea>
+            <span th:if="${#fields.hasErrors('logros')}" th:errors="{logros}">Error nombre</span>
+            <br/>
+            <input type="submit" name="guardar" value="Guardar"/>
+        </form>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>

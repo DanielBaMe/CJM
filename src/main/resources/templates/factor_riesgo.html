@@ -11,7 +11,7 @@
         </header>
         <h2>Red de apoyo</h2>
         <br/>
-        <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
+        <form th:action="@{/factor_riesgo}" method="post" th:object="${fRiesgo}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('*')}"

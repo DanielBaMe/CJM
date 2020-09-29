@@ -7,72 +7,71 @@
 </head>
 <body>
 	<header th:replace="layout/plantilla :: header"> </header>
-	<h2>Crear expediente</h2>
+	<h2>Datos del agresor</h2>
 	<br />
-	<form th:action="@{/datos_agresor}" method="post" th:object="agresor">
+	<form th:action="@{/datos_agresor}" method="post" th:object="${agresor}">
 		<div class="errorblock" th:if="${#fields.hasErrors('*')}">
 			<ul>
 				<li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input
 					is incorrect</li>
 			</ul>
 		</div>
-		<label for="curp">apellido Paterno</label> <input type="text"
-			name="apellido_paterno" th:field="*{apellido_paterno}" required /> <span
-			th:if="${#fields.hasErrors('apellido_paterno')}" th:errors="*{apellido_paterno}">Error
-			nombre</span> <br />
+		<label for="apellido_paterno">apellido Paterno</label> <input type="text" name="apellido_paterno" th:field="*{apellido_paterno}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/>
+		<span th:if="${#fields.hasErrors('apellido_paterno')}" th:errors="*{apellido_paterno}">Error nombre</span>
+		<br />
 			
-		<label for="curp">apellido Materno</label> <input type="text"
-			name="apellido_materno" th:field="*{apellido_materno}" required /> <span
+		<label for="apellido_materno">apellido Materno</label> <input type="text"
+			name="apellido_materno" th:field="*{apellido_materno}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('apellido_materno')}" th:errors="*{apellido_materno}">Error
 			nombre</span> <br />
 			
-		<label for="curp">nombres</label> <input type="text"
-			name="nombres" th:field="*{nombres}" required /> <span
+		<label for="nombres">nombres</label> <input type="text"
+			name="nombres" th:field="*{nombres}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}">Error
 			nombre</span> <br />
 			
-		<label for="curp">edad</label> <input type="text"
-			name="edad" th:field="*{edad}" required /> <span
+		<label for="edad">edad</label> <input type="number"
+			name="edad" th:field="*{edad}" required pattern="[0-9]+" min="01" max="99"/> <span
 			th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error
 			nombre</span> <br />
 			
-		<label for="fecha_nacimiento">nombres</label> <input type="text"
-			name="fecha_nacimiento" th:field="*{fecha_nacimiento}" required /> <span
+		<label for="fecha_nacimiento">fecha de nacimiento</label> <input type="date"
+			name="fecha_nacimiento" th:field="*{fecha_nacimiento}" required/> <span
 			th:if="${#fields.hasErrors('fecha_nacimiento')}" th:errors="*{fecha_nacimiento}">Error
 			nombre</span> <br />
 			
 		<label for="estado_civil">estado civil</label> <input type="text"
-			name="estado_civil" th:field="*{estado_civil}" required /> <span
+			name="estado_civil" th:field="*{estado_civil}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('estado_civil')}" th:errors="*{estado_civil}">Error
 			nombre</span> <br />
 			
 		<label for="nacionalidad">nacionalidad</label> <input type="text"
-			name="nacionalidad" th:field="*{nacionalidad}" required /> <span
+			name="nacionalidad" th:field="*{nacionalidad}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('nacionalidad')}" th:errors="*{nacionalidad}">Error
 			nombre</span> <br />
 			
 		<label for="seudonimo">Seudonimo</label> <input type="text"
-			name="seudonimo" th:field="*{seudonimo}" required /> <span
+			name="seudonimo" th:field="*{seudonimo}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('seudonimo')}" th:errors="*{seudonimo}">Error
 			nombre</span> <br />
 			
 		<label for="grupo_etnico">Grupo etnico</label> <input type="text"
-			name="grupo_etnico" th:field="*{grupo_etnico}" required /> <span
+			name="grupo_etnico" th:field="*{grupo_etnico}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('grupo_etnico')}" th:errors="*{grupo_etnico}">Error
 			nombre</span> <br />
 			
 		<label for="conoce_agresor">Conoce al agresor?</label> <input type="text"
-			name="conoce_agresor" th:field="*{conoce_agresor}" required /> <span
+			name="conoce_agresor" th:field="*{conoce_agresor}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('conoce_agresor')}" th:errors="*{conoce_agresor}">Error
 			nombre</span> <br />
 		
 		<label for="info_adicional">Tiene información adicional sobre el agresor?</label> <input type="text"
-			name="info_adicional" th:field="*{info_adicional}" required /> <span
+			name="info_adicional" th:field="*{info_adicional}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('info_adicional')}" th:errors="*{info_adicional}">Error
 			nombre</span> <br />
 		
 		<label for="relacion_victima">El agresor tiene relacion con la victima?</label> <input type="text"
-			name="relacion_victima" th:field="*{relacion_victima}" required /> <span
+			name="relacion_victima" th:field="*{relacion_victima}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"/> <span
 			th:if="${#fields.hasErrors('relacion_victima')}" th:errors="*{relacion_victima}">Error
 			nombre</span> <br />
 		
@@ -80,6 +79,8 @@
 			name="sexo" th:field="*{sexo}" required /> <span
 			th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}">Error
 			nombre</span> <br />
+			
+		<input type="submit" name="guardar" value="Guardar"/>
 	</form>
 </body>
 </html>

@@ -20,6 +20,7 @@ public class RedApoyoServiceImpl implements RedApoyoService{
     ExpedienteDao expedienteDao;
 
     @Override
+    @Transactional
     public void guardar(RedApoyo apoyo) {
     	Expediente expediente = expedienteDao.findTopByOrderByIdDesc();
     	apoyo.setId_expediente(expediente.getId());
