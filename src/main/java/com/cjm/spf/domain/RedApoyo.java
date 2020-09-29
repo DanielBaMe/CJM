@@ -19,13 +19,18 @@ public class RedApoyo implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String parentesco;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String nombre;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private Integer telefono;
     
     private String direccion;
+    
+    private String tipo_apoyo;
     
     private Long id_expediente;
 

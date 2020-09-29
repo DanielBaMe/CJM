@@ -27,8 +27,10 @@ public class Narracion implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	private Date fecha;
+	@NotBlank(message="El campo no puede estar vacio")
+	private String fecha;
 	
+	@NotBlank (message="El campo no puede esta vacío.")
 	private String hora;
 	
 	private String direccion;
@@ -47,10 +49,13 @@ public class Narracion implements Serializable{
 	
 	private String colonia;
 	
+	@NotBlank(message="El campo no puede estar vacio")
 	private Integer municipio;
 	
+	@NotBlank(message="El campo no puede estar vacio")
 	private Integer estado;
 	
+	@NotBlank(message="El campo no puede estar vacio")
 	private String pais;
 	
 	private String autoridad;
@@ -67,11 +72,11 @@ public class Narracion implements Serializable{
 		this.id = id;
 	}
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

@@ -9,7 +9,7 @@
         <header th:replace="layout/plantilla :: header">
 
         </header>
-        <h2>Domicilio</h2>
+        <h2>Domicilio del agresor</h2>
         <br/>
         <form th:action="@{/domicilio_agresor}" method="post" th:object="${domAgresor}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">
@@ -25,12 +25,12 @@
             <br/>
             
             <label for="no_exterior">Numero exterior</label>
-            <input type="text" name="no_exterior" th:field="*{no_exterior}" required/>
+            <input type="text" name="no_exterior" th:field="*{no_exterior}" pattern="[0-9]+" required/>
             <span th:if="${#fields.hasErrors('no_exterior')}" th:errors="*{no_exterior}">Error nombre</span>
             <br/>
 
             <label for="no_interior">Numero interior:</label>
-            <input type="text" name="no_interior" th:field="*{no_interior}"  required/>
+            <input type="text" name="no_interior" th:field="*{no_interior}" pattern="[0-9]+"/>
             <span th:if="${#fields.hasErrors('no_interior')}" th:errors="*{no_interior}">Error nombre</span>
             <br/>
 

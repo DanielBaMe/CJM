@@ -18,24 +18,31 @@ public class SaludFisica implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String embarazada;
     
-    private String enfermedad;
-    
+    @NotBlank(message="El campo no puede estar vacio")
     private String problema_caminar;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String problema_ver;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String problema_aprender;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String problema_escuchar;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String problema_baniarse;
     
-    private String problema_emocional;
+    @NotBlank(message="El campo no puede estar vacio")
+    private String problema_hablar;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String causa_dificultad;
     
+    @NotBlank(message="El campo no puede estar vacio")
     private String motivos_dificultad;
     
     private Long expediente_id;
@@ -54,14 +61,6 @@ public class SaludFisica implements Serializable{
 
 	public void setEmbarazada(String embarazada) {
 		this.embarazada = embarazada;
-	}
-
-	public String getEnfermedad() {
-		return enfermedad;
-	}
-
-	public void setEnfermedad(String enfermedad) {
-		this.enfermedad = enfermedad;
 	}
 
 	public String getProblema_caminar() {
@@ -104,12 +103,12 @@ public class SaludFisica implements Serializable{
 		this.problema_baniarse = problema_baniarse;
 	}
 
-	public String getProblema_emocional() {
-		return problema_emocional;
+	public String getProblema_hablar() {
+		return problema_hablar;
 	}
 
-	public void setProblema_emocional(String problema_emocional) {
-		this.problema_emocional = problema_emocional;
+	public void setProblema_hablar(String problema_hablar) {
+		this.problema_hablar = problema_hablar;
 	}
 
 	public String getCausa_dificultad() {
@@ -120,6 +119,14 @@ public class SaludFisica implements Serializable{
 		this.causa_dificultad = causa_dificultad;
 	}
 
+	public String getMotivos_dificultad() {
+		return motivos_dificultad;
+	}
+
+	public void setMotivos_dificultad(String motivos_dificultad) {
+		this.motivos_dificultad = motivos_dificultad;
+	}
+
 	public Long getExpediente_id() {
 		return expediente_id;
 	}
@@ -128,13 +135,6 @@ public class SaludFisica implements Serializable{
 		this.expediente_id = expediente_id;
 	}
 
-	public String getMotivos_dificultad() {
-		return motivos_dificultad;
-	}
-
-	public void setMotivos_dificultad(String motivos_dificultad) {
-		this.motivos_dificultad = motivos_dificultad;
-	}
     
     
 }

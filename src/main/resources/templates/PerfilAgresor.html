@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Domicilio del agresor</title>
+        <title>Perfil del agresor</title>
         <meta charset="UTF-8"/>
     </head>
     <body>
         <header th:replace="layout/plantilla :: header">
 
         </header>
-        <h2>Domicilio</h2>
+        <h2>Perfil</h2>
         <br/>
         <form th:action="@{/perfil_agresor}" method="post" th:object="${pAgresor}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">

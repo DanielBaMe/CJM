@@ -31,7 +31,7 @@ public class ExpedienteServiceImpl implements ExpedienteService{
         Date objDate = new Date();
         expediente.setFecha(objDate);
         Folio folio = folioDao.findTopByServicioOrderByIdDesc("expediente");
-        expediente.setId_expediente_usuaria(folio.getNo_folio());
+        expediente.setUsuaria(folio.getNo_folio());
         expedienteDao.save(expediente);
     }
 

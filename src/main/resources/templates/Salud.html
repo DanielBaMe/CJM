@@ -11,7 +11,7 @@
         </header>
         <h2></h2>
         <br/>
-        <form th:action="@{/salud}" method="post" th:object="salud">
+        <form th:action="@{/salud}" method="post" th:object="${salud}">
             <div class="errorblock" th:if="${#fields.hasErrors('*')}">
                 <ul>
                     <li th:each="err : ${#fields.errors('*')}"
@@ -19,12 +19,21 @@
                 </ul>
             </div>
             <label for="embarazada">¿Esta embarazada?</label>
-            <input type="text" name="embarazada" th:field="*{embarazada}" required/>
+            <input type="radio" name="embarazada" th:field="*{embarazada}" required value="Si"/>
+            <input type="radio" name="embarazada" th:field="*{embarazada}" required value="No"/>
             <span th:if="${#fields.hasErrors('embarazada')}" th:errors="*{embarazada}">Error nombre</span>
             <br/>
 
             <label for="problema_caminar">Caminar, subir o bajar sus pies?:</label>
-            <input type="text" name="problema_caminar" th:field="*{problema_caminar}"  required/>
+            <br/>
+            <input type="radio" name="uno" th:field="*{problema_caminar}"  required value="No puede hacerlo"/>
+            <label for="uno">No puede hacerlo</label>
+            <input type="radio" name="dos" th:field="*{problema_caminar}"  required value="Lo hace con dificultad"/>
+            <label for="dos">Lo hace con dificultad</label>
+            <input type="radio" name="tres" th:field="*{problema_caminar}"  required value="Lo hace con poca dificultad"/>
+            <label for="tres">Lo hace con poca dificultad</label>
+            <input type="radio" name="cuatro" th:field="*{problema_caminar}"  required value="No tiene dificultad"/>
+            <label for="cuatro">No tiene dificultad</label>
             <span th:if="${#fields.hasErrors('problema_caminar')}" th:errors="*{problema_caminar}">Error nombre</span>
             <br/>
 
@@ -39,7 +48,7 @@
             <br/>
             
             <label for="problema_escuchar">Escuchar?:</label>
-            <input type="number" name="problema_escuchar" th:field="*{problema_escuchar}"  required/>
+            <input type="text" name="problema_escuchar" th:field="*{problema_escuchar}"  required/>
             <span th:if="${#fields.hasErrors('problema_escuchar')}" th:errors="*{problema_escuchar}">Error nombre</span>
             <br/>
 
