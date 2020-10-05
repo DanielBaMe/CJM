@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="htpp://www.thymeleaf.org/extras?spring-security">
+    <head>
+        <title>Inicio</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header">        </header>
+        <!--        <button>
+                    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/crear}">Crear nuevos usuarios</a>
+                </button>-->
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/registrar}">Registrar usuaria</a>
+        <br/>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/verRegistros}">Ver usuarios</a>
+        <br/>
+        <br/>
+        <form th:action="@{/buscar}" method="post">
+            <label>Buscar usuaria</label>
+            <input type="text" name="nombre" id="nombre">
+            <input type="submit" value="Buscar">
+        </form>
+        <div th:if="${registros != null}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido paterno</th>
+                        <th>Apellido materno</th>
+                        <th>Edad</th>
+                        <th>Estado civil</th>
+                        <th>Telefono</th>
+                        <th>CURP</th>
+                        <th>Motivo de la visita</th>
+                        <th sec:authorize="hasRole('ROLE_ADMIN')">Ver informacion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="registro : ${registros}">
+                        <td th:text="${registro.nombre}"></td>
+                        <td th:text="${registro.a_paterno}"></td>
+                        <td th:text="${registro.a_materno}"></td>
+                        <td th:text="${registro.edad}"></td>
+                        <td th:text="${registro.id_estado_civil}"></td>
+                        <td th:text="${registro.telefono}"></td>
+                        <td th:text="${registro.curp}"></td>
+                        <td th:text="${registro.motivo_visita}"></td>
+                        <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/ver/} + ${registro.id}" th:text="ver"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <footer th:replace="layout/plantilla :: footer">
+
+        </footer>
+    </body>
+</html>
