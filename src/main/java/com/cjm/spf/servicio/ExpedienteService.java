@@ -7,4 +7,6 @@ public interface ExpedienteService {
     public void guardar(Expediente expediente);
     
     public Expediente encontrarExpediente(Expediente expediente);
+    
+    public Expediente encontrarPorId(Long id);
 }

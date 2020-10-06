@@ -25,7 +25,6 @@ public class RegEmpServiceImpl implements RegEmpService{
 	public void guardar(RegEmpoderamiento regEmpoderamiento) {
 		Date objDate = new Date();
 		regEmpoderamiento.setFecha(objDate);
-		long id = 1;
 		RegEmpoderamiento registro = registroDao.findTopByOrderByIdDesc();
 		if(registro == null) {
 			regEmpoderamiento.setFolio(1);

@@ -18,19 +18,31 @@ public class ServiciosBrindados implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Long id_expediente;
+    private Long expediente;
     
-    private String psicologia;
+    private Integer psicologia;
     
-    private String juridico;
+    private Integer juridico;
     
-    private String medico;
+    private Integer medico;
     
-    private String mp;
+    private Integer mp;
     
-    private String empoderamiento;
+    private Integer empoderamiento;
+    
+    private Integer dh;
     
     private Integer id_status_servicio_brindado;
+    
+    
+
+	public Integer getDh() {
+		return dh;
+	}
+
+	public void setDh(Integer dh) {
+		this.dh = dh;
+	}
 
 	public Long getId() {
 		return id;
@@ -40,51 +52,51 @@ public class ServiciosBrindados implements Serializable{
 		this.id = id;
 	}
 
-	public Long getId_expediente() {
-		return id_expediente;
+	public Long getExpediente() {
+		return expediente;
 	}
 
-	public void setId_expediente(Long id_expediente) {
-		this.id_expediente = id_expediente;
+	public void setExpediente(Long id_expediente) {
+		this.expediente = id_expediente;
 	}
 
-	public String getPsicologia() {
+	public Integer getPsicologia() {
 		return psicologia;
 	}
 
-	public void setPsicologia(String psicologia) {
+	public void setPsicologia(Integer psicologia) {
 		this.psicologia = psicologia;
 	}
 
-	public String getJuridico() {
+	public Integer getJuridico() {
 		return juridico;
 	}
 
-	public void setJuridico(String juridico) {
+	public void setJuridico(Integer juridico) {
 		this.juridico = juridico;
 	}
 
-	public String getMedico() {
+	public Integer getMedico() {
 		return medico;
 	}
 
-	public void setMedico(String medico) {
+	public void setMedico(Integer medico) {
 		this.medico = medico;
 	}
 
-	public String getMp() {
+	public Integer getMp() {
 		return mp;
 	}
 
-	public void setMp(String mp) {
+	public void setMp(Integer mp) {
 		this.mp = mp;
 	}
 
-	public String getEmpoderamiento() {
+	public Integer getEmpoderamiento() {
 		return empoderamiento;
 	}
 
-	public void setEmpoderamiento(String empoderamiento) {
+	public void setEmpoderamiento(Integer empoderamiento) {
 		this.empoderamiento = empoderamiento;
 	}
 

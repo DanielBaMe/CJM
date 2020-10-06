@@ -25,9 +25,29 @@ public class ServiciosBrindadosServiceImpl implements ServiciosBrindadosService{
 	@Transactional
 	public void guardar(ServiciosBrindados servicios) {
 		Expediente expediente = expDao.findTopByOrderByIdDesc();
-		servicios.setId_expediente(expediente.getId());
+		servicios.setExpediente(expediente.getId());
+		servicios.setId_status_servicio_brindado(1);
 		servicioDao.save(servicios);
 		
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public ServiciosBrindados encontrarExp(Long id) {
+		return servicioDao.findByExpediente(id);
+	}
+
+	@Override
+	public ServiciosBrindados encontrarPsic(Integer numero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void actualizar(ServiciosBrindados servicios) {
+		servicioDao.save(servicios);
+		
+	}
+	
 
 }
