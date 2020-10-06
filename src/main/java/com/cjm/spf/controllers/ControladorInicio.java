@@ -10,7 +10,6 @@ import com.cjm.spf.domain.*;
 import com.cjm.spf.dao.DatosAgresorDao;
 import com.cjm.spf.dao.ExpedienteDao;
 
-import com.cjm.spf.servicio.NuevoUsuarioService;
 import com.cjm.spf.servicio.RegistroService;
 import com.cjm.spf.servicio.eViolenciaService;
 import com.cjm.spf.servicio.ExpedienteService;
@@ -98,6 +97,21 @@ public class ControladorInicio {
     public String registro(Registro registro) {
         return "registro";
     }
+    
+    ///////////////////////////////////////////////
+    
+    @GetMapping("/preRegistro")
+    public String preRegistro(Registro registro) {
+        return "preRegistro";
+    }
+    
+    @GetMapping("/expediente")
+    public String expediente(Expediente expediente, Model model) {
+    	expediente.setUsuaria((long) 1);
+        return "expediente";
+    }
+    
+    /////////////////////////////////////////////
 
     @GetMapping("/verRegistros")
     public String visualizar(Model model) {
