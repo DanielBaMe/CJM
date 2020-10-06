@@ -11,6 +11,4 @@
 
 ## V.1.23
 
-Cambios realizados el día 29/09/2020
-
-Cambios realizados el día 07/10/2020 Osvaldo
+Cambios realizados el día 29/09/2020 Juth
