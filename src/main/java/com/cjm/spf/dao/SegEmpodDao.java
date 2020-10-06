@@ -5,5 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.cjm.spf.domain.SeguimientoEmp;
 
 public interface SegEmpodDao extends JpaRepository<SeguimientoEmp, Long>{
+	
+	//SeguimientoEmp findTopByUsuariaOrderByIdDesc(Long id);
+	
+	SeguimientoEmp findTopByUsuariaOrderByIdDesc(Long id);
 
 }

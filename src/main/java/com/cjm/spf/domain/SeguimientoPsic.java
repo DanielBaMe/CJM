@@ -19,6 +19,7 @@ private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @Column(name="fecha", updatable=false)
     private Date fecha;
     
     private Long folio;
@@ -31,9 +32,20 @@ private static final long serialVersionUID = 1L;
     
     private String tarea;
     
-    private String no_sesion;
+    private Integer no_sesion;
     
     private String psicologa;
+    
+    private Long usuaria;
+    
+
+	public Long getUsuaria() {
+		return usuaria;
+	}
+
+	public void setUsuaria(Long usuaria) {
+		this.usuaria = usuaria;
+	}
 
 	public Long getId() {
 		return id;
@@ -91,11 +103,11 @@ private static final long serialVersionUID = 1L;
 		this.tarea = tarea;
 	}
 
-	public String getNo_sesion() {
+	public Integer getNo_sesion() {
 		return no_sesion;
 	}
 
-	public void setNo_sesion(String no_sesion) {
+	public void setNo_sesion(Integer no_sesion) {
 		this.no_sesion = no_sesion;
 	}
 
