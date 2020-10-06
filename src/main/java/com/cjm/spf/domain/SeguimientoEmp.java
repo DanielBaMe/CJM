@@ -26,9 +26,9 @@ public class SeguimientoEmp implements Serializable{
     
     private String hora_salida;
     
-	private String seguimiento;
+	private Integer seguimiento;
 	
-	private Long id_usuaira;
+	private Long usuaria;
 	
 	private String observaciones;
 
@@ -64,20 +64,20 @@ public class SeguimientoEmp implements Serializable{
 		this.hora_salida = hora_salida;
 	}
 
-	public String getSeguimiento() {
+	public Integer getSeguimiento() {
 		return seguimiento;
 	}
 
-	public void setSeguimiento(String seguimiento) {
+	public void setSeguimiento(Integer seguimiento) {
 		this.seguimiento = seguimiento;
 	}
 
-	public Long getId_usuaira() {
-		return id_usuaira;
+	public Long getUsuaria() {
+		return usuaria;
 	}
 
-	public void setId_usuaira(Long id_usuaira) {
-		this.id_usuaira = id_usuaira;
+	public void setUsuaria(Long usuaria) {
+		this.usuaria = usuaria;
 	}
 
 	public String getObservaciones() {

@@ -22,13 +22,13 @@ public class RegEmpoderamiento implements Serializable{
     
     private Date fecha;
     
-    private String hora_entada;
+    private String hora_entrada;
     
     private String hora_salida;
     
     private Integer folio;
 
-    private Long id_usuaria;
+    private Long usuaria;
     
     private String escolaridad;
     
@@ -40,13 +40,15 @@ public class RegEmpoderamiento implements Serializable{
     
     private String est_actuales_curso;
     
-    private String ext_actuales_grado;
+    private String est_actuales_grado;
     
     private String exp_laboral;
     
+    private String ultimo_empleo;
+    
     private String ocupacion;
     
-    private String desarolla_negocio;
+    private String desarrolla_negocio;
     
     private String habilidades;
     
@@ -56,7 +58,15 @@ public class RegEmpoderamiento implements Serializable{
     
     private String canalizacion;
     
-    private Long id_encargada;
+    
+
+	public String getUltimo_empleo() {
+		return ultimo_empleo;
+	}
+
+	public void setUltimo_empleo(String ultimo_empleo) {
+		this.ultimo_empleo = ultimo_empleo;
+	}
 
 	public Long getId() {
 		return id;
@@ -74,12 +84,12 @@ public class RegEmpoderamiento implements Serializable{
 		this.fecha = fecha;
 	}
 
-	public String getHora_entada() {
-		return hora_entada;
+	public String getHora_entrada() {
+		return hora_entrada;
 	}
 
-	public void setHora_entada(String hora_entada) {
-		this.hora_entada = hora_entada;
+	public void setHora_entrada(String hora_entrada) {
+		this.hora_entrada = hora_entrada;
 	}
 
 	public String getHora_salida() {
@@ -98,12 +108,12 @@ public class RegEmpoderamiento implements Serializable{
 		this.folio = folio;
 	}
 
-	public Long getId_usuaria() {
-		return id_usuaria;
+	public Long getUsuaria() {
+		return usuaria;
 	}
 
-	public void setId_usuaria(Long id_usuaria) {
-		this.id_usuaria = id_usuaria;
+	public void setUsuaria(Long usuaria) {
+		this.usuaria = usuaria;
 	}
 
 	public String getEscolaridad() {
@@ -146,12 +156,12 @@ public class RegEmpoderamiento implements Serializable{
 		this.est_actuales_curso = est_actuales_curso;
 	}
 
-	public String getExt_actuales_grado() {
-		return ext_actuales_grado;
+	public String getEst_actuales_grado() {
+		return est_actuales_grado;
 	}
 
-	public void setExt_actuales_grado(String ext_actuales_grado) {
-		this.ext_actuales_grado = ext_actuales_grado;
+	public void setEst_actuales_grado(String est_actuales_grado) {
+		this.est_actuales_grado = est_actuales_grado;
 	}
 
 	public String getExp_laboral() {
@@ -170,12 +180,12 @@ public class RegEmpoderamiento implements Serializable{
 		this.ocupacion = ocupacion;
 	}
 
-	public String getDesarolla_negocio() {
-		return desarolla_negocio;
+	public String getDesarrolla_negocio() {
+		return desarrolla_negocio;
 	}
 
-	public void setDesarolla_negocio(String desarolla_negocio) {
-		this.desarolla_negocio = desarolla_negocio;
+	public void setDesarrolla_negocio(String desarrolla_negocio) {
+		this.desarrolla_negocio = desarrolla_negocio;
 	}
 
 	public String getHabilidades() {
@@ -210,14 +220,6 @@ public class RegEmpoderamiento implements Serializable{
 		this.canalizacion = canalizacion;
 	}
 
-	public Long getId_encargada() {
-		return id_encargada;
-	}
-
-	public void setId_encargada(Long id_encargada) {
-		this.id_encargada = id_encargada;
-	}
-    
     
     
 }

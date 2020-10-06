@@ -40,5 +40,11 @@ public class ExpedienteServiceImpl implements ExpedienteService{
     public Expediente encontrarExpediente(Expediente expediente) {
         return expedienteDao.findById(expediente.getId()).orElse(null);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public Expediente encontrarPorId(Long id) {
+		return expedienteDao.findByUsuaria(id);
+	}
     
 }

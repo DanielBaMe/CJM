@@ -1,34 +1,10 @@
-package com.cjm.spf.domain;
+package com.cjm.spf.pojo;
 
-import javax.persistence.*;
-import lombok.Data;
-import java.io.Serializable;
-import java.util.Date;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-
-@Data
-@Entity
-@Table(name = "valoracion_psic")
-public class ExpPsic implements Serializable{
+public class ValoracionPsicPojo {
 	
-	private static final long serialVersionUID = 1L;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name="fecha", updatable=false)
-    private Date fecha;
-    
-
-    private Long folio;
-    
-    @Column(name="usuaria",unique=true)
-    private Long usuaria;
-    
-    private String motivo_consulta;
+	private Long id_usuaria;
+	
+	private String motivo_consulta;
     
     private String familiar;
     
@@ -55,38 +31,8 @@ public class ExpPsic implements Serializable{
     private String sexual;
     
     private String individual;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-	public Long getFolio() {
-		return folio;
-	}
-
-	public void setFolio(Long folio) {
-		this.folio = folio;
-	}
-
-	public Long getUsuaria() {
-		return usuaria;
-	}
-
-	public void setUsuaria(Long usuaria) {
-		this.usuaria = usuaria;
-	}
+    
+    private String fecha;
 
 	public String getMotivo_consulta() {
 		return motivo_consulta;
@@ -144,14 +90,6 @@ public class ExpPsic implements Serializable{
 		this.objetivo = objetivo;
 	}
 
-	public String getCanalizada() {
-		return canalizada;
-	}
-
-	public void setCanalizada(String canalizada) {
-		this.canalizada = canalizada;
-	}
-
 	public String getPsicologa() {
 		return psicologa;
 	}
@@ -199,6 +137,31 @@ public class ExpPsic implements Serializable{
 	public void setIndividual(String individual) {
 		this.individual = individual;
 	}
+
+	public String getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public String getCanalizada() {
+		return canalizada;
+	}
+
+	public void setCanalizada(String canalizada) {
+		this.canalizada = canalizada;
+	}
+
+	public Long getId_usuaria() {
+		return id_usuaria;
+	}
+
+	public void setId_usuaria(Long id_usuaria) {
+		this.id_usuaria = id_usuaria;
+	}
     
     
+
 }
