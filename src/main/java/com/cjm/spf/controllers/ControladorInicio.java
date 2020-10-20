@@ -179,12 +179,33 @@ public class ControladorInicio {
 
     @PostMapping("/crearExpediente")														//Crear nuevo expediente
     public String guardar(@Valid Expediente expediente, Errors errores, Model model, RFamiliares familiares) {
-        if (errores.hasErrors()) {
-            return "expediente";
-        }
-        model.addAttribute("familiares", familiares);
-        expedienteService.guardar(expediente);
-        return "familiares";
+        //if (errores.hasErrors()) {
+          //  return "expediente";
+       // }
+        
+        System.out.print("Hora entrada: " + expediente.getH_entrada() + "// ");
+        System.out.print("Nombre entrevistadora: " + expediente.getNombre_entrevistador() + "// ");
+        System.out.print("Sabe leer: " + expediente.getLeer() + "// ");
+        System.out.print("Sabe escribir: " + expediente.getEscribir() + "// ");
+        System.out.print("Escolaridad: " + expediente.getEscolaridad()+ "// ");
+        System.out.print("Servicio medico: " + expediente.getServicio_medico()+ "// ");        
+        System.out.print("Actividad que realiza: " + expediente.getActividad() + "// ");
+        System.out.print("Fuente de ingreso: " + expediente.getFuente_ingreso() + "// ");
+        System.out.print("Ingreso mensual: " + expediente.getIngreso_mensual() + "// ");
+        System.out.print("Tipo de vivienda: " + expediente.getTipo_vivienda() + "// ");
+        System.out.print("Tipo de violencia: " + expediente.getTipo_violencia() + "// ");
+        System.out.print("Ambito de la violencia: " + expediente.getAmbito_violencia() + "// ");
+        System.out.print("Victima de delincuencia: " + expediente.getVictima_delincuencia() + "// ");
+        System.out.print("Victima de trata: " + expediente.getVictima_trata() + "// ");
+        System.out.print("Conoce al agresor: " + expediente.getConoce_agresor() + "// ");
+        System.out.print("Informacion adicional: " + expediente.getInfo_adicional() + "// ");
+        System.out.print("Hora de salida: " + expediente.getH_salida() + "// ");
+        
+        return "expediente";
+        
+        //model.addAttribute("familiares", familiares);
+        //expedienteService.guardar(expediente);
+        //return "familiares";
     }
     
     @PostMapping("/crear_relaciones_familiares")											//Crear relaciones familiares

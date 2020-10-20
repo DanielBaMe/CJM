@@ -314,14 +314,14 @@
 											<!--  <h3 class="text-center font-weight-light my-2">Expediente</h3> -->
 										</div>
 										<div class="card-body">
-											<form method="get" th:action="@{/menu}"
+											<form method="post" th:action="@{/crearExpediente}"
 												th:object="${expediente}">
 												<div class="form-row">
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="horaEntrada">Hora
-																de entrada </label> <input type="datetime-local" 
-																name="h_entrada" class="form-control form-control-sm py-4"
+																de entrada:</label> <input type="datetime-local"
+																name="h_entrada" class="form-control form-control-sm"
 																th:field="*{h_entrada}" required /> <span
 																th:if="${#fields.hasErrors('h_entrada')}"
 																th:errors="*{h_entrada}">Error nombre</span>
@@ -330,9 +330,9 @@
 													<div class="col-md-4">
 														<div class="form-group">
 															<label for="nombre" class="small mb-1">Nombre la
-																entrevistadora </label> <input
-																class="form-control form-control-sm py-4"
-																id="inputFirstName" type="text" placeholder="Nombre"
+																entrevistadora:</label> <input
+																class="form-control form-control-sm" id="inputFirstName"
+																type="text" placeholder="Nombre"
 																name="nombre_entrevistador"
 																th:field="*{nombre_entrevistador}" required
 																pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" /> <span
@@ -352,15 +352,13 @@
 																leer? </label>
 															<div class="form-check">
 																<input class="form-check-input" type="radio" name="leer"
-																	id="exampleRadios1" value="option1"> <label
-																	class="form-check-label" for="exampleRadios1">
-																	Si </label>
+																	id="leer1" value="Si" th:field="*{leer}"> <label
+																	class="form-check-label" for="leer"> Si </label>
 															</div>
 															<div class="form-check">
 																<input class="form-check-input" type="radio" name="leer"
-																	id="exampleRadios2" value="option2"> <label
-																	class="form-check-label" for="exampleRadios2">
-																	No </label>
+																	id="leer2" value="No" th:field="*{leer}"> <label
+																	class="form-check-label" for="leer"> No </label>
 															</div>
 														</div>
 													</div>
@@ -370,15 +368,15 @@
 																escribir? </label>
 															<div class="form-check">
 																<input class="form-check-input" type="radio"
-																	name="escribir" id="exampleRadios3" value="option3">
-																<label class="form-check-label" for="exampleRadios3">
-																	Si </label>
+																	name="escribir" id="escribir1" th:field="*{escribir}"
+																	value="Si"> <label class="form-check-label"
+																	for="escribir"> Si </label>
 															</div>
 															<div class="form-check">
 																<input class="form-check-input" type="radio"
-																	name="escribir" id="exampleRadios4" value="option4">
-																<label class="form-check-label" for="exampleRadios4">
-																	No </label>
+																	name="escribir" id="escribir2" th:field="*{escribir}"
+																	value="No"> <label class="form-check-label"
+																	for="escribir"> No </label>
 															</div>
 														</div>
 													</div>
@@ -386,242 +384,436 @@
 												<div class="form-row">
 													<div class="col-md-4">
 														<div class="form-group">
-															<label class="small mb-1" for="selectEscolaridad">Escolaridad
-															</label> <select class="form-control form-control-sm py-4"
-																id="selectEscolaridad">
-																<option></option>
-															</select>
+															<label class="small mb-1" for="selectEscolaridad">Escolaridad:</label>
+															<select class="form-control form-control-sm"
+																id="selectEscolaridad" name="escolaridad"
+																th:field="*{escolaridad}" required="required">
+																<option selected value="">...</option>
+																<option th:value="Primaria">Primaria</option>
+																<option th:value="Secundaria">Secundaria</option>
+																<option th:value="Preparatoria_o_Bachillerato">Preparatoria
+																	ó Bachilletaro</option>
+																<option th:value="Carrera_Tecnica">Carrera
+																	Técnica</option>
+																<option th:value="Licenciatura">Licenciatura</option>
+																<option th:value="Posgrado">Posgrado</option>
+																<option th:value="Sin_Estudios">Sin Estudios</option>
+															</select> <span th:if="${#fields.hasErrors('escolaridad')}"
+																th:errors="*{escolaridad}">Error nombre</span>
+														</div>
+													</div>
+												</div>
+												<ol class="breadcrumb mb-4">
+													<li class="breadcrumb-item active">Datos Económicos</li>
+												</ol>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="small mb-1">Servicio médico con el
+															que cuenta:</label>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="form-row">
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="gobierno" th:field="*{servicio_medico}"
+																	value="gobierno" id="gobierno"> <label
+																	class="custom-control-label" for="gobierno">Gobierno
+																	estatal</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="imss" th:field="*{servicio_medico}" value="imss"
+																	id="imss"> <label class="custom-control-label"
+																	for="imss">IMSS</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="issste" th:field="*{servicio_medico}"
+																	value="issste" id="issste"> <label
+																	class="custom-control-label" for="issste">ISSSTE</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="seguro_popular" th:field="*{servicio_medico}"
+																	value="seguro_popular" id="seguro_popular"> <label
+																	class="custom-control-label" for="seguro_popular">Seguro
+																	Popular</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="sedena" th:field="*{servicio_medico}"
+																	value="sedena" id="sedena"> <label
+																	class="custom-control-label" for="sedena">SEDENA</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="privado" th:field="*{servicio_medico}"
+																	value="privado" id="privado"> <label
+																	class="custom-control-label" for="privado">Médico
+																	privado</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="pemex" th:field="*{servicio_medico}"
+																	value="pemex" id="pemex"> <label
+																	class="custom-control-label" for="pemex">PEMEX</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="bienestar" th:field="*{servicio_medico}"
+																	value="bienestar" id="bienestar"> <label
+																	class="custom-control-label" for="bienestar">Becas
+																	para el bienestar</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="ninguno" th:field="*{servicio_medico}"
+																	value="ninguno" id="ninguno"> <label
+																	class="custom-control-label" for="ninguno">Ninguno</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="otro" th:field="*{servicio_medico}" value="otro"
+																	id="otro"> <label class="custom-control-label"
+																	for="otro">Otro</label>
+															</div>
+														</div>
+													</div>
+													<span th:if="${#fields.hasErrors('servicio_medico')}"
+														th:errors="*{servicio_medico}">Error nombre</span>
+												</div>
+												<div class="form-row">
+													<div class="col-md-4">
+														<div class="form-group">
+															<label class="small mb-1" for="selectTipoVivienda">Actividad
+																que realiza:</label> <select
+																class="form-control form-control-sm" id="actividad"
+																name="actividad" th:field="*{actividad}"
+																required="required">
+																<option selected value="">...</option>
+																<option th:value="Estudia">Estudia</option>
+																<option th:value="Jubilada_o_pensionada">Jubilada
+																	o pensionada</option>
+																<option th:value="Trabaja_en_el_hogar">Trabaja
+																	en el hogar</option>
+																<option th:value="Trabaja_fuera_del_hogar">Trabaja
+																	fuera del hogar</option>
+																<option th:value="Comerciante">Comerciante</option>
+																<option th:value="Se_desconoce">Se desconoce</option>
+																<option th:value="Otro">Otro</option>
+																<option th:value="Actividad_ilicita">Actividad
+																	ilicita</option>
+															</select> <span th:if="${#fields.hasErrors('actividad')}"
+																th:errors="*{actividad}">Error nombre</span>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label class="small mb-1" for="radioEscribir">Fuente
+																de ingreso: </label>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="fuente_ingreso" id="fuente_ingreso1"
+																	th:field="*{fuente_ingreso}" value="Si"> <label
+																	class="form-check-label" for="fuente_ingreso">
+																	Si </label>
+															</div>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="fuente_ingreso" id="fuente_ingreso2"
+																	th:field="*{fuente_ingreso}" value="No"> <label
+																	class="form-check-label" for="fuente_ingreso">
+																	No </label>
+															</div>
+															<span th:if="${#fields.hasErrors('fuente_ingreso')}"
+																th:errors="*{fuente_ingreso}">Error nombre</span>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label for="nombre" class="small mb-1">Ingreso
+																mensual:</label> <input class="form-control form-control-sm"
+																id="ingreso_mensual" type="number"
+																placeholder="Ingreso mensual" name="ingreso_mensual"
+																th:field="*{ingreso_mensual}" required
+																pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" /> <span
+																th:if="${#fields.hasErrors('ingreso_mensual')}"
+																th:errors="*{ingreso_mensual}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="selectTipoVivienda">Tipo
-																de vivienda </label> <select
-																class="form-control form-control-sm py-4"
-																id="selectTipoVivienda">
-																<option></option>
-															</select>
+																de vivienda:</label> <select
+																class="form-control form-control-sm"
+																id="selectTipoVivienda" name="tipo_vivienda"
+																th:field="*{tipo_vivienda}" required="required">
+																<option selected value="">...</option>
+																<option th:value="Casa">Casa</option>
+																<option th:value="Departamento">Departamento</option>
+																<option th:value="Cuarto">Cuarto</option>
+															</select> <span th:if="${#fields.hasErrors('tipo_vivienda')}"
+																th:errors="*{tipo_vivienda}">Error nombre</span>
 														</div>
 													</div>
 												</div>
 												<ol class="breadcrumb mb-4">
-													<li class="breadcrumb-item active">Tipo de Apoyo</li>
+													<li class="breadcrumb-item active">Datos de Violencia</li>
 												</ol>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="small mb-1">Tipo de violencia:</label>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="form-row">
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="fisica" th:field="*{tipo_violencia}"
+																	value="fisica" id="fisica"> <label
+																	class="custom-control-label" for="fisica">Física</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="economica" th:field="*{tipo_violencia}"
+																	value="economica" id="economica"> <label
+																	class="custom-control-label" for="economica">Económica</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="patrimonial" th:field="*{tipo_violencia}"
+																	value="patrimonial" id="patrimonial"> <label
+																	class="custom-control-label" for="patrimonial">Patrimonial</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="psicologica" th:field="*{tipo_violencia}"
+																	value="psicologica" id="psicologica"> <label
+																	class="custom-control-label" for="psicologica">Psicológica</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="sexual" th:field="*{tipo_violencia}"
+																	value="sexual" id="sexual"> <label
+																	class="custom-control-label" for="sexual">Sexual</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="otro" th:field="*{tipo_violencia}" value="otro"
+																	id="otro"> <label class="custom-control-label"
+																	for="otro">Otro</label>
+															</div>
+														</div>
+													</div>
+													<span th:if="${#fields.hasErrors('servicio_medico')}"
+														th:errors="*{servicio_medico}">Error nombre</span>
+												</div>
+												<div class="col-md-4">
+													<div class="form-group">
+														<label class="small mb-1">Ambito de la violencia:</label>
+													</div>
+												</div>
+												<div class="form-group">
+													<div class="form-row">
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="familiar" th:field="*{ambito_violencia}"
+																	value="familiar" id="familiar"> <label
+																	class="custom-control-label" for="familiar">Familiar</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="institucional" th:field="*{ambito_violencia}"
+																	value="institucional" id="institucional"> <label
+																	class="custom-control-label" for="institucional">Institucional</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="laboral _y_docente"
+																	th:field="*{ambito_violencia}"
+																	value="laboral _y_docente" id="laboral _y_docente">
+																<label class="custom-control-label"
+																	for="laboral _y_docente">Laboral y docente</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="comunidad" th:field="*{ambito_violencia}"
+																	value="comunidad" id="comunidad"> <label
+																	class="custom-control-label" for="comunidad">Comunidad</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="digital/cibernetica"
+																	th:field="*{ambito_violencia}"
+																	value="digital/cibernetica" id="digital/cibernetica">
+																<label class="custom-control-label"
+																	for="digital/cibernetica">Digital/Cibernetica</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="feminicida" th:field="*{ambito_violencia}"
+																	value="feminicida" id="feminicida"> <label
+																	class="custom-control-label" for="feminicida">Feminicida</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="obstetrica" th:field="*{ambito_violencia}"
+																	value="obstetrica" id="obstetrica"> <label
+																	class="custom-control-label" for="obstetrica">Obstetrica</label>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input"
+																	name="politica" th:field="*{ambito_violencia}"
+																	value="politica" id="politica"> <label
+																	class="custom-control-label" for="politica">Politica</label>
+															</div>
+														</div>
+													</div>
+													<span th:if="${#fields.hasErrors('servicio_medico')}"
+														th:errors="*{servicio_medico}">Error nombre</span>
+												</div>
 												<div class="form-row">
 													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox1" value="option1"> <label
-																class="form-check-label" for="inlineCheckbox1">Económico</label>
+														<div class="form-group">
+															<label class="small mb-1" for="radioVictimaDelincuencia">¿Es
+																víctima de delincuencia? </label>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="victima_delincuencia" id="victimaDelincuencia1"
+																	value="Si" th:field="*{victima_delincuencia}">
+																<label class="form-check-label"
+																	for="victimaDelincuencia"> Si </label>
+															</div>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="victima_delincuencia" id="victimaDelincuencia2"
+																	value="No" th:field="*{victima_delincuencia}">
+																<label class="form-check-label"
+																	for="victimaDelincuencia"> No </label>
+															</div>
+															<span
+																th:if="${#fields.hasErrors('victima_delincuencia')}"
+																th:errors="*{victima_delincuencia}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Consejos/Asesoría</label>
+														<div class="form-group">
+															<label class="small mb-1" for="radioVictimaDelincuencia">¿Es
+																víctima de trata de personas? </label>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="victima_trata" id="victimaTrata1" value="Si"
+																	th:field="*{victima_trata}"> <label
+																	class="form-check-label" for="victimaTrata"> Si
+																</label>
+															</div>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="victima_trata" id="victimaTrata2" value="No"
+																	th:field="*{victima_trata}"> <label
+																	class="form-check-label" for="victimaTrata"> No
+																</label>
+															</div>
+															<span th:if="${#fields.hasErrors('victima_trata')}"
+																th:errors="*{victima_trata}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox3" value="option3"> <label
-																class="form-check-label" for="inlineCheckbox3">Emocional</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox4" value="option4"> <label
-																class="form-check-label" for="inlineCheckbox4">Vivienda</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox1" value="option1"> <label
-																class="form-check-label" for="inlineCheckbox1">Estructural</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Laboral</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox3" value="option3"> <label
-																class="form-check-label" for="inlineCheckbox3">Alimentario</label>
-														</div>
-													</div>
-													<div class="col-md-4">
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox4" value="option4"> <label
-																class="form-check-label" for="inlineCheckbox4">Religioso</label>
+														<div class="form-group">
+															<label class="small mb-1" for="radioVictimaDelincuencia">¿Conoce
+																al agresor? </label>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="conoce_agresor" id="conoce_agresor1" value="Si"
+																	th:field="*{conoce_agresor}"> <label
+																	class="form-check-label" for="conoce_agresor">
+																	Si </label>
+															</div>
+															<div class="form-check">
+																<input class="form-check-input" type="radio"
+																	name="conoce_agresor" id="conoce_agresor2" value="No"
+																	th:field="*{conoce_agresor}"> <label
+																	class="form-check-label" for="conoce_agresor">
+																	No </label>
+															</div>
+															<span th:if="${#fields.hasErrors('conoce_agresor')}"
+																th:errors="*{conoce_agresor}">Error nombre</span>
 														</div>
 													</div>
 												</div>
 												<ol class="breadcrumb mb-4">
-													<li class="breadcrumb-item active">Datos Economicos</li>
+													<li class="breadcrumb-item active">Datos Adicionales</li>
 												</ol>
 												<div class="form-row">
-													<div class="col-md-3">
+													<div class="col-md-4">
 														<div class="form-group">
-															<label class="small mb-1" for="inputColonia">Actividad
-																que realiza:</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Estudia</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Jubilada/Pensionada</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Trabaja
-																en el hogar</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Trabaja
-																fuera del hogar</label>
-														</div>
-													</div>
-													<div class="form-row">
-														<div class="col-md-3">
-															<div class="form-group">
-																<label class="small mb-1" for="inputColonia"></label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Comerciante</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Se
-																	desconoce</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Otro</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Actividad
-																	ilícita</label>
-															</div>
+															<label for="infAdicional" class="small mb-1">Información
+																adicional:</label>
+															<textarea class="form-control" aria-label="With textarea"
+																id="textareaInfAdd" name="info_adicional"
+																th:field="*{info_adicional}">
+																</textarea>
 														</div>
 													</div>
 												</div>
-												<br>
-												<div class="form-row">
-													<div class="col-md-3">
-														<div class="form-group">
-															<label class="small mb-1" for="inputColonia">Servicio
-																médico con el que cuenta:</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Gobierno
-																estatal</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">IMSS</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">ISSSTE</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">Seguro
-																popular</label>
-														</div>
-														<div class="form-check form-check-inline">
-															<input class="form-check-input" type="checkbox"
-																id="inlineCheckbox2" value="option2"> <label
-																class="form-check-label" for="inlineCheckbox2">SEDENA</label>
-														</div>
-													</div>
-													<div class="form-row">
-														<div class="col-md-3">
-															<div class="form-group">
-																<label class="small mb-1" for="inputColonia"></label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Médico
-																	privado</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">PEMEX</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Becas
-																	para el bienestar</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Ninguno</label>
-															</div>
-															<div class="form-check form-check-inline">
-																<input class="form-check-input" type="checkbox"
-																	id="inlineCheckbox2" value="option2"> <label
-																	class="form-check-label" for="inlineCheckbox2">Otro</label>
-															</div>
-														</div>
-													</div>
-												</div>
+												<ol class="breadcrumb mb-2"></ol>
 												<div class="form-row">
 													<div class="col-md-4">
 														<div class="form-group">
-															<label class="small mb-1" for="selectMotivoVisita">Motivo
-																Visita </label> <select
-																class="form-control form-control-sm py-4"
-																id="selectMotivoVisita">
-																<option></option>
-															</select>
+															<label class="small mb-1" for="horaEntrada">Hora
+																de salida:</label> <input type="datetime-local" name="h_salida"
+																class="form-control form-control-sm"
+																th:field="*{h_salida}" required /> <span
+																th:if="${#fields.hasErrors('h_salida')}"
+																th:errors="*{h_salida}">Error nombre</span>
 														</div>
 													</div>
-													<div class="col-md-4">
-														<div class="form-group">
-															<label class="small mb-1" for="inputCP">Hora
-																Entrada</label> <input class="form-control form-control-sm py-4"
-																id="inputCurp" type="datetime-local" disabled="disabled" />
-														</div>
-													</div>
-													<!-- 												<div class="col-md-4"> -->
-													<!-- 													<div class="form-group"> -->
-													<!-- 														<label class="small mb-1" for="inputTeléfono">Teléfono</label> <input -->
-													<!-- 															class="form-control form-control-sm py-4" id="inputNoInterior" type="number" -->
-													<!-- 															placeholder="Teléfono"/> -->
-													<!-- 													</div> -->
-													<!-- 												</div> -->
 												</div>
 												<div class="form-group mt-4 mb-0">
 													<button type="submit" class="btn btn-primary btn-block">
