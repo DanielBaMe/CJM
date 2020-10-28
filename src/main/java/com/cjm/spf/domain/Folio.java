@@ -3,9 +3,13 @@ package com.cjm.spf.domain;
 import javax.persistence.*;
 import lombok.Data;
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Data
 @Entity
@@ -19,7 +23,7 @@ public class Folio implements Serializable{
     private Long id;
     
     @Positive
-    private Long no_folio;
+    private Long usuaria;
             
     private Long id_tipo_folio;
     
@@ -29,6 +33,40 @@ public class Folio implements Serializable{
     
     private String atencion;
     
+    @JsonFormat(pattern="yyyy")
+    private Integer anio;
+    
+    @JsonFormat(pattern="MM")
+    private Integer mes;
+    
+    @JsonFormat(pattern="dd")
+    private Integer dia;
+    
+    
+
+	public Integer getAnio() {
+		return anio;
+	}
+
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+
+	public Integer getMes() {
+		return mes;
+	}
+
+	public void setMes(Integer mes) {
+		this.mes = mes;
+	}
+
+	public Integer getDia() {
+		return dia;
+	}
+
+	public void setDia(int i) {
+		this.dia = i;
+	}
 
 	public String getAtencion() {
 		return atencion;
@@ -46,12 +84,12 @@ public class Folio implements Serializable{
 		this.id = id;
 	}
 
-	public Long getNo_folio() {
-		return no_folio;
+	public Long getUsuaria() {
+		return usuaria;
 	}
 
-	public void setNo_folio(Long no_folio) {
-		this.no_folio = no_folio;
+	public void setUsuaria(Long usuaria) {
+		this.usuaria = usuaria;
 	}
 
 	public Long getId_tipo_folio() {

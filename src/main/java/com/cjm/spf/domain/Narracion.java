@@ -49,10 +49,10 @@ public class Narracion implements Serializable{
 	
 	private String colonia;
 	
-	@NotBlank(message="El campo no puede estar vacio")
+	@NotNull(message="El campo no puede estar vacio")
 	private Integer municipio;
 	
-	@NotBlank(message="El campo no puede estar vacio")
+	@NotNull(message="El campo no puede estar vacio")
 	private Integer estado;
 	
 	@NotBlank(message="El campo no puede estar vacio")

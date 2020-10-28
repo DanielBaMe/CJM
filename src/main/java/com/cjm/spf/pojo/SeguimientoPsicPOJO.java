@@ -18,7 +18,28 @@ public class SeguimientoPsicPOJO {
     
     private Long usuaria;
     
+    private String observaciones;
     
+    private String sesion;
+    
+    
+    
+
+	public String getSesion() {
+		return sesion;
+	}
+
+	public void setSesion(String sesion) {
+		this.sesion = sesion;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
 
 	public Long getUsuaria() {
 		return usuaria;

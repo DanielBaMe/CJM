@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Efectos de la violencia</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header">
+<head th:replace="layout/plantilla::head">
 
-        </header>
-        <h2>Efectos de la violencia</h2>
-        <br/>
-        <form th:action="@{/crearEfectos}" method="post" th:object="${violencia}">
-            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('*')}"
-                        th:text="${err}">Input is incorrect</li>
-                </ul>
+</head>
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <h2>Efectos de la violencia</h2>
+                    <br/>
+                    <form th:action="@{/crearEfectos}" method="post" th:object="${violencia}">
+                        
+                        <label for="efectos">Efectos</label>
+                        <input type="text" name="efectos" th:field="*{efectos}"pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Solo letras" />
+                        <span th:if="${#fields.hasErrors('efectos')}" th:errors="*{efectos}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="efectos_fisicos">Efectos Fisicos</label>
+                        <input type="text" name="efectos_fisicos" th:field="*{efectos_fisicos}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Solo letras" />
+                        <span th:if="${#fields.hasErrors('efectos_fisicos')}" th:errors="*{efectos_fisicos}">Error nombre</span>
+                        <br/>
+
+                        <label for="efectos_psic">Efectos psicologicos</label>
+                        <input type="text" name="efectos_psic" th:field="*{efectos_psic}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" title="Solo letras" />
+                        <span th:if="${#fields.hasErrors('efectos_psic')}" th:errors="*{efectos_psic}">Error nombre</span>
+                        <br/>
+
+
+                        <input type="submit" name="guardar" value="Guardar"/>
+                    </form>
+                </main>
+                <br>
             </div>
+            <footer th:replace="layout/plantilla::footer">
             
-            <label for="efectos">Efectos</label>
-            <input type="text" name="efectos" th:field="*{efectos}"  required/>
-            <span th:if="${#fields.hasErrors('efectos')}" th:errors="*{efectos}">Error nombre</span>
-            <br/>
-            
-            <label for="efectos_fisicos">Efectos Fisicos</label>
-            <input type="text" name="efectos_fisicos" th:field="*{efectos_fisicos}" required/>
-            <span th:if="${#fields.hasErrors('efectos_fisicos')}" th:errors="*{efectos_fisicos}">Error nombre</span>
-            <br/>
-
-            <label for="efectos_psic">Efectos psicologicos</label>
-            <input type="text" name="efectos_psic" th:field="*{efectos_psic}"  required/>
-            <span th:if="${#fields.hasErrors('efectos_psic')}" th:errors="*{efectos_psic}">Error nombre</span>
-            <br/>
-
-
-            <input type="submit" name="guardar" value="Guardar"/>
-        </form>
-        <footer th:replace="layout/plantilla :: footer">
-
-        </footer>
-    </body>
+            </footer>
+        </div>
+    </div>
+    <th:block th:reaplce="layout/plantilla::script"></th:block> 
+</body>
 </html>

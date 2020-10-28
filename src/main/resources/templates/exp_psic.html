@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
+
+<head th:replace="layout/plantilla::head">
+
+</head>
+
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Expediente Psicológico</h1>
+                        <div class="card shadow-lg border-0 rounded-lg mt-3">
+                            <div class="card-header">
+                                <h6 class="m-0  ">Área de Psicología</h6>
+                            </div>
+                            <div class="card-body">
+                                <form th:action="@{/expPsic}" method="post" th:object="${valoracionPojo}">      
+                                    <div class="form-group">
+                                        <label for="motivo">Motivo de la consulta</label>
+                                        <input type="text" class="form-control" name="motivo" th:field="*{motivo_consulta}" required/>
+                                        <small th:if="${#fields.hasErrors('motivo_consulta')}" th:errors="*{motivo_consulta}" class="text-danger">Error nombre</small>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="familiar">Ambito familiar</label>
+                                                <textarea name="familiar" class="form-control" th:field="*{familiar}" required></textarea>
+                                                <small th:if="${#fields.hasErrors('familiar')}" th:errors="*{familiar}" class="text-danger">Error nombre</small>
+                                            </div>
+                
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="laboral">Ambito laboral</label>
+                                                <textarea class="form-control" name="laboral" th:field="*{laboral}" required></textarea>
+                                                <small th:if="${#fields.hasErrors('laboral')}" th:errors="*{laboral}" class="text-danger">Error nombre</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="social">Ambito social</label>
+                                                <textarea class="form-control" name="social" th:field="*{social}" required></textarea>
+                                                <small th:if="${#fields.hasErrors('social')}" th:errors="*{social}" class="text-danger">Error nombre</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="sexual">Ambito sexual</label>
+                                                <textarea class="form-control" name="sexual" th:field="*{sexual}" required></textarea>
+                                                <small th:if="${#fields.hasErrors('sexual')}" th:errors="*{sexual}" class="text-danger">Error nombre</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group"> 
+                                        <label for="individual">Ambito individual</label>
+                                        <textarea class="form-control" name="individual" th:field="*{individual}" required></textarea>
+                                        <small th:if="${#fields.hasErrors('individual')}" th:errors="*{individual}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <hr>
+                                    <h3>Tipo de violencia</h3>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="fisica"/>
+                                        <label class="form-check-label">Fisica</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="psicologica"/>
+                                        <label class="form-check-label" >Psicológica</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="sexual"/>
+                                        <label class="form-check-label">Sexual</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="economica"/>
+                                        <label class="form-check-label">Económica</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">     
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="patrimonial"/>
+                                        <label class="form-check-label">Patrimonial</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">  
+                                        <input class="form-check-input" type="checkbox" name="tipo_apoyo" th:field="*{tipo_violencia}" value="feminicida"/>
+                                        <label class="form-check-label">Feminicida</label>
+                                    </div>
+                                    <hr>
+                                    <h3>Familiograma</h3>
+                                    <div class="form-group">
+                                        <textarea class="form-control"  th:field="*{familiograma}" name="familiograma"></textarea>
+                                        <small th:if="${#fields.hasErrors('familiograma')}" th:errors="*{familiograma}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <hr>
+                
+                                    <div class="form-group">
+                                        <label for="tarea">Tarea</label>
+                                        <input class="form-control" type="text" name="tarea" th:field="*{tarea}"/>
+                                        <small th:if="${#fields.hasErrors('familiograma')}" th:errors="*{tarea}" class="text-danger" >Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="familiograma">Observaciones</label>
+                                        <input class="form-control" type="text" name="observ" th:field="*{observ}" />
+                                        <small th:if="${#fields.hasErrors('observ')}" th:errors="*{observ}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dx">DX</label>
+                                        <input class="form-control" type="text" name="dx" th:field="*{dx}" />
+                                        <small th:if="${#fields.hasErrors('dx')}" th:errors="*{dx}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="objetivo">Objetivo</label>
+                                        <input class="form-control" type="text" name="objetivo" th:field="*{objetivo}" />
+                                        <small th:if="${#fields.hasErrors('objetivo')}" th:errors="*{objetivo}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="psicologa">Nombre de la TS</label>
+                                        <input class="form-control" type="text" name="psicologa" th:field="*{psicologa}" />
+                                        <small th:if="${#fields.hasErrors('psicologa')}" th:errors="*{psicologa}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="canalizada">Canalizada a</label>
+                                        <input class="form-control" type="text" name="canalizada" th:field="*{canalizada}" />
+                                        <small th:if="${#fields.hasErrors('canalizada')}" th:errors="*{canalizada}" class="text-danger">Error nombre</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="fecha">Agendar cita</label>
+                                        <input class="form-control" type="date" name="fecha" th:field="*{fecha}"/>
+                                    </div>
+                                    <input type="hidden" th:field="*{id_usuaria}"/>
+                                    <button name="guardar" type="submit" class="btn btn-primary">Guardar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <br>
+            </div>
+            <footer th:replace="layout/plantilla :: footer">
+            </footer>
+        </div>
+    </div>
+    
+
+    <th:block th:reaplce="layout/plantilla::script"></th:block>   
+</body>
+</html>

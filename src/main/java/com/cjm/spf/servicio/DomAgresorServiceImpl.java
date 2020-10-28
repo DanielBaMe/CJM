@@ -23,8 +23,6 @@ public class DomAgresorServiceImpl implements DomAgresorService{
 	@Override
 	@Transactional
 	public void guardar(DomicilioAgresor domAgresor) {
-		Agresor agresor = dAgresorDao.findTopByOrderByIdDesc();
-		domAgresor.setId_agresor(agresor.getId());
 		domAgresorDao.save(domAgresor);
 		
 	}

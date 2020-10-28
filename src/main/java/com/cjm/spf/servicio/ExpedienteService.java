@@ -9,4 +9,6 @@ public interface ExpedienteService {
     public Expediente encontrarExpediente(Expediente expediente);
     
     public Expediente encontrarPorId(Long id);
+    
+    public Expediente encontrarUltimoExpediente();
 }

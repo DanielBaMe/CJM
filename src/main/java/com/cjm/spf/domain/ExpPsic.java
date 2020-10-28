@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Entity
 @Table(name = "valoracion_psic")
@@ -19,9 +21,14 @@ public class ExpPsic implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="fecha", updatable=false)
-    private Date fecha;
+    @JsonFormat(pattern="yyyy")
+    private Integer anio;
     
+    @JsonFormat(pattern="MM")
+    private Integer mes;
+    
+    @JsonFormat(pattern="dd")
+    private Integer dia;
 
     private Long folio;
     
@@ -55,6 +62,32 @@ public class ExpPsic implements Serializable{
     private String sexual;
     
     private String individual;
+    
+    
+
+	public Integer getAnio() {
+		return anio;
+	}
+
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+
+	public Integer getMes() {
+		return mes;
+	}
+
+	public void setMes(Integer mes) {
+		this.mes = mes;
+	}
+
+	public Integer getDia() {
+		return dia;
+	}
+
+	public void setDia(Integer dia) {
+		this.dia = dia;
+	}
 
 	public Long getId() {
 		return id;
@@ -62,14 +95,6 @@ public class ExpPsic implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 	public Long getFolio() {

@@ -24,7 +24,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>CJM</title>
+<title>Pre Registro</title>
 <link href="css/styles.css" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
@@ -35,7 +35,7 @@
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="index.html">CJM</a>
+		<a class="navbar-brand" th:href="@{/}">CJM</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -44,12 +44,13 @@
 		<form
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
 			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search" aria-describedby="basic-addon2" />
+				<!--  <input class="form-control" type="text" placeholder="Search for..."
+					aria-label="Search" aria-describedby="basic-addon2" />  -->
 				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
+					<!-- <button class="btn btn-primary" type="button">
 						<i class="fas fa-search"></i>
 					</button>
+					 -->
 				</div>
 			</div>
 		</form>
@@ -76,78 +77,87 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
-						<div class="sb-sidenav-menu-heading">Trabajo Social</div>
-						<a class="nav-link" href="menu">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-file-signature"></i>
-							</div> Preregistro
-						</a>
-						<div class="sb-sidenav-menu-heading">ÁREA PSICOLOGÍA</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-columns"></i>
-							</div> Layouts
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div>
-						</a>
-						<div class="collapse" id="collapseLayouts"
+						<div sec:authorize="hasRole('ROLE_ADMIN')">
+							<div class="sb-sidenav-menu-heading">Trabajo Social</div>
+							<a class="nav-link" href="preRegistro">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-file-signature"></i>
+								</div> Preregistro
+							</a>
+						</div>
+						<div sec:authorize="hasRole('ROLE_PSIC')">
+							<div class="sb-sidenav-menu-heading">ÁREA PSICOLOGÍA</div>
+							<a class="nav-link collapsed" href="#" data-toggle="collapse"
+								data-target="#collapseLayouts" aria-expanded="false"
+								aria-controls="collapseLayouts">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-columns"></i>
+								</div> Layouts
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
+								</div>
+							</a>
+							<div class="collapse" id="collapseLayouts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="layout-static.html">Static
 									Navigation</a> <a class="nav-link" href="layout-sidenav-light.html">Light
 									Sidenav</a>
 							</nav>
-						</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapsePages" aria-expanded="false"
-							aria-controls="collapsePages">
-							<div class="sb-nav-link-icon">
-								<i class="fas fa-book-open"></i>
-							</div> Pages
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
 							</div>
-						</a>
-						<div class="collapse" id="collapsePages"
-							aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav accordion"
-								id="sidenavAccordionPages">
-								<a class="nav-link collapsed" href="#" data-toggle="collapse"
-									data-target="#pagesCollapseAuth" aria-expanded="false"
-									aria-controls="pagesCollapseAuth"> Authentication
-									<div class="sb-sidenav-collapse-arrow">
-										<i class="fas fa-angle-down"></i>
-									</div>
-								</a>
-								<div class="collapse" id="pagesCollapseAuth"
-									aria-labelledby="headingOne"
-									data-parent="#sidenavAccordionPages">
-									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="login.html">Login</a> <a
-											class="nav-link" href="register.html">Register</a> <a
-											class="nav-link" href="password.html">Forgot Password</a>
-									</nav>
+							<a class="nav-link collapsed" href="#" data-toggle="collapse"
+								data-target="#collapsePages" aria-expanded="false"
+								aria-controls="collapsePages">
+								<div class="sb-nav-link-icon">
+									<i class="fas fa-book-open"></i>
+								</div> Pages
+								<div class="sb-sidenav-collapse-arrow">
+									<i class="fas fa-angle-down"></i>
 								</div>
-								<a class="nav-link collapsed" href="#" data-toggle="collapse"
-									data-target="#pagesCollapseError" aria-expanded="false"
-									aria-controls="pagesCollapseError"> Error
-									<div class="sb-sidenav-collapse-arrow">
-										<i class="fas fa-angle-down"></i>
+							</a>
+							<div class="collapse" id="collapsePages"
+								aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+								<nav class="sb-sidenav-menu-nested nav accordion"
+									id="sidenavAccordionPages">
+									<a class="nav-link collapsed" href="#" data-toggle="collapse"
+										data-target="#pagesCollapseAuth" aria-expanded="false"
+										aria-controls="pagesCollapseAuth"> Authentication
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesCollapseAuth"
+										aria-labelledby="headingOne"
+										data-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="login.html">Login</a> <a
+												class="nav-link" href="register.html">Register</a> <a
+												class="nav-link" href="password.html">Forgot Password</a>
+										</nav>
 									</div>
-								</a>
-								<div class="collapse" id="pagesCollapseError"
-									aria-labelledby="headingOne"
-									data-parent="#sidenavAccordionPages">
-									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="401.html">401 Page</a> <a
-											class="nav-link" href="404.html">404 Page</a> <a
-											class="nav-link" href="500.html">500 Page</a>
-									</nav>
-								</div>
-							</nav>
+									<a class="nav-link collapsed" href="#" data-toggle="collapse"
+										data-target="#pagesCollapseError" aria-expanded="false"
+										aria-controls="pagesCollapseError"> Error
+										<div class="sb-sidenav-collapse-arrow">
+											<i class="fas fa-angle-down"></i>
+										</div>
+									</a>
+									<div class="collapse" id="pagesCollapseError"
+										aria-labelledby="headingOne"
+										data-parent="#sidenavAccordionPages">
+										<nav class="sb-sidenav-menu-nested nav">
+											<a class="nav-link" href="401.html">401 Page</a> <a
+												class="nav-link" href="404.html">404 Page</a> <a
+												class="nav-link" href="500.html">500 Page</a>
+										</nav>
+									</div>
+								</nav>
+							</div>
+						</div>
+						
+						<div sec:authorize="hasRole('ROLE_EMP')">
+						</div>
+						<div sec:authorize="hasRole('ROLE_LUD')">
 						</div>
 						<div class="sb-sidenav-menu-heading">ÁREA MÉDICA</div>
 						<a class="nav-link" href="charts.html">
@@ -162,8 +172,8 @@
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					<div class="small">Ha iniciado sesión como:</div>
+					<span sec:authentication="name">nombre</span>
 				</div>
 			</nav>
 		</div>
@@ -175,7 +185,7 @@
 						<ol class="breadcrumb mb-4">
 							<li class="breadcrumb-item active">Preregistro</li>
 						</ol>
-
+						
 						<div class="container">
 							<div class="row justify-content-center">
 								<div class="col-lg-9">
@@ -185,13 +195,17 @@
 												la usuaria</h3>
 										</div>
 										<div class="card-body">
-											<form method="get" th:action="@{/menu}">
+											<form method="post" th:action="@{/guardar}" th:object="${registro}">
 												<div class="form-row">
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputFirstName">Nombre
 															</label> <input class="form-control form-control-sm py-4"
-																id="inputFirstName" type="text" placeholder="Nombre" />
+																id="inputFirstName" type="text" name="nombre"
+																th:field="*{nombre}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" 
+																minlength="4" placeholder="Nombre" autocomplete="off" />
+															<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
+																
 														</div>
 													</div>
 													<div class="col-md-4">
@@ -200,7 +214,10 @@
 																Paterno </label> <input
 																class="form-control form-control-sm py-4"
 																id="inputLastName1" type="text"
-																placeholder="Apellido Paterno" />
+																placeholder="Apellido Paterno"
+																name="apellidoP" th:field="*{paterno}" 
+																required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" autocomplete="off"/>
+															<span th:if="${#fields.hasErrors('paterno')}" th:errors="*{paterno}">Error apellido</span>
 														</div>
 													</div>
 													<div class="col-md-4">
@@ -209,7 +226,9 @@
 																Materno </label> <input
 																class="form-control form-control-sm py-4"
 																id="inputLastName2" type="text"
-																placeholder="Apellido Materno" />
+																placeholder="Apellido Materno" name="apellidoM" autocomplete="off"
+																th:field="*{materno}"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4"/>
+															<span th:if="${#fields.hasErrors('materno')}" th:errors="*{materno}">Error email</span>
 														</div>
 													</div>
 												</div>
@@ -218,23 +237,34 @@
 														<div class="form-group">
 															<label class="small mb-1" for="inputEdad">Edad</label> <input
 																class="form-control form-control-sm py-4" id="inputEdad"
-																type="number" placeholder="Edad" />
+																type="number" placeholder="Edad" name="edad" autocomplete="off"
+																th:field="*{edad}" required max="99" />
+															<span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputCurp">Curp</label> <input
-																class="form-control form-control-sm py-4" id="inputCurp"
-																type="text" placeholder="Curp" />
+																class="form-control form-control-sm py-4" id="inputCurp" style="text-transform:uppercase;"
+																type="text" placeholder="Curp" name="curp"
+																th:field="*{curp}" minlength="18" maxlength="18" autocomplete="off"
+																pattern="[A-Z0-9\s]+" title="Solo letras mayusculas y numeros" 
+																required onkeyup="javascript:this.value=this.value.toUpperCase();"/>
+															<span th:if="${#fields.hasErrors('curp')}" th:errors="*{curp}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="selectEstadoCivil">Estado
-																Civil </label> <select class="form-control form-control-sm py-4"
-																id="selectEstadoCivil">
-																<option></option>
+																Civil </label> <select class="form-control form-control-sm"
+																id="selectEstadoCivil" th:field="*{id_estado_civil}">
+																<option th:value="1">Soltera</option>
+																<option th:value="2">Casada</option>
+																<option th:value="3">Viuda</option>
+																<option th:value="4">Devorciada</option>
+																<option th:value="5">Union libre</option>
 															</select>
+															<span th:if="${#fields.hasErrors('id_estado')}" th:errors="*{id_estado}">Error nombre</span>
 														</div>
 													</div>
 												</div>
@@ -243,22 +273,31 @@
 														<div class="form-group">
 															<label class="small mb-1" for="selectEntidadFederativa">Entidad
 																Federativa </label> <select
-																class="form-control form-control-sm py-4"
-																id="selectEntidadFederativa">
-																<option></option>
+																class="form-control form-control-sm"
+																id="selectEntidadFederativa" name="estado" th:field="*{id_estado}">
+																<option th:value="1">Tlaxcala</option>
+																<option th:value="2">CDMX</option>
+																<option th:value="3">Oaxaca</option>
+																<option th:value="4">Puebla</option>
+																<option th:value="5">Hidalgo</option>
 															</select>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="selectMunicipio">Municipio
-															</label> <select class="form-control form-control-sm py-4"
-																id="selectMunicipio">
-																<option></option>
+															</label> <select class="form-control form-control-sm"
+																id="selectMunicipio" name="municipio" th:field="*{id_municipio}">
+																<option th:value="1">Apizaco</option>
+																<option th:value="2">Tlaxcala</option>
+																<option th:value="3">Huamantla</option>
+																<option th:value="4">Apetatilan</option>
+																<option th:value="5">Ixtacuixtla</option>
 															</select>
+															<span th:if="${#fields.hasErrors('id_municipio')}" th:errors="*{id_municipio}">Error nombre</span>
 														</div>
 													</div>
-													<div class="col-md-4">
+													<!-- <div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="selectLocalidad">Localidad
 															</label> <select class="form-control form-control-sm py-4"
@@ -266,22 +305,26 @@
 																<option></option>
 															</select>
 														</div>
-													</div>
+													</div> -->
 												</div>
 												<div class="form-row">
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputCalle">Calle</label>
 															<input class="form-control form-control-sm py-4"
-																id="inputCurp" type="text" placeholder="Calle" />
+																id="inputCurp" type="text" placeholder="Calle" autocomplete="off"
+																name="calle" th:field="*{calle}"  required />
+															<span th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputNoExterior">No.
 																Exterior</label> <input
-																class="form-control form-control-sm py-4" id="inputCurp"
-																type="number" placeholder="No. Exterior" />
+																class="form-control form-control-sm py-4" id="inputCurp" autocomplete="off"
+																type="number" placeholder="No. Exterior" name="exterior"
+																th:field="*{numero_exterior}" pattern="[0-9]+" required/>
+															 <span th:if="${#fields.hasErrors('numero_exterior')}" th:errors="*{numero_exterior}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
@@ -289,8 +332,10 @@
 															<label class="small mb-1" for="inputNoInterior">No.
 																Interior</label> <input
 																class="form-control form-control-sm py-4"
-																id="inputNoInterior" type="number"
-																placeholder="No. Exterior" />
+																id="inputNoInterior" type="number" autocomplete="off"
+																placeholder="No. Exterior" name="interior"
+																th:field="*{numero_interior}" pattern="[0-9]+" />
+															 <span th:if="${#fields.hasErrors('numero_interior')}" th:errors="*{numero_interior}">Error nombre</span>
 														</div>
 													</div>
 												</div>
@@ -299,22 +344,31 @@
 														<div class="form-group">
 															<label class="small mb-1" for="inputColonia">Colonia</label>
 															<input class="form-control form-control-sm py-4"
-																id="inputCurp" type="text" placeholder="Colonia" />
+																id="inputCurp" type="text" placeholder="Colonia" autocomplete="off"
+																name="colonia" th:field="*{colonia}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+"
+																minlength="4" required />
+															<span th:if="${#fields.hasErrors('colonia')}" th:errors="*{colonia}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputCP">Código
 																Postal</label> <input class="form-control form-control-sm py-4"
-																id="inputCurp" type="number" placeholder="Código Postal" />
+																id="inputCurp" placeholder="Código Postal" type="text" autocomplete="off"
+																name="cp" th:field="*{codigo_postal}" title="Ingrese solo números"
+																required minlength="5" maxlength="5" pattern="[0-9]+"/>
+															<span th:if="${#fields.hasErrors('codigo_postal')}" th:errors="*{codigo_postal}">Error nombre</span>
 														</div>
 													</div>
 													<div class="col-md-4">
 														<div class="form-group">
 															<label class="small mb-1" for="inputTeléfono">Teléfono</label>
 															<input class="form-control form-control-sm py-4"
-																id="inputNoInterior" type="number"
-																placeholder="Teléfono" />
+																id="inputNoInterior" autocomplete="off"
+																placeholder="Teléfono" type="text" name="telefono"
+																th:field="*{telefono}" minlength="4" maxlength="10"
+																pattern="[0-9]+" title="Ingrese solo números" required/>
+															<span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error nombre</span>
 														</div>
 													</div>
 												</div>
@@ -323,9 +377,26 @@
 														<div class="form-group">
 															<label class="small mb-1" for="selectMotivoVisita">Motivo
 																Visita </label> <select
-																class="form-control form-control-sm py-4"
-																id="selectMotivoVisita">
-																<option></option>
+																class="form-control form-control-sm"
+																id="selectMotivoVisita" th:field="*{motivo_visita}">
+																 <option th:value="informacion">Ficha informativa</option>
+												                 <option th:value="asesoria">Asesoria</option>
+												                 <option th:value="expediente">Expediente</option>
+															</select>
+														</div>
+													</div>
+													<div class="col-md-4">
+														<div class="form-group">
+															<label class="small mb-1" for="selectMotivoVisita">Tipo de contacto </label>
+															<select
+																class="form-control form-control-sm"
+																id="selectMotivoVisita" th:field="*{tipo_atencion}">
+																<option th:value="amiga">Por una amiga</option>
+																<option th:value="internet">Internet</option>
+																<option th:value="triptico">Triptico</option>
+																<option th:value="platica">Platica</option>
+																<option th:value="procu">Procuraduria estatal</option>
+																<option th:value="cjm">Estuvo cerca del CJM</option>
 															</select>
 														</div>
 													</div>
@@ -333,8 +404,15 @@
 														<div class="form-group">
 															<label class="small mb-1" for="inputCP">Hora
 																Entrada</label> <input class="form-control form-control-sm py-4"
-																id="inputCurp" type="datetime-local" disabled="disabled" />
+																id="inputCurp" type="time" name="hora_ingreso" th:field="*{hora_ingreso}" required />
+															<span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_ingreso}">Error nombre</span>
 														</div>
+														<div class="form-group ">
+														<label class="small mb-1" for="hora_egreso">Hora finalizacion de atención</label>
+										                <input class="form-control form-control-sm py-4" type="time" name="hora_egreso" th:field="*{hora_egreso}" required/>
+										                <span th:if="${#fields.hasErrors('hora_egreso')}" th:errors="*{hora_egreso}">Error nombre</span>
+														</div>
+														
 													</div>
 													<!-- 												<div class="col-md-4"> -->
 													<!-- 													<div class="form-group"> -->
