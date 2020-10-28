@@ -1,69 +1,142 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Filiación</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header">
+<head th:replace="layout/plantilla::head">
 
-        </header>
-        <h2>Filiacion</h2>
-        <br/>
-        <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
-            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('*')}"
-                        th:text="${err}">Input is incorrect</li>
-                </ul>
+</head>
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <h2>Filiacion</h2>
+                    <br/>
+                    <form th:action="@{/crear_filiacion}" method="post" th:object="${filiacion}">
+                        <div class="errorblock" th:if="${#fields.hasErrors('*')}">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('*')}"
+                                    th:text="${err}">Input is incorrect</li>
+                            </ul>
+                        </div>
+                        
+                        <label for="tez">Tez</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="tez"
+                            th:field="*{tez}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="Morena">Morena</option>
+                            <option th:value="moreno_claro">Moreno claro</option>
+                            <option th:value="blanca">Blanca</option>
+                        </select>
+                        <br/>
+                        
+                        <label for="ojos">Ojos</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="ojos"
+                            th:field="*{ojos}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="azules">Azules</option>
+                            <option th:value="cafe_claro">Café claro</option>
+                            <option th:value="cafe_oscuro">Café obscuro</option>
+                            <option th:value="Negros">Negros</option>
+                            <option th:value="Verdes">Verdes</option>
+                        </select>
+                        <br/>
+
+                        <label for="cara">Cara:</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="cara"
+                            th:field="*{cara}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="larga">Larga</option>
+                            <option th:value="cuadrada">Cuadrada</option>
+                            <option th:value="ovalada">Ovalada</option>
+                            <option th:value="redonda">Redonda</option>
+                            <option th:value="corazon">Corazón</option>
+                        </select>
+                        <br/>
+
+                        <label for="nariz">Nariz</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="cara"
+                            th:field="*{cara}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="larga">Larga</option>
+                            <option th:value="cuadrada">Cuadrada</option>
+                            <option th:value="ovalada">Ovalada</option>
+                            <option th:value="redonda">Redonda</option>
+                            <option th:value="corazon">Corazón</option>
+                        </select>
+                        <input type="text" name="nariz" th:field="*{nariz}"  required/>
+                        <span th:if="${#fields.hasErrors('nariz')}" th:errors="{nariz}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="cabello">Cabello</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="cara"
+                            th:field="*{cara}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="larga">Larga</option>
+                            <option th:value="cuadrada">Cuadrada</option>
+                            <option th:value="ovalada">Ovalada</option>
+                            <option th:value="redonda">Redonda</option>
+                            <option th:value="corazon">Corazón</option>
+                        </select>
+                        <input type="text" name="cabello" th:field="*{cabello}"  required/>
+                        <span th:if="${#fields.hasErrors('cabello')}" th:errors="{cabello}">Error nombre</span>
+                        <br/>
+
+                        <label for="boca">Boca</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="cara"
+                            th:field="*{cara}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="larga">Larga</option>
+                            <option th:value="cuadrada">Cuadrada</option>
+                            <option th:value="ovalada">Ovalada</option>
+                            <option th:value="redonda">Redonda</option>
+                            <option th:value="corazon">Corazón</option>
+                        </select>
+                        <input type="text" name="boca" th:field="*{boca}"  required/>
+                        <span th:if="${#fields.hasErrors('boca')}" th:errors="{boca}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="estatura">Estatura</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="cara"
+                            th:field="*{cara}" required="required">
+                            <option selected value="">...</option>
+                            <option th:value="larga">Larga</option>
+                            <option th:value="cuadrada">Cuadrada</option>
+                            <option th:value="ovalada">Ovalada</option>
+                            <option th:value="redonda">Redonda</option>
+                            <option th:value="corazon">Corazón</option>
+                        </select>
+                        <input type="text" name="estatura" th:field="*{estatura}"  required/>
+                        <span th:if="${#fields.hasErrors('estatura')}" th:errors="{estatura}">Error nombre</span>
+                        <br/>
+
+                        <label for="senia_particular">Señas particulares</label>
+                        <input type="text" name="senia_particular" th:field="*{senia_particular}"  required/>
+                        <span th:if="${#fields.hasErrors('senia_particular')}" th:errors="{senia_particular}">Error nombre</span>
+                        <br/>
+
+
+                        <input type="submit" name="guardar" value="Guardar"/>
+                    </form>
+                </main>
+                <br>
             </div>
+            <footer th:replace="layout/plantilla::footer">
             
-            <label for="tez">Tez</label>
-            <input type="text" name="tez" th:field="*{tez}"  required/>
-            <span th:if="${#fields.hasErrors('tez')}" th:errors="*{tez}">Error nombre</span>
-            <br/>
-            
-            <label for="ojos">Ojos</label>
-            <input type="text" name="ojos" th:field="*{ojos}" required/>
-            <span th:if="${#fields.hasErrors('ojos')}" th:errors="*{ojos}">Error nombre</span>
-            <br/>
-
-            <label for="cara">Cara:</label>
-            <input type="text" name="cara" th:field="*{cara}"  required/>
-            <span th:if="${#fields.hasErrors('cara')}" th:errors="*{cara}">Error nombre</span>
-            <br/>
-
-            <label for="nariz">Nariz</label>
-            <input type="text" name="nariz" th:field="*{nariz}"  required/>
-            <span th:if="${#fields.hasErrors('nariz')}" th:errors="{nariz}">Error nombre</span>
-            <br/>
-            
-            <label for="cabello">Cabello</label>
-            <input type="text" name="cabello" th:field="*{cabello}"  required/>
-            <span th:if="${#fields.hasErrors('cabello')}" th:errors="{cabello}">Error nombre</span>
-            <br/>
-
-            <label for="boca">Boca</label>
-            <input type="text" name="boca" th:field="*{boca}"  required/>
-            <span th:if="${#fields.hasErrors('boca')}" th:errors="{boca}">Error nombre</span>
-            <br/>
-            
-            <label for="estatura">Estatura</label>
-            <input type="text" name="estatura" th:field="*{estatura}"  required/>
-            <span th:if="${#fields.hasErrors('estatura')}" th:errors="{estatura}">Error nombre</span>
-            <br/>
-
-            <label for="senia_particular">Señas particulares</label>
-            <input type="text" name="senia_particular" th:field="*{senia_particular}"  required/>
-            <span th:if="${#fields.hasErrors('senia_particular')}" th:errors="{senia_particular}">Error nombre</span>
-            <br/>
-
-
-            <input type="submit" name="guardar" value="Guardar"/>
-        </form>
-        <footer th:replace="layout/plantilla :: footer">
-
-        </footer>
-    </body>
+            </footer>
+        </div>
+    </div>
+<th:block th:reaplce="layout/plantilla::script"></th:block> 
+</body>
 </html>

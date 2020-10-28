@@ -10,6 +10,10 @@ public interface RegistroService {
     
     public Registro encontrarRegistro(Registro registro);
     
-    public Registro encontrarUsuaria(String nombre);
+    public List<Registro> encontrarUsuaria(String nombre);
+    
+    public List<Registro> encontrarAPaterno(String nombre);
+    
+    public List<Registro> encontrarAMaterno(String nombre);
     
 }

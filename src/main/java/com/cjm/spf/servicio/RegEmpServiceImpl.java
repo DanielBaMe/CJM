@@ -1,5 +1,7 @@
 package com.cjm.spf.servicio;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +25,11 @@ public class RegEmpServiceImpl implements RegEmpService{
 	@Override
 	@Transactional
 	public void guardar(RegEmpoderamiento regEmpoderamiento) {
-		Date objDate = new Date();
-		regEmpoderamiento.setFecha(objDate);
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		regEmpoderamiento.setDia(localDate.getDayOfMonth());
+		regEmpoderamiento.setMes(localDate.getMonthValue());
+		regEmpoderamiento.setAnio(localDate.getYear());
 		RegEmpoderamiento registro = registroDao.findTopByOrderByIdDesc();
 		if(registro == null) {
 			regEmpoderamiento.setFolio(1);
@@ -55,6 +60,20 @@ public class RegEmpServiceImpl implements RegEmpService{
 	public RegEmpoderamiento findByNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public RegEmpoderamiento findByUsuaria(Long id) {
+		RegEmpoderamiento registro = registroDao.findByUsuaria(id);
+		return registro;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<RegEmpoderamiento> findUsuariasPrimeraVez(Integer mes, Integer anio) {
+		List<RegEmpoderamiento> registros = registroDao.findByMesAndAnio(mes, anio);
+		return registros;
 	}
 
 }

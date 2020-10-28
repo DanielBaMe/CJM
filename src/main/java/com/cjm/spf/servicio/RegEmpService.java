@@ -12,5 +12,9 @@ public interface RegEmpService {
 	public RegEmpoderamiento findRegistro(RegEmpoderamiento registro);
 	
 	public RegEmpoderamiento findByNombre(String nombre);
+	
+	public RegEmpoderamiento findByUsuaria(Long id);
+	
+	public List<RegEmpoderamiento> findUsuariasPrimeraVez(Integer mes, Integer anio);
 
 }

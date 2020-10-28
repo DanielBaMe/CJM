@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Red de apoyo</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header">
+<head th:replace="layout/plantilla::head">
 
-        </header>
-        <h2>Red de apoyo</h2>
-        <br/>
-        <form th:action="@{/crear_red_apoyo}" method="post" th:object="${apoyo}">
-            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('*')}"
-                        th:text="${err}">Input is incorrect</li>
-                </ul>
+</head>
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <h2>Red de apoyo</h2>
+                    <br/>
+                    <form th:action="@{/crear_red_apoyo}" method="post" th:object="${apoyo}">
+                        
+                        <label for="parentesco">Parentezco</label>
+                        <input type="text" name="parentesco" th:field="*{parentesco}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
+                        <span th:if="${#fields.hasErrors('parentesco')}" th:errors="*{parentesco}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="nombre">Nombre y apellidos</label>
+                        <input type="text" name="nombre" th:field="*{nombre}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
+                        <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
+                        <br/>
+
+                        <label for="telefono">Telefono:</label>
+                        <input type="text" name="telefono" th:field="*{telefono}" pattern="[0-9]+" minlength="4" maxlength="10" required/>
+                        <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error nombre</span>
+                        <br/>
+
+                        <label for="direccion">Direccion</label>
+                        <input type="text" name="direccion" th:field="*{direccion}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
+                        <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error nombre</span>
+                        <br/>
+
+
+                        <label for="nombre">Tipo de apoyo</label>
+                        <label>Economico</label>
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="economico"/>
+                        <label>Estructural</label>
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="estructural"/>
+                        <label>Consejos/Asesoria</label>
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="consejos"/>
+                        <label>Laboral</label>
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="laboral"/>
+                        <label>Emocional</label>  
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="emocional"/>
+                        <label>Alimentario</label>    
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="alimentario"/>
+                        <label>Vivienda</label> 
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="vivienda"/>
+                        <label>Religioso</label>
+                        <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="religioso"/>
+                        <span th:if="${#fields.hasErrors('tipo_apoyo')}" th:errors="*{tipo_apoyo}">Error nombre</span>
+                        <br/>
+                        
+                        
+                        <input type="submit" name="guardar" value="Guardar"/>
+                    </form>
+                </main>
+                <br>
             </div>
+            <footer th:replace="layout/plantilla::footer">
             
-            <label for="parentesco">Parentezco</label>
-            <input type="text" name="parentesco" th:field="*{parentesco}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
-            <span th:if="${#fields.hasErrors('parentesco')}" th:errors="*{parentesco}">Error nombre</span>
-            <br/>
-            
-            <label for="nombre">Nombre y apellidos</label>
-            <input type="text" name="nombre" th:field="*{nombre}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
-            <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
-            <br/>
+            </footer>
+        </div>
+    </div>
 
-            <label for="telefono">Telefono:</label>
-            <input type="text" name="telefono" th:field="*{telefono}" pattern="[0-9]+" minlength="4" maxlength="10" required/>
-            <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error nombre</span>
-            <br/>
-
-            <label for="direccion">Direccion</label>
-            <input type="text" name="direccion" th:field="*{direccion}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
-            <span th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}">Error nombre</span>
-            <br/>
-
-
-			<label for="nombre">Tipo de apoyo</label>
-            <label>Economico</label>
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="economico"/>
-            <label>Estructural</label>
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="estructural"/>
-            <label>Consejos/Asesoria</label>
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="consejos"/>
-            <label>Laboral</label>
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="laboral"/>
-            <label>Emocional</label>  
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="emocional"/>
-            <label>Alimentario</label>    
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="alimentario"/>
-            <label>Vivienda</label> 
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="vivienda"/>
-            <label>Religioso</label>
-            <input type="checkbox" name="tipo_apoyo" th:field="*{tipo_apoyo}" value="religioso"/>
-            <span th:if="${#fields.hasErrors('tipo_apoyo')}" th:errors="*{tipo_apoyo}">Error nombre</span>
-            <br/>
-            
-            
-            <input type="submit" name="guardar" value="Guardar"/>
-        </form>
-        <footer th:replace="layout/plantilla :: footer">
-
-        </footer>
-    </body>
+    <th:block th:reaplce="layout/plantilla::script"></th:block>  
+</body>
 </html>

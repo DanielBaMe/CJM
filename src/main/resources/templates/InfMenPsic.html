@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Informe mensual</title>
+        <meta charset="UTF-8"/>
+    </head>
+<body>
+<a th:href="@{/}">Regresar</a>
+<br/>
+<br/>
+<h2>Conteo de usuarias de primera vez</h2>
+	<p th:text="*{conteo}"></p>
+	
+<h2>Conteo de seguimientos</h2>
+<p th:text="*{seguimiento}"></p>
+</body>
+</html>

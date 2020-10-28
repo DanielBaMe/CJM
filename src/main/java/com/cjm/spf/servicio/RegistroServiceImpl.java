@@ -1,6 +1,8 @@
 package com.cjm.spf.servicio;
 
 import java.util.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class RegsitroServiceImpl implements RegistroService{
+public class RegistroServiceImpl implements RegistroService{
     
     @Autowired
     private RegistroDao registrodao;
@@ -41,20 +43,25 @@ public class RegsitroServiceImpl implements RegistroService{
         Folio folio = new Folio();
         Folio num = foliodao.findTopByServicioOrderByIdDesc(registro.getMotivo_visita());
         if(num == null){
-            folio.setNo_folio(id_usuaria.getId());
+            folio.setUsuaria(id_usuaria.getId());
             folio.setId_status_folio(1);
             folio.setId_tipo_folio((long)1);
             folio.setServicio(registro.getMotivo_visita());
             folio.setAtencion(registro.getTipo_atencion());
+            
         }else{
             long variable = num.getId_tipo_folio() + 1;
-            folio.setNo_folio(id_usuaria.getId());
+            folio.setUsuaria(id_usuaria.getId());
             folio.setId_status_folio(1);
             folio.setId_tipo_folio(variable);
             folio.setServicio(registro.getMotivo_visita());
             folio.setAtencion(registro.getTipo_atencion());
         }
-        
+        Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		folio.setDia(localDate.getDayOfMonth());
+		folio.setMes(localDate.getMonthValue());
+		folio.setAnio(localDate.getYear());
         foliodao.save(folio);
     }
 
@@ -66,12 +73,9 @@ public class RegsitroServiceImpl implements RegistroService{
     
     @Override
     @Transactional(readOnly = true)
-    public Registro encontrarUsuaria(String nombre) throws UsernameNotFoundException{
-        Registro registro = registrodao.findByNombre(nombre);
-        if(registro == null){
-            throw new UsernameNotFoundException(nombre);
-        }
-        return registro;
+    public List<Registro> encontrarUsuaria(String nombre) throws UsernameNotFoundException{
+        ;
+        return (List<Registro>) registrodao.findByNombreContaining(nombre);
     }
 
     @Override
@@ -79,4 +83,17 @@ public class RegsitroServiceImpl implements RegistroService{
     public List<Registro> listarRegistros() {
         return (List<Registro>) registrodao.findAll();
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Registro> encontrarAPaterno(String apaterno) {
+		return (List <Registro>) registrodao.findByPaternoContaining(apaterno);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Registro> encontrarAMaterno(String amaterno) {
+		
+		return (List<Registro>) registrodao.findByMaternoContaining(amaterno);
+	}
 }

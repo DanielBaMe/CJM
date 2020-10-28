@@ -22,66 +22,66 @@
                 </div>
                 <label for="hora_ingreso">Hora de atención</label>
                 <input type="time" name="hora_ingreso" th:field="*{hora_ingreso}" required/>
-                <span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_ingreso}">Error nombre</span>
+                <span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_ingreso}" autocomplete="off" >Error nombre</span>
                 <br/>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" th:field="*{nombre}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4"/>
+                <input type="text" name="nombre" th:field="*{nombre}" required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error nombre</span>
                 <br/>
                 <label for="apellidoP">Apellido Paterno</label>
-                <input type="text" name="apellidoP" th:field="*{a_paterno}"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4"/>
+                <input type="text" name="apellidoP" th:field="*{a_paterno}"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('a_paterno')}" th:errors="*{a_paterno}">Error apellido</span>
                 <br/>
                 <label for="apellidoM">Apellido Materno</label>
-                <input type="text" name="apellidoM" th:field="*{a_materno}"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4"/>
+                <input type="text" name="apellidoM" th:field="*{a_materno}"  required pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('a_materno')}" th:errors="*{a_materno}">Error email</span>
                 <br/>
                 <label for="edad">Edad</label>
-                <input type="number" name="edad" th:field="*{edad}" required min="01" max="99"/>
+                <input type="number" name="edad" th:field="*{edad}" required min="01" max="99" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}">Error nombre</span>
                 <br/>
                 <label for="estado">Estado</label>
-                <input type="number" name="estado" th:field="*{id_estado}"  required/>
+                <input type="number" name="estado" th:field="*{id_estado}"  required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('id_estado')}" th:errors="*{id_estado}">Error nombre</span>
                 <br/>
                 <label for="municipio">Municipio</label>
-                <input type="number" name="municipio" th:field="*{id_municipio}"  required/>
+                <input type="number" name="municipio" th:field="*{id_municipio}"  required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('id_municipio')}" th:errors="*{id_municipio}">Error nombre</span>
                 <br/>
                 <label for="calle">Calle</label>
-                <input type="text" name="calle" th:field="*{calle}"  required/>
+                <input type="text" name="calle" th:field="*{calle}"  required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('calle')}" th:errors="*{calle}">Error nombre</span>
                 <br/>
                 <label for="exterior">Numero exterior</label>
-                <input type="text" name="exterior" th:field="*{numero_exterior}" pattern="[0-9]+" required/>
+                <input type="text" name="exterior" th:field="*{numero_exterior}" pattern="[0-9]+" required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('numero_exterior')}" th:errors="*{numero_exterior}">Error nombre</span>
                 <br/>
                 <label for="interior">Numero interior</label>
-                <input type="text" name="interior" th:field="*{numero_interior}" pattern="[0-9]+"/>
+                <input type="text" name="interior" th:field="*{numero_interior}" pattern="[0-9]+" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('numero_interior')}" th:errors="*{numero_interior}">Error nombre</span>
                 <br/>
                 <label for="telefono">Colonia</label>
-                <input type="text" name="colonia" th:field="*{colonia}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" required/>
+                <input type="text" name="colonia" th:field="*{colonia}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('colonia')}" th:errors="*{colonia}">Error nombre</span>
                 <br/>
                 <label for="cp">Codigo postal</label>
-                <input type="text" name="cp" th:field="*{codigo_postal}" title="Ingrese solo números" required minlength="5" maxlength="5" pattern="[0-9]+"/>
+                <input type="text" name="cp" th:field="*{codigo_postal}" title="Ingrese solo números" required minlength="5" maxlength="5" pattern="[0-9]+" autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('codigo_postal')}" th:errors="*{codigo_postal}">Error nombre</span>
                 <br/>
                 <label for="estadoCivil">Estado Civil</label>
-                <input type="number" name="estadoCivil" th:field="*{id_estado_civil}"  required/>
+                <input type="number" name="estadoCivil" th:field="*{id_estado_civil}"  required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('id_estado_civil')}" th:errors="*{id_estado_civil}">Error nombre</span>
                 <br/>
                 <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" th:field="*{telefono}" minlength="4" maxlength="10" pattern="[0-9]+" title="Ingrese solo números" required/>
+                <input type="text" name="telefono" th:field="*{telefono}" minlength="4" maxlength="10" pattern="[0-9]+" title="Ingrese solo números" required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}">Error nombre</span>
                 <br/>
                 <label for="curp">CURP</label>
-                <input type="text" name="curp" th:field="*{curp}" minlength="18" maxlength="18" pattern="[A-Z0-9\s]+" title="Solo letras mayusculas y numeros"  required/>
+                <input type="text" name="curp" th:field="*{curp}" minlength="18" maxlength="18" pattern="[A-Z0-9\s]+" title="Solo letras mayusculas y numeros"  required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('curp')}" th:errors="*{curp}">Error nombre</span>
                 <br/>
                 <label for="hora_egreso">Hora finalizacion de atención</label>
-                <input type="time" name="hora_egreso" th:field="*{hora_egreso}" required/>
+                <input type="time" name="hora_egreso" th:field="*{hora_egreso}" required autocomplete="off"/>
                 <span th:if="${#fields.hasErrors('hora_ingreso')}" th:errors="*{hora_egreso}">Error nombre</span>
                 <br/>
                 <br/>

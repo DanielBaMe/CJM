@@ -31,7 +31,7 @@ public class ExpedienteServiceImpl implements ExpedienteService{
         Date objDate = new Date();
         expediente.setFecha(objDate);
         Folio folio = folioDao.findTopByServicioOrderByIdDesc("expediente");
-        expediente.setUsuaria(folio.getNo_folio());
+        expediente.setUsuaria(folio.getUsuaria());
         expedienteDao.save(expediente);
     }
 
@@ -45,6 +45,11 @@ public class ExpedienteServiceImpl implements ExpedienteService{
 	@Transactional(readOnly = true)
 	public Expediente encontrarPorId(Long id) {
 		return expedienteDao.findByUsuaria(id);
+	}
+
+	@Override
+	public Expediente encontrarUltimoExpediente() {
+		return expedienteDao.findTopByOrderByIdDesc();
 	}
     
 }

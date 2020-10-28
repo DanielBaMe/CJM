@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Entity
 @Table(name = "expediente_1")
@@ -19,7 +21,7 @@ public class Expediente implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name="fecha", updatable=false)
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fecha;
     
     @NotBlank(message="El campo no puede esta vacío.")
@@ -55,7 +57,7 @@ public class Expediente implements Serializable{
     @NotBlank(message="El campo no puede estar vacio")
     private String fuente_ingreso;
     
-    private String ingreso_mensual;
+    private Integer ingreso_mensual;
     
     @NotBlank(message="El campo no puede estar vacio")
     private String tipo_violencia;
@@ -72,8 +74,19 @@ public class Expediente implements Serializable{
     @NotBlank(message="El campo no puede estar vacio")
     private String conoce_agresor;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String info_adicional;
+    
+    private String exp;
+    
+    
+
+	public String getExp() {
+		return exp;
+	}
+
+	public void setExp(String exp) {
+		this.exp = exp;
+	}
 
 	public Long getId() {
 		return id;
@@ -172,11 +185,11 @@ public class Expediente implements Serializable{
 		this.fuente_ingreso = fuente_ingreso;
 	}
 
-	public String getIngreso_mensual() {
+	public Integer getIngreso_mensual() {
 		return ingreso_mensual;
 	}
 
-	public void setIngreso_mensual(String ingreso_mensual) {
+	public void setIngreso_mensual(Integer ingreso_mensual) {
 		this.ingreso_mensual = ingreso_mensual;
 	}
 

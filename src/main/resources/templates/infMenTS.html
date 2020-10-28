@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Informe mensual</title>
+        <meta charset="UTF-8"/>
+    </head>
+<body>
+<a th:href="@{/}">Regresar</a>
+<br/>
+<br/>
+
+<h3>Expedientes</h3>
+<p th:text="*{expedientes}"></p>
+
+
+<h3>Fichas informativas</h3>
+
+	<p th:text="*{info}"></p>
+
+
+<h3>Asesorias</h3>
+
+	<p th:text="*{asesoria}"></p>
+</body>
+</html>

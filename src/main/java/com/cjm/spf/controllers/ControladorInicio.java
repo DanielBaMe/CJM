@@ -1,5 +1,9 @@
 package com.cjm.spf.controllers;
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 
@@ -9,7 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import com.cjm.spf.domain.*;
 import com.cjm.spf.dao.DatosAgresorDao;
 import com.cjm.spf.dao.ExpedienteDao;
+import com.cjm.spf.dao.FolioDao;
+import com.cjm.spf.dao.DomicilioAgresorDao;
+import com.cjm.spf.pojo.conteoTS;
 
+import com.cjm.spf.servicio.NuevoUsuarioService;
 import com.cjm.spf.servicio.RegistroService;
 import com.cjm.spf.servicio.eViolenciaService;
 import com.cjm.spf.servicio.ExpedienteService;
@@ -23,6 +31,11 @@ import com.cjm.spf.servicio.DomAgresorService;
 import com.cjm.spf.servicio.PerfilAgresorService;
 import com.cjm.spf.servicio.FactorRiesgoService;
 import com.cjm.spf.servicio.ServiciosBrindadosService;
+import com.cjm.spf.servicio.ExpPsicService;
+import com.cjm.spf.servicio.SegPsicService;
+import com.cjm.spf.servicio.RegEmpService;
+import com.cjm.spf.servicio.SegEmpoService;
+import com.cjm.spf.servicio.FolioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,6 +44,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -38,10 +52,31 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ControladorInicio {
 	
 	@Autowired
+	private FolioService folioService;
+	
+	@Autowired
+	DomicilioAgresorDao domADao;
+	
+	@Autowired
 	ExpedienteDao expedienteDao;
 	
 	@Autowired
 	DatosAgresorDao agresorDao;
+	
+	@Autowired
+	FolioDao folioDao;
+	
+	@Autowired
+	private RegEmpService regEmpService;
+	
+	@Autowired
+	private SegEmpoService segEmpService;
+	
+	@Autowired
+	private SegPsicService seguimientoPsicService;
+	
+	@Autowired
+	private ExpPsicService expPsicService;
 	
 	@Autowired
 	private FactorRiesgoService fRiesgoService;
@@ -82,7 +117,12 @@ public class ControladorInicio {
     @Autowired
     private ServiciosBrindadosService serviciosService;
     
-
+    @GetMapping("/prueba")
+    public String prueba(Model model, Expediente expediente) {
+    	expediente.setUsuaria((long) 1);
+    	return "index_prueba";
+    }
+    
     @GetMapping("/")
     public String inicio(Model model, @AuthenticationPrincipal User user) {
         return "index";
@@ -95,21 +135,21 @@ public class ControladorInicio {
 
     @GetMapping("/registrar")
     public String registro(Registro registro) {
-        return "registro";
+        return "preRegistro";
     }
     
     ///////////////////////////////////////////////
     
-    @GetMapping("/preRegistro")
-    public String preRegistro(Registro registro) {
-        return "preRegistro";
-    }
+//    @GetMapping("/preRegistro")
+//    public String preRegistro(Registro registro) {
+//        return "preRegistro";
+//    }
     
-    @GetMapping("/expediente")
-    public String expediente(Expediente expediente, Model model) {
-    	expediente.setUsuaria((long) 1);
-        return "expediente";
-    }
+//    @GetMapping("/expediente")
+//    public String expediente(Expediente expediente, Model model) {
+//    	expediente.setUsuaria((long) 1);
+//        return "expediente";
+//    }
     
     /////////////////////////////////////////////
 
@@ -126,28 +166,119 @@ public class ControladorInicio {
         return "ejemplo";
     }
     
-    @GetMapping("/ver/{id}")
-    public String editar(Registro registro, Model model) {
-        registro = registroService.encontrarRegistro(registro);
-        model.addAttribute("registros", registro);
-        return "infoUsuaria";
+//    @GetMapping("/ver/{id}")
+//    public String editar(Registro registro, Model model) {
+//        registro = registroService.encontrarRegistro(registro);
+//        model.addAttribute("registros", registro);
+//        return "infoUsuaria";
+//    }
+    
+    @GetMapping("/perfil_usuaria/{id}")
+    public String perfilusuaria(Registro registro, Model model) {
+    	registro = registroService.encontrarRegistro(registro);						//Registro de primera vez de la usuaria
+    	Expediente exp = expedienteService.encontrarPorId(registro.getId());		//Se busca el exp de la usuaria
+    	model.addAttribute("registro", registro);									//Enviamos los datos grales de la usuaria
+    	
+    	if(exp != null) {	//Si existe un expediente..
+    		model.addAttribute("expedienteTS", exp);								//Envio del expediente
+    		RegEmpoderamiento regEmp = regEmpService.findByUsuaria(registro.getId());
+			SeguimientoEmp segEmp = new SeguimientoEmp();
+			segEmp.setId(registro.getId());
+			List <SeguimientoEmp> seguimientoEmp = segEmpService.findSeguimientoS(segEmp.getId());
+			
+			if(seguimientoEmp.isEmpty()) { 											//Si no hay seguimientos en empoderamiento
+				model.addAttribute("psicseguimientos", null);
+				model.addAttribute("registroemp", regEmp);
+			}else {																	//Cuando si hay seguimientos
+				int segemp = seguimientoEmp.size();
+				model.addAttribute("psicseguimientos", segemp);
+				model.addAttribute("registroemp", regEmp);
+			}
+			
+			model.addAttribute("expedienteTS", exp);
+			ExpPsic expPsic = expPsicService.encontrarExpPsic(registro.getId());
+			List<SeguimientoPsic> registros = seguimientoPsicService.encontrarSeguimientosDeUsuaria(registro.getId());
+			
+			
+			if(registros.isEmpty()) {  												//Si no hay seguimientos psicologicos
+				model.addAttribute("pseguimientos", null);
+				model.addAttribute("pexpediente", expPsic);
+			}else {																	//Cuando si los hay
+				int segpsic = registros.size();
+				model.addAttribute("pseguimientos", segpsic);
+		        model.addAttribute("pexpediente", expPsic);
+			}
+
+			
+		}else {  																	//Si no existe un expediente
+			model.addAttribute("pseguimientos", null);
+	        model.addAttribute("pexpediente", null);
+	        model.addAttribute("expedienteTS", null);
+	        model.addAttribute("psicseguimientos", null);
+			model.addAttribute("registroemp", null);
+		}
+    	
+        return "PerfilTs";
     }
 
     @GetMapping("/abrirExpediente/{id}")
     public String expediente(Registro registro, Model model) {
         registro = registroService.encontrarRegistro(registro);
         model.addAttribute("registros", registro);
+        return "index_prueba";
+    }
+    
+    @GetMapping("/conteoMensual")
+    public String conteo(Model model) {
+    	Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		
+		int mes = localDate.getMonthValue();
+		int anio = localDate.getYear();
+		Long expedientes = folioService.hacerConteo("expediente",anio, mes);
+		Long info = folioService.hacerConteo("informacion", anio, mes);
+		Long asesoria = folioService.hacerConteo("asesoria", anio, mes);
+        model.addAttribute("expedientes", expedientes);
+        model.addAttribute("info", info);
+        model.addAttribute("asesoria", asesoria);
+        return "infMenTS";
+    }
+    
+    @GetMapping("/registro_expediente/{id}")
+    public String abrir_expediente(@PathVariable("id") Long id, Model model) {
+        Folio folio = new Folio();
+        Folio num = folioDao.findTopByServicioOrderByIdDesc("expediente");
+        Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		folio.setDia(localDate.getDayOfMonth());
+		folio.setMes(localDate.getMonthValue());
+		folio.setAnio(localDate.getYear());
+        if(num == null){
+            folio.setUsuaria(id);
+            folio.setId_status_folio(1);
+            folio.setId_tipo_folio((long)1);
+            folio.setServicio("expediente");
+            folio.setAtencion("cjm");
+        }else{
+            long variable = num.getId_tipo_folio() + 1;
+            folio.setUsuaria(id);
+            folio.setId_status_folio(1);
+            folio.setId_tipo_folio(variable);
+            folio.setServicio("expediente");
+            folio.setAtencion("cjm");
+        }
+        folioDao.save(folio);
+        Expediente expediente = new Expediente();
+        model.addAttribute("expediente", expediente);
         return "expediente";
     }
     
-    
-    
     //////////////////////////////////////////////////////		POST		///////////////////////////////////////////////
 
-    @PostMapping("/guardar")//Guardar registro de nueva usuaria
-    public String guardar(@Valid Registro registro, Errors errores, Expediente expediente) {
+    @PostMapping("/guardar")																//Guardar registro de nueva usuaria
+    public String guardar(@Valid Registro registro, Errors errores, Expediente expediente, Model model) {
         if (errores.hasErrors()) {
-            return "registro";
+            return "preRegistro";
         } else {
             String servicio = registro.getMotivo_visita();
             if ("expediente".equals(servicio)) {
@@ -155,16 +286,21 @@ public class ControladorInicio {
                 return "expediente";
             } else {
                 registroService.guardar(registro);
+                model.addAttribute("registrado", true);
+                
                 return "redirect:/";
             }
         }
     }
 
-    @PostMapping("/buscar")																	//Buscar usuaria existente
-    public String encontrarUsuaria(String nombre, Model model) {
-        Registro datos = registroService.encontrarUsuaria(nombre);
-        model.addAttribute("registros", datos);
-        System.out.println(datos);
+    @PostMapping("/buscar")																	//Buscar usuaria existente por nombre
+    public String buscarPorNombre(String nombre, Model model) throws FileNotFoundException{
+        List<Registro> datos = registroService.encontrarUsuaria(nombre);
+        if(datos.isEmpty()) {
+        	model.addAttribute("registros", null);
+        }else {
+        	 model.addAttribute("registros", datos);
+        }
         return "index";
 
     }
@@ -179,33 +315,13 @@ public class ControladorInicio {
 
     @PostMapping("/crearExpediente")														//Crear nuevo expediente
     public String guardar(@Valid Expediente expediente, Errors errores, Model model, RFamiliares familiares) {
-        //if (errores.hasErrors()) {
-          //  return "expediente";
-       // }
-        
-        System.out.print("Hora entrada: " + expediente.getH_entrada() + "// ");
-        System.out.print("Nombre entrevistadora: " + expediente.getNombre_entrevistador() + "// ");
-        System.out.print("Sabe leer: " + expediente.getLeer() + "// ");
-        System.out.print("Sabe escribir: " + expediente.getEscribir() + "// ");
-        System.out.print("Escolaridad: " + expediente.getEscolaridad()+ "// ");
-        System.out.print("Servicio medico: " + expediente.getServicio_medico()+ "// ");        
-        System.out.print("Actividad que realiza: " + expediente.getActividad() + "// ");
-        System.out.print("Fuente de ingreso: " + expediente.getFuente_ingreso() + "// ");
-        System.out.print("Ingreso mensual: " + expediente.getIngreso_mensual() + "// ");
-        System.out.print("Tipo de vivienda: " + expediente.getTipo_vivienda() + "// ");
-        System.out.print("Tipo de violencia: " + expediente.getTipo_violencia() + "// ");
-        System.out.print("Ambito de la violencia: " + expediente.getAmbito_violencia() + "// ");
-        System.out.print("Victima de delincuencia: " + expediente.getVictima_delincuencia() + "// ");
-        System.out.print("Victima de trata: " + expediente.getVictima_trata() + "// ");
-        System.out.print("Conoce al agresor: " + expediente.getConoce_agresor() + "// ");
-        System.out.print("Informacion adicional: " + expediente.getInfo_adicional() + "// ");
-        System.out.print("Hora de salida: " + expediente.getH_salida() + "// ");
-        
-        return "expediente";
-        
-        //model.addAttribute("familiares", familiares);
-        //expedienteService.guardar(expediente);
-        //return "familiares";
+        if (errores.hasErrors()) {
+            return "expediente";
+        }
+
+        model.addAttribute("familiares", familiares);
+        expedienteService.guardar(expediente);
+        return "familiares";
     }
     
     @PostMapping("/crear_relaciones_familiares")											//Crear relaciones familiares
@@ -238,7 +354,7 @@ public class ControladorInicio {
         return "efectos_violencia";
     }
     
-    @PostMapping("/crearEfectos")															//Crear nueva narracion
+    @PostMapping("/crearEfectos")															//Crear efectos de violencia
     public String guardar(@Valid EfectosViolencia violencia, Errors errores, SaludFisica salud, Model model) {
         if (errores.hasErrors()) {
             return "efectos_violencia";
@@ -248,16 +364,17 @@ public class ControladorInicio {
         return "Salud";
     }
     
-    @PostMapping("/salud")																	//Crear nueva narracion
-    public String guardar(@Valid SaludFisica salud, Errors errores, Filiacion filiacion ) {
+    @PostMapping("/nueva_salud")																	//Crear nuevo estado de salud
+    public String guardar(@Valid SaludFisica salud, Errors errores, Filiacion filiacion, Model model ) {
         if (errores.hasErrors()) {
             return "Salud";
         }
         saludService.guardar(salud);
+        model.addAttribute("filiacion", filiacion);
         return "Filiacion";
     }
     
-    @PostMapping("/crear_filiacion")														//Crear nueva narracion
+    @PostMapping("/crear_filiacion")														//Crear nueva filiacion
     public String guardar(@Valid Filiacion filiacion, Errors errores, Agresor agresor, Model model, Expediente expediente) {
         if (errores.hasErrors()) {
             return "Filiacion";
@@ -269,7 +386,7 @@ public class ControladorInicio {
         return "DatosAgresor";
     }
 
-    @PostMapping("/datos_agresor")															//Crear nueva narracion
+    @PostMapping("/datos_agresor")															//Crear nuevo expediente de agresor
     public String guardar(@Valid Agresor agresor, Errors errores, DomicilioAgresor domAgresor, Model model ) {
         if (errores.hasErrors()) {
             return "DatosAgresor";
@@ -279,7 +396,7 @@ public class ControladorInicio {
         return "DomicilioAgresor";
     }
     
-    @PostMapping("/domicilio_agresor")														//Crear nueva narracion
+    @PostMapping("/domicilio_agresor")														//Crear nuevo dom agresor
     public String guardar(@Valid DomicilioAgresor domAgresor, Errors errores, PerfilAgresor pAgresor, Model model ) {
         if (errores.hasErrors()) {
             return "DomicilioAgresor";
@@ -289,7 +406,7 @@ public class ControladorInicio {
         return "PerfilAgresor";
     }
     
-    @PostMapping("/perfil_agresor")															//Crear nueva narracion
+    @PostMapping("/perfil_agresor")															//Crear perfil agresor
     public String guardar(@Valid PerfilAgresor pAgresor, Errors errores, Filiacion filiacion) {
         if (errores.hasErrors()) {
             return "PerfilAgresor";
@@ -329,17 +446,5 @@ public class ControladorInicio {
         return "redirect:/";
     }
     
-    /*
-    @GetMapping("/editar/{idPersona}")
-    public String editar(Persona persona, Model model){
-        persona = personaService.encontrarPersona(persona);
-        model.addAttribute("persona", persona);
-        return "modificar";
-    }
     
-    @GetMapping("/eliminar/{idPersona}")
-    public String eliminar(Persona persona){
-        personaService.eliminar(persona);
-        return "redirect:/";
-    }*/
 }
