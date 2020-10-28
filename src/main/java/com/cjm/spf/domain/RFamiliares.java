@@ -18,16 +18,16 @@ public class RFamiliares implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank(message="El campo no puede estar vacio")
+    
     private String nombre;
     
-    @NotNull(message="El campo no puede estar vacio")
+    
     private Integer edad;
     
-    @NotBlank(message="El campo no puede estar vacio")
+    
     private String ocupacion;
     
-    @NotBlank(message="El campo no puede estar vacio")
+    
     private String parentezco;
 
     private Long id_expediente;

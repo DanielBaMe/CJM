@@ -37,20 +37,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/editar/**", "/agregar/**", "/eliminar", "/registrar", "/crear", "/buscar", "/ver",
-						"/expediente", "/crearExpediente")
+				.antMatchers("/editar/**", "/guardar", "/crearExpediente", "/registrar", "/crear_relaciones_familiares", "/ver/**",
+						"/crear_red_apoyo", "/crearExpediente", "/perfil_usuaria/**", "/registro_expediente/**", "/crearNarracion", "/crearEfectos", "/nueva_salud",
+						"/crear_filiacion", "/datos_agresor", "/domicilio_agresor", "/perfil_agresor", "/filiacion_agresor", "/factor_riesgo", "/servicios_brindados")
 					.hasRole("ADMIN")
-				.antMatchers("/buscar_usuaria", "/expediente_psicologico/**", "/expPsic", "/seguimiento_psic/**" ,"/buscar_usuaria", "/agendar_psic", "/canalizar_usuaria_ts/**")
+				.antMatchers("/buscar_usuaria", "/expediente_psicologico/**", "/expPsic", "/seguimiento_psic/**" ,"/buscar_usuaria", "/agendar_psic",
+						"/canalizar_usuaria_ts/**", "/ver_psic/**", "/registro_infantil_psic/**", "/conteo_mes_actual", "/nuevo_seguimiento")
 					.hasRole("PSIC")
-				.antMatchers("/buscar", "/exp_ludico/**", "/canalizar_ludico/**", "/buscar_registro", "/canalizar_exp_ludico", "/registro_ludico",
-						"/bitacora", "/buscar_ninio")
+				.antMatchers("/buscar_ludico", "/expediente_ludico/**", "/canalizar_ludico/**", "/buscar_registro", "/canalizar_exp_ludico", "/registro_ludico",
+						"/bitacora_ludico", "/buscar_ninio", "/perfil_ludico/**", "/bitacora_ludico/**")
 					.hasRole("LUD")
 				.antMatchers("/formato/")
 					.hasRole("JUD")
-				.antMatchers("/registro_emp/**", "/registro_empoderamiento", "/usuaria_empoderamiento")
+				.antMatchers("/registro_emp/**", "/registro_empoderamiento", "/usuaria_empoderamiento", "/informe_empoderamiento", "/seguimiento_emp/**",
+						"/seguimiento_empoderamiento", "/perfil_emp/**")
 					.hasRole("EMP")
-				.antMatchers("/")
-					.hasAnyRole("USER", "ADMIN", "JUD", "PSIC", "LUD", "EMP")
+				.antMatchers("/", "/buscar", "/*.css")
+					.hasAnyRole("ADMIN", "JUD", "PSIC", "LUD", "EMP")
 				.and().formLogin().loginPage("/login").and().exceptionHandling()
 				.accessDeniedPage("/errores/403");
 	}

@@ -18,31 +18,25 @@ public class DomicilioAgresor implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String calle;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String no_exterior;
     
     private String no_interior;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String colonia;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String municipio;
     
-    @NotBlank(message="El campo no puede estar vacio")
+
     private String estado;
     
     private String pais;
     
     private String idioma;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String leer;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String escribir;
     
     private String escolaridad;

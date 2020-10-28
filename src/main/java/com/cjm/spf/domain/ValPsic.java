@@ -25,6 +25,7 @@ public class ValPsic implements Serializable{
     
     private Long id_usuaria;
     
+    @NotBlank(message="El campo no puede esta vacío.")
     private String motivo_consulta;
     
     private String familiar;
@@ -35,8 +36,10 @@ public class ValPsic implements Serializable{
     
     private String observ;
     
+    @NotBlank(message="El campo no puede esta vacío.")
     private String dx;
     
+    @NotBlank(message="El campo no puede esta vacío.")
     private String objetivo;
     
     private String canalizada;

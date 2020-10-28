@@ -9,6 +9,6 @@
 * **Patricia Acoltzi** - *Front end* - 
 * **Juth Pulido** - *Front end* -
 
-## V.1.24
+## V.1.25
 
-Cambios realizados el día 20/10/2020 Juth
+Cambios realizados el día 28/10/2020 Osvaldo

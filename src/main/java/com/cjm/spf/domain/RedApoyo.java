@@ -19,20 +19,27 @@ public class RedApoyo implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String parentesco;
     
-    @NotBlank(message="El campo no puede estar vacio")
     private String nombre;
     
-    @NotBlank(message="El campo no puede estar vacio")
-    private Integer telefono;
+    private String telefono;
     
     private String direccion;
     
     private String tipo_apoyo;
     
     private Long id_expediente;
+    
+    
+
+	public String getTipo_apoyo() {
+		return tipo_apoyo;
+	}
+
+	public void setTipo_apoyo(String tipo_apoyo) {
+		this.tipo_apoyo = tipo_apoyo;
+	}
 
 	public Long getId() {
 		return id;
@@ -58,11 +65,11 @@ public class RedApoyo implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

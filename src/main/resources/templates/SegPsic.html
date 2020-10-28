@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="layout/plantilla::head">
+
+</head>
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">Seguimiento psicológico</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Área Psicológica</li>
+                        </ol>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-9">
+                                    <div class="card shadow-lg border-0 rounded-lg mt-3">
+                                        <div class="card-header">
+                                            <h3 class="text-center font-weight-light my-2">Información del seguimiento</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form th:action="@{/nuevo_seguimiento}" method="post" th:object="${seguimiento}">
+                        
+                                                <div class="form-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="small mb-1" for="h_entrada">Hora de entrada</label>
+                                                            <input class="form-control form-control-sm py-4" type="time" name="h_entrada" th:field="*{h_entrada}" required/>
+                                                            <small th:if="${#fields.hasErrors('h_entrada')}" th:errors="*{h_entrada}" class="text-danger">Error nombre</small>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="small mb-1" for="h_salida">Hora de salida</label>
+                                                            <input class="form-control form-control-sm py-4" type="time" name="h_salida" th:field="*{h_salida}" required/>
+                                                            <small th:if="${#fields.hasErrors('h_salida')}" th:errors="*{h_salida}" class="text-danger">Error nombre</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="objetivo">Objetivo</label>
+                                                    <input class="form-control form-control-sm py-4" type="text" name="objetivo" th:field="*{objetivo}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" maxlength="100" />
+                                                    <small th:if="${#fields.hasErrors('objetivo')}" th:errors="*{objetivo}" class="text-danger">Error nombre</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="objetivo">Observaciones</label>
+                                                    <input class="form-control form-control-sm py-4" type="text" name="observaciones" th:field="*{observaciones}" pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" minlength="4" maxlength="100" />
+                                                    <small th:if="${#fields.hasErrors('observaciones')}" th:errors="*{observaciones}" class="text-danger">Error nombre</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="tarea">Tarea</label>
+                                                    <input class="form-control" type="text" name="tarea" th:field="*{tarea}" title="Solo letras." pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" />
+                                                    <small th:if="${#fields.hasErrors('tarea')}" th:errors="*{tarea}" class="text-danger">Error nombre</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="psicologa">Psicologa</label>
+                                                    <input class="form-control form-control-sm py-4" type="text" name="psicologa" th:field="*{psicologa}" title="Solo letras." pattern="[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+" required/>
+                                                    <small th:if="${#fields.hasErrors('psicologa')}" th:errors="*{psicologa}" class="text-danger">Error nombre</small>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="small mb-1" for="fecha">Agendar cita</label>
+                                                    <input class="form-control form-control-sm py-4" type="date" name="fecha" th:field="*{fecha}" />
+                                                </div>          
+                                                <input type="hidden" th:field="*{usuaria}" />
+                                                <div class="form-group mt-4 mb-0">
+                                                    <button type="submit" class="btn btn-primary btn-block">
+                                                        <i class="fas fa-save"></i> Agregar
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <br>
+            </div>
+            <footer th:replace="layout/plantilla::footer">
+            
+            </footer>
+        </div>
+    </div>  
+    <th:block th:reaplce="layout/plantilla::script"></th:block>         
+</body>
+</html>

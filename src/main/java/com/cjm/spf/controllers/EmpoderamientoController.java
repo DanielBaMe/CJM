@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +29,14 @@ import com.cjm.spf.servicio.ExpedienteService;
 import com.cjm.spf.servicio.RegEmpService;
 import com.cjm.spf.servicio.SegEmpoService;
 
+import com.cjm.spf.dao.RegistroDao;
+
 @Controller
 @Slf4j
 public class EmpoderamientoController {
+	
+	@Autowired
+	RegistroDao registroDao;
 	
 	@Autowired
 	private SegEmpoService seguimientoService;
@@ -44,27 +53,25 @@ public class EmpoderamientoController {
 	@Autowired
 	private ServiciosBrindadosService serviciosService;
 	
-	@PostMapping("/usuaria_empoderamiento")																	//Buscar usuaria existente
-    public String encontrarUsuaria(String nombre, Model model) throws FileNotFoundException {
-        
-    	Registro datos = registroService.encontrarUsuaria(nombre);
-		Expediente exp = expedienteService.encontrarPorId(datos.getId());
-		if(exp != null) {
-			ServiciosBrindados serv = serviciosService.encontrarExp(exp.getId());
-			if(serv.getEmpoderamiento() > 0) {
-				 model.addAttribute("registros", datos); 
-			}
-		}
-		return "index";
-        
-    }
-	
 	@GetMapping("/registro_emp/{id}")														//Crear expediente de empoderamiento
 	public String abrirExp(@PathVariable ("id") Long id, RegEmpoderamiento registro, Model model) {
 		long identificador = id;																
 		registro.setUsuaria(identificador);
 		model.addAttribute("empoderamiento", registro);
 		return "RegistroEmpo";
+	}
+	
+	@GetMapping("/informe_empoderamiento")														//Crear expediente de empoderamiento
+	public String informeMensual( Model model) {
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int mes = localDate.getMonthValue();
+		int anio = localDate.getYear();
+		List<RegEmpoderamiento> registros = registroEmpService.findUsuariasPrimeraVez(mes, anio);
+		List<SeguimientoEmp> seguimientos = seguimientoService.findSeguimientosAlMes(mes, anio);
+		model.addAttribute("registros", registros);
+		model.addAttribute("seguimientos", seguimientos);
+		return "InfMenEmp";
 	}
 	
 	@PostMapping("/registro_empoderamiento")															
@@ -92,5 +99,31 @@ public class EmpoderamientoController {
 		seguimientoService.guardar(seguimiento);
 		return "redirect:/";
 	}
+	
+	@GetMapping("/perfil_emp/{id}")														//Perfil del area
+	public String perfilEmpoderamiento(@PathVariable ("id") Long id,  Model model) {																
+		Registro registro = registroDao.findById(id).orElse(null);
+		Expediente expediente = expedienteService.encontrarPorId(id);
+		
+		RegEmpoderamiento empoderamiento = registroEmpService.findByUsuaria(id);
+		
+		if(empoderamiento == null) {
+			model.addAttribute("registroEmp", null);
+		}else {
+			model.addAttribute("registroEmp", empoderamiento);
+		}
+		
+		List <SeguimientoEmp> seguimientos = seguimientoService.findSeguimientoS(id);
+		if(seguimientos.isEmpty()) {
+			model.addAttribute("seguimientos", null);
+		}else{
+			model.addAttribute("seguimientos", seguimientos);
+		}
+		model.addAttribute("registro", registro);
+		model.addAttribute("expediente", expediente);
+		//return "PerfilEmpo";
+		return "PerfilTs";
+	}
 
 }
+

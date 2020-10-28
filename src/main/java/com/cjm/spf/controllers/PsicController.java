@@ -1,6 +1,10 @@
 package com.cjm.spf.controllers;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +26,7 @@ import com.cjm.spf.domain.SeguimientoPsic;
 import com.cjm.spf.pojo.ValoracionPsicPojo;
 import com.cjm.spf.domain.AgendaPsic;
 import com.cjm.spf.pojo.SeguimientoPsicPOJO;
+import com.cjm.spf.domain.ValoracionPsicInf;
 
 import com.cjm.spf.servicio.*;
 
@@ -43,6 +48,9 @@ public class PsicController {
 	SegPsicDao seguimientoDao;
 	
 	@Autowired
+	private ValPsicInfService valoracionInfService;
+	
+	@Autowired
 	private AgendaPsicService agendaService;
 	
 	@Autowired
@@ -60,27 +68,38 @@ public class PsicController {
 	@Autowired
 	private SegPsicService seguimientoService;
 	
-    @PostMapping("/buscar_usuaria")																	//Buscar usuaria existente
-    public String encontrarUsuaria(String nombre, Model model) throws FileNotFoundException {
-        
-    	Registro datos = registroService.encontrarUsuaria(nombre);
-		Expediente exp = expedienteService.encontrarPorId(datos.getId());
-		if(exp != null) {
-			ServiciosBrindados serv = serviciosService.encontrarExp(exp.getId());
-			if(serv.getPsicologia() > 0) {
-				 model.addAttribute("registros", datos); 
-			}
-		}
-		return "index";
-        
-    }
     
 	@GetMapping("/expediente_psicologico/{id}")
 	public String abrirExp(@PathVariable ("id") Long id, ValoracionPsicPojo valoracionPojo, Model model) {
 		long identificador = id;
 		valoracionPojo.setId_usuaria(identificador);
 		model.addAttribute("valoracionPojo", valoracionPojo);
+		String titulo = "Valoración psicologica";
+		model.addAttribute("titulo", titulo);
 		return "exp_psic";
+	}
+	
+	@GetMapping("/registro_infantil_psic/{id}")
+	public String valoracionInf(ValoracionPsicInf valoracion, Model model) {
+		model.addAttribute("valoracion", valoracion);
+		String titulo = "Valoración psicologica infantil";
+		model.addAttribute("titulo", titulo);
+		return "ValPsicInf";
+	}
+	
+	@GetMapping("/conteo_mes_actual")
+	public String conteoActual(Model model) {
+		Date date = new Date();
+		LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		int mes = localDate.getMonthValue();
+		int anio = localDate.getYear();
+		long conteo = expPsicService.contar(mes, anio);
+		
+		long seguimiento = seguimientoService.contar(mes, anio);
+		
+		model.addAttribute("seguimiento", seguimiento);
+		model.addAttribute("conteo", conteo);
+		return "InfMenPsic";
 	}
 	
 	@PostMapping("/expPsic")
@@ -128,10 +147,13 @@ public class PsicController {
     }
 	
     
-	@GetMapping("/seguimiento_psic/{id}") // Seguimiento psicologico									//Vista Seguimiento
-	public String crearSeguimiento(@PathVariable ("id") Long id, SeguimientoPsicPOJO seguimiento, Model model) {
-		seguimiento.setUsuaria(id);
+	@GetMapping("/seguimiento_psic/{id}") 																// Seguimiento psicologico									
+	public String crearSeguimiento(SeguimientoPsicPOJO seguimiento, Model model) {
+		//SeguimientoPsic seguimientoPsic = new SeguimientoPsic();
+		//seguimientoPsic.setUsuaria(id);
 		model.addAttribute("seguimiento", seguimiento);
+		String titulo = "Seguimiento psicologico";
+		model.addAttribute("titulo", titulo);
 		return "SegPsic";
 	}
     
@@ -145,58 +167,48 @@ public class PsicController {
     	
     	SeguimientoPsic seguimientoPsic = new SeguimientoPsic();
     	
-    	SeguimientoPsic primero = seguimientoDao.findById((long)1).orElse(null);
+		seguimientoPsic.setH_entrada(seguimiento.getH_entrada());
+    	seguimientoPsic.setH_salida(seguimiento.getH_salida());
+    	seguimientoPsic.setObjetivo(seguimiento.getObjetivo());
+    	seguimientoPsic.setPsicologa(seguimiento.getPsicologa());
+    	seguimientoPsic.setTarea(seguimiento.getTarea());
+    	seguimientoPsic.setUsuaria(seguimiento.getUsuaria());
+    	seguimientoPsic.setObservaciones(seguimiento.getObservaciones());
+    	seguimientoPsic.setSesion(seguimiento.getSesion());
     	
-    	System.out.println(primero);
-    	
-    	if(primero == null) {
-    		seguimientoPsic.setFolio((long) 1);
-    		seguimientoPsic.setNo_sesion(1);
-    		seguimientoPsic.setH_entrada(seguimiento.getH_entrada());
-        	seguimientoPsic.setH_salida(seguimiento.getH_salida());
-        	seguimientoPsic.setObjetivo(seguimiento.getObjetivo());
-        	seguimientoPsic.setPsicologa(seguimiento.getPsicologa());
-        	seguimientoPsic.setTarea(seguimiento.getTarea());
-        	seguimientoPsic.setUsuaria(seguimiento.getUsuaria());
-        	
-
-        	seguimientoService.guardar(seguimientoPsic);
-    		
-    	}else {
-    		SeguimientoPsic folio = seguimientoService.encontrarUltimoFolio();
-        	SeguimientoPsic sesion = seguimientoService.encontrarUltimoSeguimiento(seguimiento.getUsuaria());
-        	
-        	seguimientoPsic.setFolio(folio.getFolio() + 1);
-        	seguimientoPsic.setNo_sesion(sesion.getNo_sesion() + 1);
-        	seguimientoPsic.setH_entrada(seguimiento.getH_entrada());
-        	seguimientoPsic.setH_salida(seguimiento.getH_salida());
-        	seguimientoPsic.setObjetivo(seguimiento.getObjetivo());
-        	seguimientoPsic.setPsicologa(seguimiento.getPsicologa());
-        	seguimientoPsic.setTarea(seguimiento.getTarea());
-        	seguimientoPsic.setUsuaria(seguimiento.getUsuaria());
-        	
-
-        	seguimientoService.guardar(seguimientoPsic);
-    	}
-
     	seguimientoService.guardar(seguimientoPsic);
         return "redirect:/";
     }
-	
-//    @PostMapping("/expediente_psicologico")													//Crear expediente
-//    public String guardar(@Valid ExpPsic expediente, Model model) {
-//        Registro datos = registroService.encontrarUsuaria(nombre);
-//        model.addAttribute("registros", datos);
-//        System.out.println(datos);
-//        return "index";
-//    }
     
-    /*
-    @GetMapping("/editar/{idPersona}")
-    public String editar(Persona persona, Model model){
-        persona = personaService.encontrarPersona(persona);
-        model.addAttribute("persona", persona);
-        return "modificar";
+    @GetMapping("/ver_psic/{id}")
+    public String editar(@PathVariable ("id") Long id, Model model){
+    	Registro datos = registroDao.findById(id).orElse(null);									//Datos pre registro
+		Expediente exp = expedienteService.encontrarPorId(datos.getId());						//Expediente hecho en TS
+		ExpPsic expPsic = new ExpPsic();														//Expediente Psicologico
+		model.addAttribute("registro", datos); 
+		if(exp != null) {
+			
+			model.addAttribute("expedienteTS", exp);
+			expPsic = expPsicService.encontrarExpPsic(datos.getId());
+			List<SeguimientoPsic> registros = seguimientoService.encontrarSeguimientosDeUsuaria(id);
+			if(registros.isEmpty()) {
+				model.addAttribute("seguimientos", null);
+				model.addAttribute("expediente", expPsic);
+			}else {
+				model.addAttribute("seguimientos", registros);
+		        model.addAttribute("expediente", expPsic);
+			}
+
+			
+		}else {
+			model.addAttribute("seguimientos", null);
+	        model.addAttribute("expediente", null);
+	        model.addAttribute("expedienteTS", null);
+		}
+		String titulo = "Expediente psicologico";
+		model.addAttribute("titulo", titulo);
+        //return "PerfilPsic";
+		return "PerfilTs";
     }
-    */
+    
 }

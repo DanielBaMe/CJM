@@ -16,6 +16,8 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.validator.constraints.Range;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Entity
 @Table(name = "usuaria_datos_generales")
@@ -31,10 +33,10 @@ public class Registro implements Serializable{
     private String nombre;
     
     @NotBlank (message="El campo no puede esta vacío.")
-    private String a_paterno;
+    private String paterno;
     
     @NotBlank (message="El campo no puede esta vacío.")
-    private String a_materno;
+    private String materno;
     
     @NotNull(message="El campo no puede esta vacío.")
     @Positive
@@ -87,6 +89,7 @@ public class Registro implements Serializable{
     private String motivo_visita;
     
     @Column(name="fecha", updatable=false)
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fecha;
     
     @NotBlank
@@ -118,20 +121,20 @@ public class Registro implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public String getA_paterno() {
-		return a_paterno;
+	public String getPaterno() {
+		return paterno;
 	}
 
-	public void setA_paterno(String a_paterno) {
-		this.a_paterno = a_paterno;
+	public void setPaterno(String paterno) {
+		this.paterno =paterno;
 	}
 
-	public String getA_materno() {
-		return a_materno;
+	public String getMaterno() {
+		return materno;
 	}
 
-	public void setA_materno(String a_materno) {
-		this.a_materno = a_materno;
+	public void setMaterno(String materno) {
+		this.materno = materno;
 	}
 
 	public Integer getEdad() {

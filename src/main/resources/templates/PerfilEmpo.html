@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Perfil del area de empoderamiento</title>
+<meta charset="UTF-8" />
+
+
+ <!-- RETIRAR BOOTSTRAP -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+ integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+ <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+<!-- RETIRAR BOOTSTRAP -->
+
+
+</head>
+<body>
+	<header th:replace="layout/plantilla :: header"> </header>
+
+	<main>
+		<div class="container-fluid">
+			<h1 class="mt-4">Perfil de la usuaria</h1>
+			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active">Área de Empoderamiento</li>
+			</ol>
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-9">
+						<div class="card shadow-lg border-0 rounded-lg mt-3">
+							<div class="card-header">
+								<h3 class="text-center font-weight-light my-2">Información de la usuaria</h3>
+							</div>
+							<div class="card-body">
+								<h3 class="font-weight-light text-center py-2">Datos generales de la usuaria</h3>
+								<p>
+									<label class="font-weight-bold">Nombre: </label>
+									<span th:text="${registro.nombre}"></span>
+									<span th:text="${registro.a_paterno}"></span>
+									<span th:text="${registro.a_materno}"></span>
+								</p>
+								<p>
+									<label  class="font-weight-bold">Edad:</label>
+									<span th:text="${registro.edad}"></span>
+								</p>
+								<p>
+									<label  class="font-weight-bold">Tipo de atención:</label>
+									<span th:text="${registro.tipo_atencion}"></span>
+								</p>
+								<p>
+									<label  class="font-weight-bold">Curp:</label>
+									<span th:text="${registro.curp}"></span>
+								</p>
+								<p>
+									<label  class="font-weight-bold">Teléfono:</label>
+									<span th:text="${registro.telefono}"></span>
+								</p>
+								<hr>
+								<h3 class="font-weight-light text-center py-2">Formación educativa</h3>
+								<p>
+									<label class="font-weight-bold">Actividad que realiza:</label>
+									<span th:text="${expediente.actividad}"></span>
+								</p>
+								<p>
+									<label class="font-weight-bold">Escolaridad:</label>
+									<span th:text="${expediente.escolaridad}"></span>
+								</p>
+								<p>
+									<label class="font-weight-bold">Sabe escribir:</label>
+									<span th:text="${expediente.escribir}"></span>
+								</p>
+								<p>
+									<label class="font-weight-bold">Sabe leer:</label>
+									<span th:text="${expediente.leer}"></span>
+								</p>
+								<p>
+									<label class="font-weight-bold">Servicio medico con el que cuenta:</label>
+									<span th:text="${expediente.servicio_medico}"></span>
+								</p>
+								<div th:if="${registroEmp} == null" class="alert alert-danger text-danger d-flex justify-content-around">
+									No hay un registro de la usuaria
+									<td>
+										<a class="btn btn-danger" th:href="@{/registro_emp/} + ${registro.id}">
+										Hacer registro
+										</a>
+									</td>
+								</div>
+								<h3 class="font-weight-light text-center py-2">Datos</h3>
+								<div th:if="${registroEmp} != null">
+									<p>
+										<label class="font-weight-bold">Escolaridad:</label>
+										<span th:text="${registroEmp.escolaridad}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Certificado:</label>
+										<span th:text="${registroEmp.certificado}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Experiencia laboral:</label>
+										<span th:text="${registroEmp.exp_laboral}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Ultimo empleo:</label>
+										<span th:text="${registroEmp.ultimo_empleo}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Ocupacion:</label>
+										<span th:text="${registroEmp.ocupacion}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Habilidades:</label>
+										<span th:text="${registroEmp.habilidades}"></span>
+									</p>
+									<p>
+										<label class="font-weight-bold">Desarrolla algun negocio:</label>
+										<span th:text="${registroEmp.desarrolla_negocio}"></span>
+									</p>
+								</div>
+
+									<h3 class="font-weight-light text-center py-2">Seguimientos</h3>
+									<div th:if="${seguimientos} != null">
+										
+										<table class="table table-hover" >
+											<thead class="bg-light">
+												<tr>
+													<th class="text-center">Número de seguimiento</th>
+													<th class="text-center">fecha</th>
+													<th class="text-center">Observaciones</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr th:each="seguimiento : ${seguimientos}">
+													<td th:text="${seguimiento.seguimiento}"></td>
+													<td th:text="${seguimiento.fecha}"></td>
+													<td th:text="${seguimiento.observaciones}"></td>
+												</tr>
+											</tbody>
+										</table>
+										<div class="py-2 d-flex justify-content-center">
+											<a class="btn btn-primary  btn-block" th:href="@{/seguimiento_emp/} + ${registro.id}">Hacer seguimiento</a>
+										</div>
+									</div>
+									
+								<div th:if="${seguimientos} == null" class="alert alert-danger text-danger d-flex justify-content-around">
+									No hay seguimientos de ésta usuaria
+									<div th:if="${expediente} != null">
+										<a class="btn btn-danger" th:href="@{/seguimiento_emp/} + ${registro.id}">Hacer
+												seguimiento</a>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	
+
+
+
+
+
+	
+             <!-- RETIRAR SCRIPTS -->
+			 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+			 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+			 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+				  <!-- RETIRAR SCRIPTS -->
+</body>
+</html>

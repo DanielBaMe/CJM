@@ -8,6 +8,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Data
 @Entity
 @Table(name = "seguimiento_psic")
@@ -19,10 +21,18 @@ private static final long serialVersionUID = 1L;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(name="fecha", updatable=false)
-    private Date fecha;
+    @JsonFormat(pattern="yyyy")
+    private Integer anio;
+    
+    @JsonFormat(pattern="MM")
+    private Integer mes;
+    
+    @JsonFormat(pattern="dd")
+    private Integer dia;
     
     private Long folio;
+    
+    private Integer no_sesion;
     
     private String h_entrada;
     
@@ -32,12 +42,64 @@ private static final long serialVersionUID = 1L;
     
     private String tarea;
     
-    private Integer no_sesion;
-    
     private String psicologa;
     
     private Long usuaria;
     
+    private String observaciones;
+    
+    private String sesion;
+    
+    
+    
+
+	public Integer getNo_sesion() {
+		return no_sesion;
+	}
+
+	public void setNo_sesion(Integer no_sesion) {
+		this.no_sesion = no_sesion;
+	}
+
+	public String getSesion() {
+		return sesion;
+	}
+
+	public void setSesion(String sesion) {
+		this.sesion = sesion;
+	}
+
+	public Integer getAnio() {
+		return anio;
+	}
+
+	public void setAnio(Integer anio) {
+		this.anio = anio;
+	}
+
+	public Integer getMes() {
+		return mes;
+	}
+
+	public void setMes(Integer mes) {
+		this.mes = mes;
+	}
+
+	public Integer getDia() {
+		return dia;
+	}
+
+	public void setDia(Integer dia) {
+		this.dia = dia;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
 
 	public Long getUsuaria() {
 		return usuaria;
@@ -55,13 +117,6 @@ private static final long serialVersionUID = 1L;
 		this.id = id;
 	}
 
-	public Date getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
 
 	public Long getFolio() {
 		return folio;
@@ -101,14 +156,6 @@ private static final long serialVersionUID = 1L;
 
 	public void setTarea(String tarea) {
 		this.tarea = tarea;
-	}
-
-	public Integer getNo_sesion() {
-		return no_sesion;
-	}
-
-	public void setNo_sesion(Integer no_sesion) {
-		this.no_sesion = no_sesion;
 	}
 
 	public String getPsicologa() {

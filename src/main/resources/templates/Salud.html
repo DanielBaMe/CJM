@@ -1,82 +1,141 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Salud Fisica</title>
-        <meta charset="UTF-8"/>
-    </head>
-    <body>
-        <header th:replace="layout/plantilla :: header">
+<head th:replace="layout/plantilla::head">
 
-        </header>
-        <h2></h2>
-        <br/>
-        <form th:action="@{/salud}" method="post" th:object="${salud}">
-            <div class="errorblock" th:if="${#fields.hasErrors('*')}">
-                <ul>
-                    <li th:each="err : ${#fields.errors('*')}"
-                        th:text="${err}">Input is incorrect</li>
-                </ul>
+</head>
+<body class="sb-nav-fixed">
+    <header th:replace="layout/plantilla :: header">
+    </header>
+    <div id="layoutSidenav">
+        <div th:replace="layout/plantilla::aside">
+                
+        </div>
+        <div id="layoutSidenav_content">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <h2>Salud fisica</h2>
+                    <br/>
+                    <form th:action="@{/nueva_salud}" method="post" th:object="${salud}">
+                        <label for="embarazada">¿Esta embarazada?</label>
+                        <input type="radio" name="embarazada" th:field="*{embarazada}" value="Si"/><label>Si</label>
+                        <input type="radio" name="embarazada" th:field="*{embarazada}" value="No"/><label>No</label>
+                        <span th:if="${#fields.hasErrors('embarazada')}" th:errors="*{embarazada}">Error nombre</span>
+                        <br/>
+                        <h3>POR ALGÚN PROBLEMA DE SALUD, ¿CUÁNTA DIFICULTAD TIENE LA VICTIMA PARA...? </h3>
+                        <label for="problema_caminar">Caminar, subir o bajar sus pies?:</label>
+                        <br/>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_caminar"
+                            th:field="*{problema_caminar}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_caminar')}" th:errors="*{problema_caminar}">Error nombre</span>
+                        <br/>
+
+                        <label for="problema_ver">Ver</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_ver"
+                            th:field="*{problema_ver}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_ver')}" th:errors="*{problema_ver}">Error nombre</span>
+                        <br/>
+
+                        <label for="problema_aprender">Aprender, recordar o consentrarse o comer?</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_aprender"
+                            th:field="*{problema_aprender}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_aprender')}" th:errors="*{problema_aprender}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="problema_escuchar">Escuchar?:</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_escuchar"
+                            th:field="*{problema_escuchar}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_escuchar')}" th:errors="*{problema_escuchar}">Error nombre</span>
+                        <br/>
+
+                        <label for="problema_baniarse">Bañarse</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_baniarse"
+                            th:field="*{problema_baniarse}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_baniarse')}" th:errors="*{problema_baniarse}">Error nombre</span>
+                        <br/>
+
+                        <label for="problema_hablar">Hablar</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="problema_hablar"
+                            th:field="*{problema_hablar}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('problema_hablar')}" th:errors="*{problema_hablar}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="causa_dificultad">Cuanta dificultad tiene la victima para realizar sus actividades?</label>
+                        <select class="form-control form-control-sm"
+                            id="selectEscolaridad" name="causa_dificultad"
+                            th:field="*{causa_dificultad}" required>
+                            <option selected value="">...</option>
+                            <option th:value="No_puede">No puede hacerlo</option>
+                            <option th:value="con_dificultad">Lo hace con dificultad</option>
+                            <option th:value="con_poca_dificultad">Lo hace con poca dificultad</option>
+                            <option th:value="No_tiene_dificultad">No tiene dificultad</option>
+                        </select>
+                        <span th:if="${#fields.hasErrors('causa_dificultad')}" th:errors="*{causa_dificultad}">Error nombre</span>
+                        <br/>
+                        
+                        <label for="motivos_dificultad">La dificultad de la victima por hacer esas cosas es por?</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="enfermdad"/><label>Enfermedad</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="edad"/><label>Edad avancada</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="accidente"/><label>Accidente</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="violencia"/><label>Violencia</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="nacimiento"/><label>Nació asi</label>
+                        <input type="radio" name="motivos_dificultad" th:field="*{motivos_dificultad}" value="otro"/><label>Otra causa</label>
+                        <span th:if="${#fields.hasErrors('motivos_dificultad')}" th:errors="*{motivos_dificultad}">Error nombre</span>
+                        <br/>
+
+
+                        <input type="submit" name="guardar" value="Guardar"/>
+                    </form>
+                </main>
+                <br>
             </div>
-            <label for="embarazada">¿Esta embarazada?</label>
-            <input type="radio" name="embarazada" th:field="*{embarazada}" required value="Si"/>
-            <input type="radio" name="embarazada" th:field="*{embarazada}" required value="No"/>
-            <span th:if="${#fields.hasErrors('embarazada')}" th:errors="*{embarazada}">Error nombre</span>
-            <br/>
-
-            <label for="problema_caminar">Caminar, subir o bajar sus pies?:</label>
-            <br/>
-            <input type="radio" name="uno" th:field="*{problema_caminar}"  required value="No puede hacerlo"/>
-            <label for="uno">No puede hacerlo</label>
-            <input type="radio" name="dos" th:field="*{problema_caminar}"  required value="Lo hace con dificultad"/>
-            <label for="dos">Lo hace con dificultad</label>
-            <input type="radio" name="tres" th:field="*{problema_caminar}"  required value="Lo hace con poca dificultad"/>
-            <label for="tres">Lo hace con poca dificultad</label>
-            <input type="radio" name="cuatro" th:field="*{problema_caminar}"  required value="No tiene dificultad"/>
-            <label for="cuatro">No tiene dificultad</label>
-            <span th:if="${#fields.hasErrors('problema_caminar')}" th:errors="*{problema_caminar}">Error nombre</span>
-            <br/>
-
-            <label for="problema_ver">Ver</label>
-            <input type="text" name="problema_ver" th:field="*{problema_ver}"  required/>
-            <span th:if="${#fields.hasErrors('problema_ver')}" th:errors="*{problema_ver}">Error nombre</span>
-            <br/>
-
-            <label for="problema_aprender">Aprender, recordar o consentrarse o comer?</label>
-            <input type="text" name="problema_aprender" th:field="*{problema_aprender}"  required/>
-            <span th:if="${#fields.hasErrors('problema_aprender')}" th:errors="*{problema_aprender}">Error nombre</span>
-            <br/>
+            <footer th:replace="layout/plantilla::footer">
             
-            <label for="problema_escuchar">Escuchar?:</label>
-            <input type="text" name="problema_escuchar" th:field="*{problema_escuchar}"  required/>
-            <span th:if="${#fields.hasErrors('problema_escuchar')}" th:errors="*{problema_escuchar}">Error nombre</span>
-            <br/>
-
-            <label for="problema_baniarse">Bañarse</label>
-            <input type="text" name="problema_baniarse" th:field="*{problema_baniarse}"  required/>
-            <span th:if="${#fields.hasErrors('problema_baniarse')}" th:errors="problema_baniarse">Error nombre</span>
-            <br/>
-
-            <label for="problema_hablar">Hablar</label>
-            <input type="text" name="problema_hablar" th:field="*{problema_hablar}"  required/>
-            <span th:if="${#fields.hasErrors('problema_hablar')}" th:errors="*{problema_hablar}">Error nombre</span>
-            <br/>
-            
-            <label for="causa_dificultad">Cuanta dificultad tiene la victima para realizar sus actividades?</label>
-            <input type="text" name="causa_dificultad" th:field="*{causa_dificultad}"  required/>
-            <span th:if="${#fields.hasErrors('causa_dificultad')}" th:errors="*{causa_dificultad}">Error nombre</span>
-            <br/>
-            
-            <label for="motivos_dificultad">La dificultad de la victima por hacer esas cosas es por?</label>
-            <input type="text" name="motivos_dificultad" th:field="*{motivos_dificultad}"  required/>
-            <span th:if="${#fields.hasErrors('motivos_dificultad')}" th:errors="*{motivos_dificultad}">Error nombre</span>
-            <br/>
-
-
-            <input type="submit" name="guardar" value="Guardar"/>
-        </form>
-        <footer th:replace="layout/plantilla :: footer">
-
-        </footer>
-    </body>
+            </footer>
+        </div>
+    </div>
+    <th:block th:reaplce="layout/plantilla::script"></th:block>  
+</body>
 </html>

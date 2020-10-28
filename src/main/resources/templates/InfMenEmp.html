@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Informe mensual</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<a th:href="@{/}">Regresar</a>
+	<br />
+	<br />
+	<h2>Usuarias de primera vez</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Edad</th>
+				<th>Direccion</th>
+				<th>Ocupacion</th>
+				<th>Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="registro : ${registros}">
+				<td th:text="${registro.usuaria}"></td>
+				<td th:text="${registro.dia}"></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<h2>Seguimientos</h2>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Usuaria</th>
+				<th>Dia</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="seguimiento : ${seguimientos}">
+				<td th:text="${seguimiento.usuaria}"></td>
+				<td th:text="${seguimiento.dia}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

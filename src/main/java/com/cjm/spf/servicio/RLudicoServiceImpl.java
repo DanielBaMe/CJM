@@ -1,6 +1,7 @@
 package com.cjm.spf.servicio;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,12 @@ public class RLudicoServiceImpl implements RLudicoService{
 	public RLudico encontrarNinio(String nombre) {
 		RLudico registro = ludicoDao.findByNombreContaining(nombre);
 		return registro;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<RLudico> encontrarHijosUsuaria(Long id) {
+		return (List<RLudico>) ludicoDao.findByUsuaria(id);
 	}
 
 }
